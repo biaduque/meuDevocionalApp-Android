@@ -17,7 +17,7 @@ Repositório para desenvolvimento do aplicativo Meu Devocional versão Android
        <a href="https://github.com/rodriguesabner">
          <img src="https://avatars.githubusercontent.com/u/40338524?v=4" height="auto" width="100" style="corner-radius:50%" alt="Foto de perfil do GitHub do Abner Rodrigues "/>          <br>
          <sub>
-           <b> João Pedro </b>
+           <b> Abner Rodrigues </b>
          </sub>
        </a>
      </td>
