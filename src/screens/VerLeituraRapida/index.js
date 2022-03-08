@@ -14,8 +14,9 @@ import {
 import Feather from 'react-native-vector-icons/Feather';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
+import {TouchableOpacity} from 'react-native';
 
-const VerLeituraRapida = ({route}) => {
+const VerLeituraRapida = ({route, navigation}) => {
   const params = route.params;
   const [oepnModalCreate, setOepnModalCreate] = useState(false);
 
@@ -39,10 +40,12 @@ const VerLeituraRapida = ({route}) => {
         titleConfirm={'Criar nova devocional'}
       />
       <Header>
-        <LeftWrapperHeader>
-          <Feather name="chevron-left" size={32} color="#333" />
-          <TitleBackScreen>Leituras</TitleBackScreen>
-        </LeftWrapperHeader>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <LeftWrapperHeader>
+            <Feather name="chevron-left" size={32} color="#333" />
+            <TitleBackScreen>Leituras</TitleBackScreen>
+          </LeftWrapperHeader>
+        </TouchableOpacity>
 
         <TitleScreen>Leitura rápida</TitleScreen>
 
