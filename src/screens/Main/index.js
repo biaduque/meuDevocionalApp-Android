@@ -1,14 +1,12 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
+import React, {useRef} from 'react';
+import {SafeAreaView, StyleSheet, StatusBar, Animated} from 'react-native';
 import BottomNavigation from '../../components/BottomNavigation';
 import Fragments from '../../routes/fragment';
-import Header from '../../components/Header';
 
 const Main = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'dark-content'} backgroundColor={'#fff'} />
-      <Header />
       <Fragments />
       <BottomNavigation />
     </SafeAreaView>
@@ -22,6 +20,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
+    position: 'relative',
   },
 });
 

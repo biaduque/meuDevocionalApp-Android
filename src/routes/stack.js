@@ -1,26 +1,38 @@
-import React from "react";
-import {createNativeStackNavigator} from "@react-navigation/native-stack"
-import OnBoardingScreen from "../screens/OnBoarding";
-import Main from "../screens/Main";
-import ProfileScreen from "../screens/Profile";
+import React from 'react';
+import OnBoardingScreen from '../screens/OnBoarding';
+import Main from '../screens/Main';
+import ProfileScreen from '../screens/Profile';
+import {
+  createStackNavigator,
+  TransitionPresets,
+  CardStyleInterpolators,
+  HeaderStyleInterpolators,
+} from '@react-navigation/stack';
 
-const StackRoutes = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
-const StackROutes = () => {
+const StackRoutes = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animation: 'none',
+        headerStyle: {height: 0},
+        cardOverlayEnabled: true,
+      }}
+      initialRouteName={'OnBoarding'}>
+      <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
+      <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.ModalPresentationIOS,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
-    return (
-        <StackRoutes.Navigator
-            screenOptions={{
-                headerShown: false,
-                animation: "none"
-            }}
-            initialRouteName={'OnBoarding'}
-        >
-            <StackRoutes.Screen name="OnBoarding" component={OnBoardingScreen}/>
-            <StackRoutes.Screen name="Main" component={Main}/>
-            <StackRoutes.Screen name="Profile" component={ProfileScreen}/>
-        </StackRoutes.Navigator>
-    )
-}
-
-export default StackROutes;
+export default StackRoutes;

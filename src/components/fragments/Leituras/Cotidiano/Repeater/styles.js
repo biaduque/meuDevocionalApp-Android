@@ -4,9 +4,18 @@ export const WrapperLeitura = styled.View`
   justify-content: space-between;
   margin-right: 10px;
   background-color: #89a091;
+  min-width: 300px;
   max-width: 300px;
-  max-height: 200px;
   border-radius: 10px;
+`;
+
+export const Image = styled.Image.attrs({
+  resizeMode: 'cover',
+})`
+  width: 100%;
+  height: 150px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `;
 
 export const Description = styled.Text`

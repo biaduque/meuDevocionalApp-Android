@@ -1,29 +1,52 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import {Container, Layout} from './styles';
-import {Plus, Search} from 'react-native-iconly';
+import {Animated, TouchableOpacity} from 'react-native';
+import {Container, Layout, TitleScreen} from './styles';
+import {Search} from 'react-native-iconly';
 import {useNavigation} from '@react-navigation/core';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const Header = () => {
+const Header = ({animatedValue, title}) => {
   const navigation = useNavigation();
 
   const handleNavigateToSearch = () => {
     navigation.navigate('Search');
   };
 
-  return (
-    <Layout>
-      <Container>
-        <Search color="#000" onPress={() => handleNavigateToSearch()} />
+  const HEADER_HEIGHT = 110;
+  const insets = useSafeAreaInsets();
 
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={() => navigation.navigate('Profile')}>
-          <AntDesign name="plus" size={24} color="#999" />
-        </TouchableOpacity>
-      </Container>
-    </Layout>
+  const headerHeight = animatedValue.interpolate({
+    inputRange: [0, HEADER_HEIGHT + insets.top],
+    outputRange: [HEADER_HEIGHT + insets.top, insets.top + 44],
+    extrapolate: 'clamp',
+  });
+
+  return (
+    <Animated.View
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 10,
+        height: headerHeight,
+        backgroundColor: '#fff',
+      }}>
+      <Layout>
+        <Container>
+          <Search color="#999" onPress={() => handleNavigateToSearch()} />
+
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => navigation.navigate('Profile')}>
+            <AntDesign name="plus" size={24} color="#999" />
+          </TouchableOpacity>
+        </Container>
+
+        <TitleScreen>{title}</TitleScreen>
+      </Layout>
+    </Animated.View>
   );
 };
 

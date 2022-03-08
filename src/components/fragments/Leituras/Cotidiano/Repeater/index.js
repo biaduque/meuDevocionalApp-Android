@@ -2,10 +2,12 @@ import React from 'react';
 import {
   Description,
   FooterWrapper,
+  Image,
   RefBiblia,
   Title,
   WrapperLeitura,
 } from './styles';
+import CotidianoBase1 from '../../../../../assets/illustrations/cotidianoBase1.png';
 
 const RepeaterCotidiano = ({item}) => {
   const formattedDescription = () => {
@@ -16,7 +18,7 @@ const RepeaterCotidiano = ({item}) => {
 
   return (
     <WrapperLeitura>
-      <Description>{formattedDescription()}</Description>
+      <Image source={CotidianoBase1} />
 
       <FooterWrapper>
         <Title>{item.titulo}</Title>

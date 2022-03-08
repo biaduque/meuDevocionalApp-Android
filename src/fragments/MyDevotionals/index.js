@@ -1,9 +1,6 @@
 import React from 'react';
 import {Container, FlatList, Layout} from './styles';
-import TopContent from '../../components/TopContent';
-import SearchBar from '../../components/Search/SearchBar';
 import DevotionalsComponent from '../../components/fragments/MyDevotionals/Devotionals';
-import {View} from 'react-native';
 
 const MyDevotionalsScreen = () => {
   const devotionals = [
@@ -77,18 +74,6 @@ const MyDevotionalsScreen = () => {
           contentContainerStyle={{paddingBottom: 40}}
           showsVerticalScrollIndicator={true}
           data={devotionals}
-          ListHeaderComponent={() => (
-            <View>
-              <TopContent
-                style={{
-                  paddingLeft: 0,
-                }}
-                title={'Minhas devocionais'}
-                showSecondLine={false}
-              />
-              <SearchBar />
-            </View>
-          )}
           renderItem={({item}) => <DevotionalsComponent devotional={item} />}
         />
       </Container>

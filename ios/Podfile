@@ -16,6 +16,10 @@ target 'MeuDevocional' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'react-native-blur', :path => '../node_modules/@react-native-community/blur'
+
   target 'MeuDevocionalTests' do
     inherit! :complete
     # Pods for testing
