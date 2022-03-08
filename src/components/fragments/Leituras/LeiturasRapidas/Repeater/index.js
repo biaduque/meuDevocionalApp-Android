@@ -6,8 +6,12 @@ import {
   Title,
   WrapperLeitura,
 } from './styles';
+import {useNavigation} from '@react-navigation/core';
+import {TouchableOpacity} from 'react-native';
 
 const RepeaterQuickReader = ({item}) => {
+  const navigation = useNavigation();
+
   const formattedDescription = () => {
     return item.descricao.length < 100
       ? item.descricao
@@ -15,7 +19,7 @@ const RepeaterQuickReader = ({item}) => {
   };
 
   return (
-    <WrapperLeitura>
+    <WrapperLeitura onPress={() => navigation.navigate('VerLeituraRapida')}>
       <Description>{formattedDescription()}</Description>
 
       <FooterWrapper>

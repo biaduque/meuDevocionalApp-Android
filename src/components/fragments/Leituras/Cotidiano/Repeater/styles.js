@@ -26,7 +26,6 @@ export const Description = styled.Text`
 `;
 
 export const FooterWrapper = styled.View`
-  margin-top: 10px;
   background: #f9d9a1;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

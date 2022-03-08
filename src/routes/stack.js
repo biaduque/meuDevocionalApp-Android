@@ -1,7 +1,8 @@
 import React from 'react';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
-import ProfileScreen from '../screens/Profile';
+import CreateDevotional from '../screens/CreateDevotional';
+import VerLeituraRapida from '../screens/VerLeituraRapida';
 import {
   createStackNavigator,
   TransitionPresets,
@@ -24,11 +25,19 @@ const StackRoutes = () => {
       <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <Stack.Screen name="Main" component={Main} />
       <Stack.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="CreateDevotional"
+        component={CreateDevotional}
         options={{
           gestureEnabled: true,
           ...TransitionPresets.ModalPresentationIOS,
+        }}
+      />
+      <Stack.Screen
+        name="VerLeituraRapida"
+        component={VerLeituraRapida}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.SlideFromRightIOS,
         }}
       />
     </Stack.Navigator>

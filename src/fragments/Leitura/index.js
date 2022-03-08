@@ -30,12 +30,6 @@ const LeituraScreen = () => {
             <WrapperContent>
               <LeiturasRapidas />
               <Cotidiano />
-              <LeiturasRapidas />
-              <Cotidiano />
-              <LeiturasRapidas />
-              <Cotidiano />
-              <LeiturasRapidas />
-              <Cotidiano />
             </WrapperContent>
           </Container>
         </ScrollView>

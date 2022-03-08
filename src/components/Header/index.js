@@ -39,7 +39,7 @@ const Header = ({animatedValue, title}) => {
 
           <TouchableOpacity
             activeOpacity={1}
-            onPress={() => navigation.navigate('Profile')}>
+            onPress={() => navigation.navigate('CreateDevotional')}>
             <AntDesign name="plus" size={24} color="#999" />
           </TouchableOpacity>
         </Container>

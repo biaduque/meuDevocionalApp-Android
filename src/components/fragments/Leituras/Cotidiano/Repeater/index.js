@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Description,
-  FooterWrapper,
-  Image,
-  RefBiblia,
-  Title,
-  WrapperLeitura,
-} from './styles';
+import {FooterWrapper, Image, RefBiblia, Title, WrapperLeitura} from './styles';
 import CotidianoBase1 from '../../../../../assets/illustrations/cotidianoBase1.png';
 
 const RepeaterCotidiano = ({item}) => {
