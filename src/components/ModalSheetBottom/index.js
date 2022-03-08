@@ -3,6 +3,8 @@ import {Text, StyleSheet, StatusBar} from 'react-native';
 import {
   ActionCancelButton,
   ActionConfirmButton,
+  Backdrop,
+  Container,
   ContentTop,
   Description,
   Layout,
@@ -24,22 +26,27 @@ const ModalSheetBottom = ({
   return (
     /*TODO: realizar close do modal*/
     open && (
-      <Layout onPress={() => handleClose()}>
+      <Layout>
         <StatusBar barStyle={'light-content'} backgroundColor={'#000'} />
-        <WrapperTopContent>
-          <ContentTop>
-            <Title>{title}</Title>
-            <Description>{description}</Description>
-          </ContentTop>
-          <ActionCancelButton onPress={() => handleClose()}>
-            <Text style={styles.textCancel}>Cancelar</Text>
-          </ActionCancelButton>
-        </WrapperTopContent>
-        {titleConfirm && (
-          <ActionConfirmButton>
-            <Text style={styles.textConfirm}>{titleConfirm}</Text>
-          </ActionConfirmButton>
-        )}
+
+        <Backdrop onPress={() => handleClose()} />
+
+        <Container>
+          <WrapperTopContent>
+            <ContentTop>
+              <Title>{title}</Title>
+              <Description>{description}</Description>
+            </ContentTop>
+            <ActionCancelButton onPress={() => handleClose()}>
+              <Text style={styles.textCancel}>Cancelar</Text>
+            </ActionCancelButton>
+          </WrapperTopContent>
+          {titleConfirm && (
+            <ActionConfirmButton>
+              <Text style={styles.textConfirm}>{titleConfirm}</Text>
+            </ActionConfirmButton>
+          )}
+        </Container>
       </Layout>
     )
   );

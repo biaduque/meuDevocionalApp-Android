@@ -5,6 +5,7 @@ import {
   LeftWrapperHeader,
   RightWrapperHeader,
   Text,
+  TextVersiculo,
   TitleBackScreen,
   TitleScreen,
   TitleSection,
@@ -14,7 +15,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
 
-const VerLeituraRapida = () => {
+const VerLeituraRapida = ({route}) => {
+  const params = route.params;
   const [oepnModalCreate, setOepnModalCreate] = useState(false);
 
   const handleOpenCreateDevotional = () => {
@@ -61,14 +63,16 @@ const VerLeituraRapida = () => {
       </Header>
 
       <WrapperText>
-        <TitleSection>Aquieta minha alma</TitleSection>
-        <Text>Texto Aqui</Text>
+        <TitleSection>{params.titulo}</TitleSection>
+        <TextVersiculo>
+          {params.introducao} - {params.refBiblica}
+        </TextVersiculo>
 
         <TitleSection>Contextualização</TitleSection>
-        <Text>Texto Aqui</Text>
+        <Text>{params.desenvolvimento}</Text>
 
         <TitleSection>Reflexão</TitleSection>
-        <Text>Texto Aqui</Text>
+        <Text>{params.conclusao}</Text>
       </WrapperText>
     </Layout>
   );

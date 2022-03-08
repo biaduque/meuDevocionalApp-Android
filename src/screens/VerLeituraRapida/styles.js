@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Layout = styled.View`
+export const Layout = styled.ScrollView`
   flex: 1;
   background-color: #fff;
   padding: 10px;
@@ -37,6 +37,7 @@ export const RightWrapperHeader = styled.View`
 
 export const WrapperText = styled.View`
   padding: 10px;
+  padding-bottom: 150px;
 `;
 
 export const TitleSection = styled.Text`
@@ -46,8 +47,17 @@ export const TitleSection = styled.Text`
   margin-top: 24px;
 `;
 
-export const Text = styled.Text`
-  font-size: 16px;
+export const TextVersiculo = styled.Text`
+  font-size: 20px;
+  font-style: italic;
   color: #000;
+  font-weight: 400;
+  margin-top: 10px;
+`;
+
+export const Text = styled.Text`
+  font-size: 20px;
+  color: #000;
+  font-weight: 400;
   margin-top: 10px;
 `;

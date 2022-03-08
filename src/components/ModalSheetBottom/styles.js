@@ -1,17 +1,30 @@
 import styled from 'styled-components/native';
 
-export const Layout = styled.TouchableOpacity.attrs({
-  activeOpacity: 1,
-})`
+export const Layout = styled.View`
   position: absolute;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 20px;
   flex: 1;
   bottom: 0;
   left: 0;
   right: 0;
   top: 0;
   justify-content: flex-end;
+`;
+
+export const Backdrop = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  flex: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+`;
+
+export const Container = styled.View`
+  margin: 20px;
 `;
 
 export const WrapperTopContent = styled.View`
