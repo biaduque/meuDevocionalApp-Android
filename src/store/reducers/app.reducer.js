@@ -3,7 +3,7 @@ import {light, dark} from '../../styles/themes';
 
 const INITIAL_STATE = {
   activeTab: 'Leitura',
-  theme: dark,
+  theme: light,
 };
 
 const appReducer = (state = INITIAL_STATE, {type, payload}) => {

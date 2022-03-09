@@ -5,6 +5,7 @@ export const Layout = styled.View`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  background: ${({theme}) => theme.colors.background};
 `;
 
 export const Container = styled.View`
@@ -18,7 +19,7 @@ export const Container = styled.View`
 export const TitleScreen = styled.Text`
   font-size: 36px;
   font-weight: bold;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-right: auto;
   padding: 20px;
 `;

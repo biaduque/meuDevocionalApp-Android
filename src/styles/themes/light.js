@@ -19,4 +19,8 @@ export default {
     yellow2: '#F7D9A0',
     yellow3: '#FCEDCB',
   },
+  colorsLeituraRapidaScreen: {
+    titleSection: '#5E6C61',
+    text: '#000',
+  },
 };

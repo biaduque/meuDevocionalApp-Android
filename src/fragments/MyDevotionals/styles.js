@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Layout = styled.View`
   flex-direction: column;
-  background: #fff;
+  background: ${({theme}) => theme.colors.background};
 `;
 
 export const Container = styled.View`

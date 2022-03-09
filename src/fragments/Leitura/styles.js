@@ -6,3 +6,8 @@ export const Container = styled.View`
 `;
 
 export const WrapperContent = styled.View``;
+
+export const CustomScrollView = styled.ScrollView`
+  background: ${({theme}) => theme.colors.background};
+  flex: 1;
+`;

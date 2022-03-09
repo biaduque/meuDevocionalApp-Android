@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  BackIcon,
   EditIcon,
   Header,
   Layout,
@@ -14,7 +15,6 @@ import {
   WrapperText,
 } from './styles';
 import Feather from 'react-native-vector-icons/Feather';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
 import {Dimensions, TouchableOpacity} from 'react-native';
 
@@ -46,7 +46,7 @@ const VerLeituraRapida = ({route, navigation}) => {
       <Header>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <LeftWrapperHeader>
-            <Feather name="chevron-left" size={32} color="#333" />
+            <BackIcon />
             <TitleBackScreen>Leituras</TitleBackScreen>
           </LeftWrapperHeader>
         </TouchableOpacity>

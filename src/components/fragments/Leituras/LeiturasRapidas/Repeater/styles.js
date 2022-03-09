@@ -15,7 +15,7 @@ export const WrapperLeitura = styled.TouchableOpacity.attrs({
 export const Description = styled.Text`
   font-size: 18px;
   line-height: 32px;
-  color: #000;
+  color: ${({theme}) => theme.colors.titleSecondary};
 `;
 
 export const FooterWrapper = styled.View`
@@ -25,12 +25,12 @@ export const FooterWrapper = styled.View`
 export const Title = styled.Text`
   font-weight: 700;
   font-size: 20px;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
 `;
 
 export const RefBiblia = styled.Text`
   font-weight: 400;
   font-size: 14px;
   opacity: 0.5;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
 `;

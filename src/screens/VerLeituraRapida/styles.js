@@ -37,6 +37,12 @@ export const RightWrapperHeader = styled.View`
   align-items: center;
 `;
 
+export const BackIcon = styled(Feather).attrs({
+  name: 'chevron-left',
+  size: 32,
+})`
+  color: ${({theme}) => theme.colors.iconColor};
+`;
 export const EditIcon = styled(Feather).attrs({
   name: 'edit',
   size: 24,
@@ -61,21 +67,21 @@ export const WrapperText = styled.View`
 export const TitleSection = styled.Text`
   font-size: 28px;
   font-weight: 500;
-  color: #5e6c61;
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleSection};
   margin-top: 24px;
 `;
 
 export const TextVersiculo = styled.Text`
   font-size: 20px;
   font-style: italic;
-  color: #000;
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.text};
   font-weight: 400;
   margin-top: 10px;
 `;
 
 export const Text = styled.Text`
   font-size: 20px;
-  color: #000;
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.text};
   font-weight: 400;
   margin-top: 10px;
 `;

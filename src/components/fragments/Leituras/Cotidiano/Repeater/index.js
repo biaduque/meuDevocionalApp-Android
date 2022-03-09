@@ -7,12 +7,6 @@ import cotidianoBase4 from '../../../../../assets/illustrations/cotidianoBase4.p
 import cotidianoBase5 from '../../../../../assets/illustrations/cotidianoBase5.png';
 
 const RepeaterCotidiano = ({item}) => {
-  const formattedDescription = () => {
-    return item.descricao.length < 100
-      ? item.descricao
-      : `${item.descricao.substring(0, 94)}...`;
-  };
-
   const transformImageBackground = path => {
     if (path.includes('cotidianoBase1')) {
       return cotidianoBase1;
