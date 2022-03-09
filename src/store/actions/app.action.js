@@ -7,4 +7,11 @@ const setActiveTab = product => {
   };
 };
 
-export {setActiveTab};
+const setTheme = payload => {
+  return {
+    type: ActionTypes.app.SET_THEME,
+    payload,
+  };
+};
+
+export {setActiveTab, setTheme};

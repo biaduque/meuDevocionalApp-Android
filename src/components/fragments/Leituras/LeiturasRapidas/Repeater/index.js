@@ -29,8 +29,12 @@ const RepeaterQuickReader = ({item}) => {
     });
   };
 
+  console.log(item.backgroundColor);
+
   return (
-    <WrapperLeitura onPress={() => onClickLeitura()}>
+    <WrapperLeitura
+      background={item.backgroundColor}
+      onPress={() => onClickLeitura()}>
       <Description>{formattedDescription()}</Description>
 
       <FooterWrapper>

@@ -1,17 +1,43 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 class Utils {
   constructor() {
-    this.colors = {
-      verde: 'rgba(0.55, 0.64, 0.58, 1.0)',
-      verde2: 'rgba(0.18, 0.62, 0.63, 1.0)',
-      verde3: 'rgba( 0.35, 0.46, 0.39, 1.0)',
-
-      amarelo: 'rgba(0.93, 0.73, 0.49, 1.0)',
-      amarelo2: 'rgba( 0.97, 0.85, 0.63, 1.0)',
-      amarelo3: 'rgba(0.99, 0.93, 0.8, 1.0)',
-    };
-
-    this.colorsName = ['Verde1', 'Verde2', 'Amarelo1', 'Amarelo2', 'Amarelo3'];
+    this.colors = [
+      'rgba(139,162,147,.5)',
+      'rgba(236,186,125,.3)',
+      'rgba(247,217,160,.3)',
+      'rgba(252,237,203,.3)',
+    ];
   }
+
+  randomItemArray(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  randomProperty(obj) {
+    const keys = Object.keys(obj);
+    return obj[keys[(keys.length * Math.random()) << 0]];
+  }
+
+  getRandomColor() {
+    return this.randomItemArray(this.colors);
+  }
+
+  getData = async (key, isObject = false) => {
+    try {
+      const value = await AsyncStorage.getItem(key);
+
+      if (value != null) {
+        if (isObject) {
+          return JSON.parse(value);
+        } else {
+          return value;
+        }
+      }
+    } catch (e) {
+      return null;
+    }
+  };
 }
 
 export default Utils;

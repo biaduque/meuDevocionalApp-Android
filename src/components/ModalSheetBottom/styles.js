@@ -14,7 +14,7 @@ export const Layout = styled.View`
 export const Backdrop = styled.TouchableOpacity.attrs({
   activeOpacity: 1,
 })`
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   width: 100%;
   flex: 1;
   position: absolute;

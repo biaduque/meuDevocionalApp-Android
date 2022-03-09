@@ -5,7 +5,7 @@ export const WrapperLeitura = styled.TouchableOpacity.attrs({
 })`
   justify-content: space-between;
   margin-right: 10px;
-  background-color: #f7e8d6;
+  background-color: ${({background}) => background};
   padding: 20px;
   max-width: 300px;
   max-height: 200px;

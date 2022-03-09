@@ -1,8 +1,10 @@
 import styled from 'styled-components/native';
+import Feather from 'react-native-vector-icons/Feather';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 export const Layout = styled.ScrollView`
   flex: 1;
-  background-color: #fff;
+  background-color: ${({theme}) => theme.colors.background};
   position: relative;
 `;
 
@@ -20,19 +22,34 @@ export const LeftWrapperHeader = styled.View`
 
 export const TitleBackScreen = styled.Text`
   font-size: 20px;
-  color: #000;
+  color: ${({theme}) => theme.colors.titleSecondary};
 `;
 
 export const TitleScreen = styled.Text`
   font-size: 22px;
   font-weight: 500;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-right: 20px;
 `;
 
 export const RightWrapperHeader = styled.View`
   flex-direction: row;
   align-items: center;
+`;
+
+export const EditIcon = styled(Feather).attrs({
+  name: 'edit',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colors.iconColor};
+`;
+
+export const ShareIcon = styled(EvilIcons).attrs({
+  name: 'share-apple',
+  size: 34,
+})`
+  color: ${({theme}) => theme.colors.iconColor};
+  margin-left: 20px;
 `;
 
 export const WrapperText = styled.View`

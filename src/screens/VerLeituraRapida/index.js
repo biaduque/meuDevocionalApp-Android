@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import {
+  EditIcon,
   Header,
   Layout,
   LeftWrapperHeader,
   RightWrapperHeader,
+  ShareIcon,
   Text,
   TextVersiculo,
   TitleBackScreen,
@@ -52,18 +54,8 @@ const VerLeituraRapida = ({route, navigation}) => {
         <TitleScreen>Leitura rápida</TitleScreen>
 
         <RightWrapperHeader>
-          <Feather
-            name="edit"
-            size={24}
-            color="#333"
-            onPress={() => handleOpenCreateDevotional()}
-          />
-          <EvilIcons
-            name="share-apple"
-            size={34}
-            color="#333"
-            style={{marginLeft: 20}}
-          />
+          <EditIcon onPress={() => handleOpenCreateDevotional()} />
+          <ShareIcon />
         </RightWrapperHeader>
       </Header>
 
