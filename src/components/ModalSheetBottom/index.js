@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet, StatusBar} from 'react-native';
+import {Dimensions, Text, StyleSheet, StatusBar} from 'react-native';
 import {
   ActionCancelButton,
   ActionConfirmButton,
@@ -11,6 +11,7 @@ import {
   Title,
   WrapperTopContent,
 } from './styles';
+import {Portal} from '@gorhom/portal';
 
 const ModalSheetBottom = ({
   open = false,
@@ -18,36 +19,38 @@ const ModalSheetBottom = ({
   title,
   description,
   titleConfirm,
+  height,
 }) => {
   const handleClose = () => {
     onClose();
   };
 
   return (
-    /*TODO: realizar close do modal*/
     open && (
-      <Layout>
-        <StatusBar barStyle={'light-content'} backgroundColor={'#000'} />
+      <Portal>
+        <Layout height={height}>
+          <StatusBar barStyle={'light-content'} backgroundColor={'#000'} />
+          <Backdrop onPress={() => handleClose()} />
 
-        <Backdrop onPress={() => handleClose()} />
+          <Container>
+            <WrapperTopContent>
+              <ContentTop>
+                <Title>{title}</Title>
+                <Description>{description}</Description>
+              </ContentTop>
+              <ActionCancelButton onPress={() => handleClose()}>
+                <Text style={styles.textCancel}>Cancelar</Text>
+              </ActionCancelButton>
+            </WrapperTopContent>
 
-        <Container>
-          <WrapperTopContent>
-            <ContentTop>
-              <Title>{title}</Title>
-              <Description>{description}</Description>
-            </ContentTop>
-            <ActionCancelButton onPress={() => handleClose()}>
-              <Text style={styles.textCancel}>Cancelar</Text>
-            </ActionCancelButton>
-          </WrapperTopContent>
-          {titleConfirm && (
-            <ActionConfirmButton>
-              <Text style={styles.textConfirm}>{titleConfirm}</Text>
-            </ActionConfirmButton>
-          )}
-        </Container>
-      </Layout>
+            {titleConfirm && (
+              <ActionConfirmButton>
+                <Text style={styles.textConfirm}>{titleConfirm}</Text>
+              </ActionConfirmButton>
+            )}
+          </Container>
+        </Layout>
+      </Portal>
     )
   );
 };

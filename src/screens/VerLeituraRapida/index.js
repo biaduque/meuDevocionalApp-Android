@@ -14,7 +14,7 @@ import {
 import Feather from 'react-native-vector-icons/Feather';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
-import {TouchableOpacity} from 'react-native';
+import {Dimensions, TouchableOpacity} from 'react-native';
 
 const VerLeituraRapida = ({route, navigation}) => {
   const params = route.params;
@@ -29,8 +29,9 @@ const VerLeituraRapida = ({route, navigation}) => {
   };
 
   return (
-    <Layout>
+    <Layout scrollEnabled={!oepnModalCreate}>
       <ModalSheetBottom
+        height={Dimensions.get('window').height}
         open={oepnModalCreate}
         onClose={handleCloseCreateDevotional}
         title={'Criar nova devocional'}
@@ -39,6 +40,7 @@ const VerLeituraRapida = ({route, navigation}) => {
         }
         titleConfirm={'Criar nova devocional'}
       />
+
       <Header>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <LeftWrapperHeader>

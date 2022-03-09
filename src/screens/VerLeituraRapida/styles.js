@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 export const Layout = styled.ScrollView`
   flex: 1;
   background-color: #fff;
-  padding: 10px;
   position: relative;
 `;
 
@@ -11,6 +10,7 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 10px 0;
 `;
 
 export const LeftWrapperHeader = styled.View`
@@ -36,8 +36,9 @@ export const RightWrapperHeader = styled.View`
 `;
 
 export const WrapperText = styled.View`
-  padding: 10px;
-  padding-bottom: 150px;
+  padding: 20px;
+  padding-top: 5px;
+  padding-bottom: 60px;
 `;
 
 export const TitleSection = styled.Text`

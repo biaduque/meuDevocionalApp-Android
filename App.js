@@ -1,18 +1,21 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {Dimensions, SafeAreaView, StyleSheet} from 'react-native';
 import {Routes} from './src/routes';
 import {IconlyProvider} from 'react-native-iconly';
 import {Provider} from 'react-redux';
 import store from './src/store';
+import {PortalProvider} from '@gorhom/portal';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container}>
-        <IconlyProvider>
-          <Routes />
-        </IconlyProvider>
-      </SafeAreaView>
+      <PortalProvider>
+        <SafeAreaView style={styles.container}>
+          <IconlyProvider>
+            <Routes />
+          </IconlyProvider>
+        </SafeAreaView>
+      </PortalProvider>
     </Provider>
   );
 };

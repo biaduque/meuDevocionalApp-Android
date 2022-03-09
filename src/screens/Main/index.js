@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    position: 'relative',
   },
 });
 

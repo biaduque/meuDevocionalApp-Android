@@ -6,6 +6,7 @@ import {api} from '../../../../services/api';
 
 const LeiturasRapidas = () => {
   const [leiturasRapidas, setLeiturasRapidas] = useState([]);
+
   useEffect(() => {
     async function loadLeiturasRapidas() {
       const {data} = await api.get('/devocionais');

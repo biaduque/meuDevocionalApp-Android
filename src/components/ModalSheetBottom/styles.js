@@ -2,18 +2,19 @@ import styled from 'styled-components/native';
 
 export const Layout = styled.View`
   position: absolute;
-  flex: 1;
-  bottom: 0;
-  left: 0;
   right: 0;
+  left: 0;
+  bottom: 0;
   top: 0;
   justify-content: flex-end;
+  z-index: 1;
+  padding-bottom: 20px;
 `;
 
 export const Backdrop = styled.TouchableOpacity.attrs({
   activeOpacity: 1,
 })`
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   width: 100%;
   flex: 1;
   position: absolute;
@@ -21,10 +22,12 @@ export const Backdrop = styled.TouchableOpacity.attrs({
   left: 0;
   right: 0;
   top: 0;
+  z-index: 2;
 `;
 
 export const Container = styled.View`
   margin: 20px;
+  z-index: 3;
 `;
 
 export const WrapperTopContent = styled.View`
