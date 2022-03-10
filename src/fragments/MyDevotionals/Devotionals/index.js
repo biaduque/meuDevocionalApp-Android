@@ -3,10 +3,12 @@ import {Container, DateTime, Layout, Tag, TagsWrapper, Title} from './styles';
 import {Text} from 'react-native';
 
 const DevotionalsComponent = ({devotional}) => {
+  const onLongPress = () => {};
+
   return (
-    <Layout background={devotional.backgroundColor}>
+    <Layout background={devotional.backgroundColor} onLongPress={onLongPress}>
       <Container>
-        <Text style={{fontSize: 26, marginBottom: 20}}>🤬</Text>
+        <Text style={{fontSize: 26, marginBottom: 20}}>🥳</Text>
         <Title>{devotional.titulo}</Title>
         <DateTime>{devotional.ref}</DateTime>
 

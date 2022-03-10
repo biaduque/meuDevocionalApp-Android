@@ -20,8 +20,9 @@ export default {
     yellow3: '#FCEFD2',
   },
   colorsLeituraRapidaScreen: {
-    titleSection: '#fff',
+    titleSection: '#829769',
     text: '#ccc',
+    titleScreen: '#ECBA7D',
   },
   createDevotionalModal: {
     buttonSave: '#D9AB75',

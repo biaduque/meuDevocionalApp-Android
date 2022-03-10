@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
-export const Layout = styled.View`
+export const Layout = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.9,
+})`
   padding: 24px 24px;
   flex-direction: row;
   align-items: center;

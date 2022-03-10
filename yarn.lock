@@ -5637,6 +5637,11 @@ react-native-screens@^3.13.1:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-sfsymbols@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-sfsymbols/-/react-native-sfsymbols-1.2.0.tgz#dab069f1cd0d14c5ccfa10604c7e1731ad05bfcc"
+  integrity sha512-IQIqpw13eB7OeWl5hndefyWHdjfNPWIbxawd4FSpw7NMAmRnDUCt08t5MZv83IEMaExdt3mIbYuSWmuxjicMJA==
+
 react-native-svg@^12.1.0, react-native-svg@^12.3.0:
   version "12.3.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.3.0.tgz#40f657c5d1ee366df23f3ec8dae76fd276b86248"

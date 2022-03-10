@@ -29,13 +29,13 @@ export const LeftWrapperHeader = styled.View`
 
 export const TitleBackScreen = styled.Text`
   font-size: 20px;
-  color: ${({theme}) => theme.colors.titleSecondary};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 
 export const TitleScreen = styled.Text`
   font-size: 22px;
   font-weight: 500;
-  color: ${({theme}) => theme.colors.titlePrimary};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
   margin-right: 20px;
 `;
 
@@ -48,20 +48,20 @@ export const BackIcon = styled(Feather).attrs({
   name: 'chevron-left',
   size: 32,
 })`
-  color: ${({theme}) => theme.colors.iconColor};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 export const EditIcon = styled(Feather).attrs({
   name: 'edit',
   size: 24,
 })`
-  color: ${({theme}) => theme.colors.iconColor};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 
 export const ShareIcon = styled(EvilIcons).attrs({
   name: 'share-apple',
   size: 34,
 })`
-  color: ${({theme}) => theme.colors.iconColor};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
   margin-left: 20px;
 `;
 
