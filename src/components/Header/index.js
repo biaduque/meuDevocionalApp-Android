@@ -5,6 +5,7 @@ import {Search} from 'react-native-iconly';
 import {useNavigation} from '@react-navigation/core';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {BlurView, VibrancyView} from '@react-native-community/blur';
 
 const Header = ({animatedValue, title}) => {
   const navigation = useNavigation();
@@ -31,7 +32,6 @@ const Header = ({animatedValue, title}) => {
         right: 0,
         zIndex: 10,
         height: headerHeight,
-        backgroundColor: '#fff',
       }}>
       <Layout>
         <Container>

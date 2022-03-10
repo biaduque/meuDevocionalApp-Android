@@ -23,4 +23,9 @@ export default {
     titleSection: '#5E6C61',
     text: '#000',
   },
+  createDevotionalModal: {
+    buttonSave: '#D9AB75',
+    buttonCancel: '#FD453A',
+    borderColor: '#353537',
+  },
 };

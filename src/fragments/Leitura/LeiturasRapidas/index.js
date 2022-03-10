@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, Layout, TitleScreen} from './styles';
 import RepeaterQuickReader from './Repeater';
-import {api} from '../../../../services/api';
-import Utils from '../../../../common/Utils';
+import {api} from '../../../services/api';
+import Utils from '../../../common/Utils';
 
 const LeiturasRapidas = () => {
   const utils = new Utils();

@@ -1,10 +1,10 @@
 import React from 'react';
 import {FooterWrapper, Image, RefBiblia, Title, WrapperLeitura} from './styles';
-import cotidianoBase1 from '../../../../../assets/illustrations/cotidianoBase1.png';
-import cotidianoBase2 from '../../../../../assets/illustrations/cotidianoBase2.png';
-import cotidianoBase3 from '../../../../../assets/illustrations/cotidianoBase3.png';
-import cotidianoBase4 from '../../../../../assets/illustrations/cotidianoBase4.png';
-import cotidianoBase5 from '../../../../../assets/illustrations/cotidianoBase5.png';
+import cotidianoBase1 from '../../../../assets/illustrations/cotidianoBase1.png';
+import cotidianoBase2 from '../../../../assets/illustrations/cotidianoBase2.png';
+import cotidianoBase3 from '../../../../assets/illustrations/cotidianoBase3.png';
+import cotidianoBase4 from '../../../../assets/illustrations/cotidianoBase4.png';
+import cotidianoBase5 from '../../../../assets/illustrations/cotidianoBase5.png';
 
 const RepeaterCotidiano = ({item}) => {
   const transformImageBackground = path => {
