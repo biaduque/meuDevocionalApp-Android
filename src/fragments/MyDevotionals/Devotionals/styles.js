@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
 export const Layout = styled.View`
-  padding: 36px 24px;
+  padding: 24px 24px;
   flex-direction: row;
   align-items: center;
-  background: ${({background}) => background};
+  background: ${({background}) => (background ? background : '#fff')};
   border-radius: 20px;
   margin-bottom: 10px;
 `;
@@ -17,7 +17,8 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 26px;
+  font-size: 32px;
+  max-width: 200px;
   font-weight: bold;
   color: #000;
 `;

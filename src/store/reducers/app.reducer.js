@@ -1,9 +1,11 @@
 import ActionTypes from '../actions/action-types';
 import {light, dark} from '../../styles/themes';
+import {Appearance} from 'react-native';
+const colorScheme = Appearance.getColorScheme();
 
 const INITIAL_STATE = {
   activeTab: 'Leitura',
-  theme: light,
+  theme: colorScheme === 'dark' ? dark : light,
 };
 
 const appReducer = (state = INITIAL_STATE, {type, payload}) => {

@@ -1,8 +1,8 @@
 import React, {useRef} from 'react';
 import {ScrollView, Animated, SafeAreaView} from 'react-native';
 import {Container, CustomScrollView, WrapperContent} from './styles';
-import LeiturasRapidas from '../../components/fragments/Leituras/LeiturasRapidas';
-import Cotidiano from '../../components/fragments/Leituras/Cotidiano';
+import LeiturasRapidas from './LeiturasRapidas';
+import Cotidiano from './Cotidiano';
 import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 import Header from '../../components/Header';
 
@@ -27,6 +27,12 @@ const LeituraScreen = () => {
           )}>
           <Container>
             <WrapperContent>
+              <LeiturasRapidas />
+              <Cotidiano />
+              <LeiturasRapidas />
+              <Cotidiano />
+              <LeiturasRapidas />
+              <Cotidiano />
               <LeiturasRapidas />
               <Cotidiano />
             </WrapperContent>

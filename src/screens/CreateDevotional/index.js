@@ -10,6 +10,9 @@ import {
   LeftWrapperButton,
   ProfileImage,
   TextArea,
+  TextButton,
+  TextButtonCancel,
+  TextButtonSave,
   TextInput,
   TextInputBorder,
   TextTitle,
@@ -74,11 +77,11 @@ const ProfileScreen = () => {
         <StatusBar barStyle={'light-content'} backgroundColor={'#000'} />
 
         <WrapperHeader>
-          <TouchableOpacity>
-            <Text style={{color: '#d55757', fontSize: 18}}>Cancelar</Text>
+          <TouchableOpacity onPress={() => handleBackScreen()}>
+            <TextButtonCancel>Cancelar</TextButtonCancel>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={{color: '#2f3330', fontSize: 18}}>Salvar</Text>
+            <TextButtonSave>Salvar</TextButtonSave>
           </TouchableOpacity>
         </WrapperHeader>
 

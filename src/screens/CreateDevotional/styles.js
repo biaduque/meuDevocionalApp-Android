@@ -5,6 +5,7 @@ export const Container = styled.View`
   padding-top: 28px;
   padding-left: 20px;
   padding-right: 20px;
+  background-color: ${({theme}) => theme.colors.background};
 `;
 
 export const WrapperHeader = styled.View`
@@ -16,10 +17,22 @@ export const WrapperHeader = styled.View`
 
 export const TransparentButton = styled.TouchableOpacity``;
 
+export const TextButtonSave = styled.Text`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${({theme}) => theme.createDevotionalModal.buttonSave};
+`;
+
+export const TextButtonCancel = styled.Text`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${({theme}) => theme.createDevotionalModal.buttonCancel};
+`;
+
 export const TextTitle = styled.Text`
   font-size: 26px;
   font-weight: 700;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
 `;
 
 export const WrapperColorButtons = styled.View`
@@ -49,7 +62,7 @@ export const TextInput = styled.TextInput.attrs({
   color: #000;
   margin-bottom: 10px;
   border-bottom-width: 1px;
-  border-bottom-color: #ddd;
+  border-bottom-color: ${({theme}) => theme.createDevotionalModal.borderColor};
 `;
 
 export const WrapperWorship = styled.View`
@@ -72,7 +85,7 @@ export const TextInputBorder = styled.TextInput.attrs({
   font-weight: 500;
   color: #000;
   margin-bottom: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid ${({theme}) => theme.createDevotionalModal.borderColor}
   padding: 7px 16px;
 `;
 

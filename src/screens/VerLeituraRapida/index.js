@@ -3,6 +3,7 @@ import {
   BackIcon,
   EditIcon,
   Header,
+  ImageBackground,
   Layout,
   LeftWrapperHeader,
   RightWrapperHeader,
@@ -12,11 +13,11 @@ import {
   TitleBackScreen,
   TitleScreen,
   TitleSection,
+  WorshipTimeWrapper,
   WrapperText,
 } from './styles';
-import Feather from 'react-native-vector-icons/Feather';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
-import {Dimensions, TouchableOpacity} from 'react-native';
+import {Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 
 const VerLeituraRapida = ({route, navigation}) => {
   const params = route.params;
@@ -28,6 +29,12 @@ const VerLeituraRapida = ({route, navigation}) => {
 
   const handleCloseCreateDevotional = () => {
     setOepnModalCreate(false);
+  };
+
+  const navigateToMusic = () => {
+    navigation.navigate('Webview', {
+      url: params.musica,
+    });
   };
 
   return (
@@ -59,18 +66,26 @@ const VerLeituraRapida = ({route, navigation}) => {
         </RightWrapperHeader>
       </Header>
 
-      <WrapperText>
-        <TitleSection>{params.titulo}</TitleSection>
-        <TextVersiculo>
-          {params.introducao} - {params.refBiblica}
-        </TextVersiculo>
+      <ScrollView>
+        <WrapperText>
+          <TitleSection>{params.titulo}</TitleSection>
+          <TextVersiculo>
+            {params.introducao} - {params.refBiblica}
+          </TextVersiculo>
 
-        <TitleSection>Contextualização</TitleSection>
-        <Text>{params.desenvolvimento}</Text>
+          <TitleSection>Contextualização</TitleSection>
+          <Text>{params.desenvolvimento}</Text>
 
-        <TitleSection>Reflexão</TitleSection>
-        <Text>{params.conclusao}</Text>
-      </WrapperText>
+          <TitleSection>Reflexão</TitleSection>
+          <Text>{params.conclusao}</Text>
+        </WrapperText>
+
+        <WorshipTimeWrapper onPress={() => navigateToMusic()}>
+          <ImageBackground
+            source={require('../../assets/illustrations/whorshipTime.png')}
+          />
+        </WorshipTimeWrapper>
+      </ScrollView>
     </Layout>
   );
 };
