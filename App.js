@@ -6,31 +6,31 @@ import {Provider} from 'react-redux';
 import store from './src/store';
 import {PortalProvider} from '@gorhom/portal';
 import {ThemeProvider} from 'styled-components';
-import Utils from './src/common/Utils';
+import {Appearance} from 'react-native';
 import {dark, light} from './src/styles/themes';
 
 const App = () => {
-  const utils = new Utils();
-  const [theme, setTheme] = useState(store.getState().app.theme);
+  const colorScheme = Appearance.getColorScheme();
+  const [themeApp, setThemeApp] = useState(
+    colorScheme === 'dark' ? dark : light,
+  );
 
   useEffect(() => {
-    async function getStoragedTheme() {
-      const theme = await utils.getData('@MeuDevocional-theme');
-      if (theme != null) {
-        setTheme(theme.name === 'light' ? light : dark);
-      } else {
-        setTheme(store.getState().app.theme);
-      }
+    function getStoragedTheme() {
+      const theme = colorScheme === 'dark' ? dark : light;
+
+      store.getState().app.theme = theme;
+      setThemeApp(theme);
     }
 
     getStoragedTheme();
 
     return () => {};
-  }, []);
+  }, [colorScheme]);
 
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeApp}>
         <PortalProvider>
           <SafeAreaView style={styles.container}>
             <IconlyProvider>

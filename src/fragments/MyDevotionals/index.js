@@ -1,18 +1,8 @@
 import React, {useRef} from 'react';
-import {
-  Container,
-  DescriptionText,
-  FlatList,
-  FlexContainer,
-  Layout,
-  Tile,
-  TilesLimitingWrapper,
-  TilesWrapper,
-  Wrapper,
-} from './styles';
+import {Container, FlatList, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
 import Header from '../../components/Header';
-import {Animated, SafeAreaView, Text, View} from 'react-native';
+import {Animated, SafeAreaView} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 
 const MyDevotionalsScreen = () => {
@@ -93,32 +83,7 @@ const MyDevotionalsScreen = () => {
           <Header animatedValue={offset} title={'Meus Devocionais'} />
 
           <Container>
-            {devotionals.length <= 0 ? (
-              <Wrapper>
-                <TilesWrapper>
-                  <TilesLimitingWrapper>
-                    <Tile background={'#F7D9A0'} />
-                    <Tile background={'#ECBA7D'} />
-                    <Tile background={'#8BA293'} />
-                  </TilesLimitingWrapper>
-                </TilesWrapper>
-
-                <FlexContainer>
-                  <Text style={{marginRight: 26}}>Plus</Text>
-                  <DescriptionText>
-                    Adicione novos itens customizados em sua coleção ao clicar
-                    no botão
-                  </DescriptionText>
-                </FlexContainer>
-
-                <FlexContainer>
-                  <Text style={{marginRight: 26}}>Touch</Text>
-                  <DescriptionText>
-                    Pressione algum item da sua coleção caso queira exclui-lo
-                  </DescriptionText>
-                </FlexContainer>
-              </Wrapper>
-            ) : (
+            {devotionals.length <= 0 ? null : (
               <FlatList
                 contentContainerStyle={{paddingBottom: 40, paddingTop: 120}}
                 data={devotionals}

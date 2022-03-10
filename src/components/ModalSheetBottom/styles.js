@@ -8,7 +8,6 @@ export const Layout = styled.View`
   top: 0;
   justify-content: flex-end;
   z-index: 1;
-  padding-bottom: 20px;
 `;
 
 export const Backdrop = styled.TouchableOpacity.attrs({

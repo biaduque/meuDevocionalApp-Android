@@ -16,6 +16,16 @@ const Header = ({animatedValue, title}) => {
     extrapolate: 'clamp',
   });
 
+  const onPressInfoButton = () => {
+    switch (title) {
+      case 'Leitura':
+        break;
+      case 'Meus Devocionais':
+        navigation.navigate('InfoMyDevotional');
+        break;
+    }
+  };
+
   return (
     <Animated.View
       style={{
@@ -28,7 +38,7 @@ const Header = ({animatedValue, title}) => {
       }}>
       <Layout>
         <Container>
-          <InfoIcon />
+          <InfoIcon onPress={() => onPressInfoButton()} />
 
           <TouchableOpacity
             activeOpacity={1}

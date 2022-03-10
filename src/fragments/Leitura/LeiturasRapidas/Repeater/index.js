@@ -29,8 +29,6 @@ const RepeaterQuickReader = ({item}) => {
     });
   };
 
-  console.log(item.backgroundColor);
-
   return (
     <WrapperLeitura
       background={item.backgroundColor}

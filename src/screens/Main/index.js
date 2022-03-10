@@ -1,12 +1,11 @@
-import React, {useRef} from 'react';
-import {SafeAreaView, StyleSheet, StatusBar, Animated} from 'react-native';
+import React from 'react';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import BottomNavigation from '../../components/BottomNavigation';
 import Fragments from '../../routes/fragment';
 import {useSelector} from 'react-redux';
 
 const Main = () => {
   const $app = useSelector(state => state.app);
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -15,6 +14,7 @@ const Main = () => {
         }
         backgroundColor={$app.theme.colors.statusBarColor}
       />
+
       <Fragments />
       <BottomNavigation />
     </SafeAreaView>
