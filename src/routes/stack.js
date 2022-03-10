@@ -2,7 +2,7 @@ import React from 'react';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/CreateDevotional';
-import VerLeituraRapida from '../screens/VerLeituraRapida';
+import VerLeituraRapida from '../screens/ViewQuickReader';
 import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
