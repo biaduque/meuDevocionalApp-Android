@@ -3,12 +3,8 @@ import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/CreateDevotional';
 import VerLeituraRapida from '../screens/VerLeituraRapida';
-import {
-  createStackNavigator,
-  TransitionPresets,
-  CardStyleInterpolators,
-  HeaderStyleInterpolators,
-} from '@react-navigation/stack';
+import Webview from '../screens/Webview';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +34,14 @@ const StackRoutes = () => {
         options={{
           gestureEnabled: true,
           ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <Stack.Screen
+        name="Webview"
+        component={Webview}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
         }}
       />
     </Stack.Navigator>

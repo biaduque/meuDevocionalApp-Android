@@ -18,74 +18,73 @@ import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaConte
 const MyDevotionalsScreen = () => {
   const offset = useRef(new Animated.Value(0)).current;
 
-  const devotionals = [];
-  // const devotionals = [
-  //   {
-  //     id: 1,
-  //     titulo: 'Minha nova devoção',
-  //     ref: 'Salmos 88:13',
-  //     backgroundColor: '#F7D9A1',
-  //     tags: [
-  //       {
-  //         id: 1,
-  //         name: 'amor',
-  //       },
-  //       {
-  //         id: 2,
-  //         name: 'salvação',
-  //       },
-  //       {
-  //         id: 3,
-  //         name: 'vida',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     titulo: 'Nem só de pão',
-  //     ref: 'Matheus 4:4',
-  //     backgroundColor: '#FDEDCC',
-  //     tags: [
-  //       {
-  //         id: 1,
-  //         name: 'vida',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 3,
-  //     titulo:
-  //       'Dia de trabalho muito produtivo, posso agradecer a Deus por isso',
-  //     ref: 'Salmos 42:5',
-  //     backgroundColor: '#FDEDCC',
-  //     tags: [
-  //       {
-  //         id: 1,
-  //         name: 'paz',
-  //       },
-  //       {
-  //         id: 1,
-  //         name: 'refugio',
-  //       },
-  //       {
-  //         id: 1,
-  //         name: 'espírito',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: 4,
-  //     titulo: 'Aquieta minha alma, pois estou em paz',
-  //     ref: 'Salmos 88:13',
-  //     backgroundColor: '#8BA293',
-  //     tags: [
-  //       {
-  //         id: 1,
-  //         name: 'vida',
-  //       },
-  //     ],
-  //   },
-  // ];
+  const devotionals = [
+    {
+      id: 1,
+      titulo: 'Minha nova devoção',
+      ref: 'Salmos 88:13',
+      backgroundColor: '#F7D9A1',
+      tags: [
+        {
+          id: 1,
+          name: 'amor',
+        },
+        {
+          id: 2,
+          name: 'salvação',
+        },
+        {
+          id: 3,
+          name: 'vida',
+        },
+      ],
+    },
+    {
+      id: 2,
+      titulo: 'Nem só de pão',
+      ref: 'Matheus 4:4',
+      backgroundColor: '#FDEDCC',
+      tags: [
+        {
+          id: 1,
+          name: 'vida',
+        },
+      ],
+    },
+    {
+      id: 3,
+      titulo:
+        'Dia de trabalho muito produtivo, posso agradecer a Deus por isso',
+      ref: 'Salmos 42:5',
+      backgroundColor: '#FDEDCC',
+      tags: [
+        {
+          id: 1,
+          name: 'paz',
+        },
+        {
+          id: 1,
+          name: 'refugio',
+        },
+        {
+          id: 1,
+          name: 'espírito',
+        },
+      ],
+    },
+    {
+      id: 4,
+      titulo: 'Aquieta minha alma, pois estou em paz',
+      ref: 'Salmos 88:13',
+      backgroundColor: '#8BA293',
+      tags: [
+        {
+          id: 1,
+          name: 'vida',
+        },
+      ],
+    },
+  ];
 
   return (
     <SafeAreaProvider>
