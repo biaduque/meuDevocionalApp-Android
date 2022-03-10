@@ -50,6 +50,7 @@ export const BackIcon = styled(Feather).attrs({
 })`
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
+
 export const EditIcon = styled(Feather).attrs({
   name: 'edit',
   size: 24,

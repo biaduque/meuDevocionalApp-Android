@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const Layout = styled.View`
   flex: 1;
@@ -22,4 +23,17 @@ export const TitleScreen = styled.Text`
   color: ${({theme}) => theme.colors.titlePrimary};
   margin-right: auto;
   padding: 20px;
+`;
+
+export const InfoIcon = styled(AntDesign).attrs({
+  name: 'infocirlceo',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+`;
+export const PlusIcon = styled(AntDesign).attrs({
+  name: 'plus',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;

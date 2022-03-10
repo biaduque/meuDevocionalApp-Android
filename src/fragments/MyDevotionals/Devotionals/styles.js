@@ -32,14 +32,16 @@ export const DateTime = styled.Text`
 
 export const TagsWrapper = styled.View`
   flex-direction: row;
+  justify-content: space-between;
   margin-top: 10px;
+  width: 100%;
 `;
 
 export const Tag = styled.Text`
   padding: 5px 10px;
-  background: rgba(54, 54, 54, 0.5);
+  background: #c0b890;
   color: #fff;
-  border-radius: 10px;
-  margin-right: 10px;
+  width: 30%;
+  border-radius: 4px;
   text-transform: capitalize;
 `;

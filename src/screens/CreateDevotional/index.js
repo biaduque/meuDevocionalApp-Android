@@ -1,49 +1,24 @@
 import React from 'react';
 import {
   ButtonOkWorship,
-  ButtonText,
-  ButtonWrapper,
   CircleColorButton,
   Container,
   Form,
   LabelInfo,
-  LeftWrapperButton,
-  ProfileImage,
+  ScrollView,
   TextArea,
-  TextButton,
   TextButtonCancel,
   TextButtonSave,
   TextInput,
   TextInputBorder,
   TextTitle,
-  TransparentButton,
-  Username,
   WrapperColorButtons,
   WrapperHeader,
   WrapperInputLabel,
-  WrapperMenu,
-  WrapperProfile,
   WrapperReflexao,
   WrapperWorship,
 } from './styles';
-import {
-  ScrollView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import TopContent from '../../components/TopContent';
-import {
-  Activity,
-  ArrowLeft,
-  ArrowRight,
-  Heart,
-  Logout,
-  Search,
-  Setting,
-  User,
-} from 'react-native-iconly';
+import {StatusBar, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 const ProfileScreen = () => {

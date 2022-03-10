@@ -3,9 +3,12 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   padding-top: 28px;
+  background-color: ${({theme}) => theme.colors.background};
+`;
+
+export const ScrollView = styled.ScrollView`
   padding-left: 20px;
   padding-right: 20px;
-  background-color: ${({theme}) => theme.colors.background};
 `;
 
 export const WrapperHeader = styled.View`
@@ -59,7 +62,7 @@ export const TextInput = styled.TextInput.attrs({
 })`
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-bottom: 10px;
   border-bottom-width: 1px;
   border-bottom-color: ${({theme}) => theme.createDevotionalModal.borderColor};
@@ -83,7 +86,7 @@ export const TextInputBorder = styled.TextInput.attrs({
 })`
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-bottom: 10px;
   border: 1px solid ${({theme}) => theme.createDevotionalModal.borderColor}
   padding: 7px 16px;
@@ -117,6 +120,6 @@ export const TextArea = styled.TextInput.attrs({
 })`
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-top: 10px;
 `;
