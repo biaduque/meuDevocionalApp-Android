@@ -22,10 +22,11 @@ export default {
   colorsLeituraRapidaScreen: {
     titleSection: '#5E6C61',
     text: '#000',
+    titleScreen: '#333',
   },
   createDevotionalModal: {
-    buttonSave: '#D9AB75',
+    buttonSave: '#597562',
     buttonCancel: '#FD453A',
-    borderColor: '#353537',
+    borderColor: '#ccc',
   },
 };
