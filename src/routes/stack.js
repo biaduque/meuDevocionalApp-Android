@@ -6,6 +6,7 @@ import VerLeituraRapida from '../screens/ViewQuickReader';
 import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import InfoMyDevotional from '../screens/InfoMyDevotional';
+import MyDevotionalView from '../screens/MyDevotionalView';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,14 @@ const StackRoutes = () => {
       <Stack.Screen
         name="VerLeituraRapida"
         component={VerLeituraRapida}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <Stack.Screen
+        name="MyDevotionalView"
+        component={MyDevotionalView}
         options={{
           gestureEnabled: true,
           ...TransitionPresets.SlideFromRightIOS,

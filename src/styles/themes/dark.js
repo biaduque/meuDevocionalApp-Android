@@ -23,6 +23,7 @@ export default {
     titleSection: '#829769',
     text: '#ccc',
     titleScreen: '#ECBA7D',
+    gold: '#D9AB75',
   },
   createDevotionalModal: {
     buttonSave: '#D9AB75',
