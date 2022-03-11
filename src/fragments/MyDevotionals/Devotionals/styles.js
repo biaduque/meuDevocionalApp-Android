@@ -39,8 +39,8 @@ export const Title = styled.Text`
 `;
 
 export const DateTime = styled.Text`
-  font-size: 18px;
-  color: #999;
+  font-size: 20px;
+  color: #282828;
 `;
 
 export const TagsWrapper = styled.View`

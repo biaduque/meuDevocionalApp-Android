@@ -35,7 +35,7 @@ const DevotionalsComponent = ({devotional}) => {
           <View>
             <Text style={{fontSize: 26, marginBottom: 20}}>🥳</Text>
             <Title>{devotional.titulo}</Title>
-            <DateTime>{devotional.ref}</DateTime>
+            <DateTime>{devotional.baseBiblica}</DateTime>
           </View>
 
           <Image source={renderImageBook()} />

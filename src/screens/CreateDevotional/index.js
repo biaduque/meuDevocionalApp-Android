@@ -19,6 +19,9 @@ import {
   WrapperWorship,
 } from './styles';
 import {StatusBar, Text, TouchableOpacity} from 'react-native';
+import LocalRepositoryService from '../../services/LocalRepositoryService';
+import {useDispatch} from 'react-redux';
+import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;
@@ -41,6 +44,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     },
   ];
 
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [book, setBook] = useState('');
   const [chapter, setChapter] = useState('');
@@ -79,6 +83,33 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     navigation.goBack();
   };
 
+  async function saveContent() {
+    const repositoryService = new LocalRepositoryService();
+
+    const data = {
+      titulo: title,
+      baseBiblica: `${book} ${chapter}:${versicle}`,
+      aplicacao1: key1,
+      aplicacao2: key2,
+      aplicacao3: key3,
+      backgroundColor: '#81978c',
+      backgroundImage: '',
+      reflexao: description ? description : '',
+      link: music,
+    };
+
+    const ret = await repositoryService.set(
+      repositoryService.DEVOCIONAL_LIST_KEY,
+      data,
+      true,
+    );
+
+    dispatch(setMyDevotionals(ret));
+
+    alert('Dados salvos com sucesso');
+    handleBackScreen();
+  }
+
   return (
     <Container>
       <ScrollView>
@@ -88,7 +119,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
           <TouchableOpacity onPress={() => handleBackScreen()}>
             <TextButtonCancel>Cancelar</TextButtonCancel>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => saveContent()}>
             <TextButtonSave>Salvar</TextButtonSave>
           </TouchableOpacity>
         </WrapperHeader>
