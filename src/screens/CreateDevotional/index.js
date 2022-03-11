@@ -22,6 +22,7 @@ import {StatusBar, Text, TouchableOpacity} from 'react-native';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {useDispatch} from 'react-redux';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
+import uuid from 'react-native-uuid';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;
@@ -87,6 +88,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     const repositoryService = new LocalRepositoryService();
 
     const data = {
+      id: uuid.v4(),
       titulo: title,
       baseBiblica: `${book} ${chapter}:${versicle}`,
       aplicacao1: key1,

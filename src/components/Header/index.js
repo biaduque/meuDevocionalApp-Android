@@ -1,20 +1,26 @@
-import React from 'react';
-import {Animated, TouchableOpacity} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  Animated,
+  TouchableOpacity,
+  Dimensions,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import {Container, InfoIcon, Layout, PlusIcon, TitleScreen} from './styles';
 import {useNavigation} from '@react-navigation/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Header = ({animatedValue, title}) => {
+  const screenWidth = Dimensions.get('window').width;
+
   const navigation = useNavigation();
+  const [titleWidth, setTitleWidth] = useState(0);
 
-  const HEADER_HEIGHT = 110;
-  const insets = useSafeAreaInsets();
-
-  const headerHeight = animatedValue.interpolate({
-    inputRange: [0, HEADER_HEIGHT + insets.top],
-    outputRange: [HEADER_HEIGHT + insets.top, insets.top + 44],
-    extrapolate: 'clamp',
-  });
+  useEffect(() => {
+    return () => {
+      setTitleWidth(0);
+    };
+  }, [title]);
 
   const onPressInfoButton = () => {
     switch (title) {
@@ -27,30 +33,67 @@ const Header = ({animatedValue, title}) => {
   };
 
   return (
-    <Animated.View
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 10,
-        height: headerHeight,
-      }}>
-      <Layout>
-        <Container>
-          <InfoIcon onPress={() => onPressInfoButton()} />
+    <Layout>
+      <Container>
+        <InfoIcon onPress={() => onPressInfoButton()} />
 
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => navigation.navigate('CreateDevotional')}>
-            <PlusIcon />
-          </TouchableOpacity>
-        </Container>
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => navigation.navigate('CreateDevotional')}>
+          <PlusIcon />
+        </TouchableOpacity>
+      </Container>
 
-        <TitleScreen>{title}</TitleScreen>
-      </Layout>
-    </Animated.View>
+      <Animated.View
+        style={[
+          styles.header,
+          {
+            paddingHorizontal: screenWidth * 0.05,
+            width: screenWidth,
+            height: animatedValue.interpolate({
+              inputRange: [0, 200],
+              outputRange: [70, 54],
+              extrapolate: 'clamp',
+            }),
+          },
+        ]}>
+        <Animated.Text
+          onLayout={e => {
+            let width = e.nativeEvent.layout.width;
+            setTitleWidth(width);
+          }}
+          style={{
+            fontWeight: 'bold',
+            fontSize: animatedValue.interpolate({
+              inputRange: [0, 200],
+              outputRange: [36, 20],
+              extrapolate: 'clamp',
+            }),
+          }}>
+          {title}
+        </Animated.Text>
+        <Animated.View
+          style={{
+            width: animatedValue.interpolate({
+              inputRange: [0, 200],
+              outputRange: [screenWidth * 0.9 - titleWidth, 0],
+              extrapolate: 'clamp',
+            }),
+          }}
+        />
+      </Animated.View>
+    </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingBottom: 20,
+  },
+});
 
 export default Header;

@@ -7,13 +7,16 @@ import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaConte
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
+import ModalDeleteSheet from '../../screens/MyDevotionalView/ModalDeleteSheet';
 
 const MyDevotionalsScreen = () => {
+  const offset = useRef(new Animated.Value(0)).current;
   const dispatch = useDispatch();
 
   const $myDevotionals = useSelector(state => state.myDevotionals);
   const [devotionals, setDevotionals] = useState([]);
-  const offset = useRef(new Animated.Value(0)).current;
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [selectedDevotional, setSelectedDevotional] = useState(null);
 
   useEffect(() => {
     async function getDevotionals() {
@@ -41,16 +44,37 @@ const MyDevotionalsScreen = () => {
     };
   }, [$myDevotionals]);
 
+  const handleOpenModal = async devotional => {
+    setOpenModalDelete(true);
+    setSelectedDevotional(devotional);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModalDelete(false);
+    setSelectedDevotional(null);
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}>
         <Layout>
+          <ModalDeleteSheet
+            open={openModalDelete}
+            devotional={selectedDevotional}
+            handleClose={handleCloseModal}
+            title={'Excluir devocional?'}
+            description={
+              'Deseja criar uma nova devocional através dessa devocional rápida?'
+            }
+            titleConfirm={'Excluir devocional'}
+          />
+
           <Header animatedValue={offset} title={'Meus Devocionais'} />
 
           <Container>
             {devotionals.length <= 0 ? null : (
               <FlatList
-                contentContainerStyle={{paddingBottom: 40, paddingTop: 120}}
+                contentContainerStyle={{paddingBottom: 40, paddingTop: 40}}
                 data={devotionals}
                 showsVerticalScrollIndicator={false}
                 scrollEventThrottle={16}
@@ -59,7 +83,10 @@ const MyDevotionalsScreen = () => {
                   {useNativeDriver: false},
                 )}
                 renderItem={({item}) => (
-                  <DevotionalsComponent devotional={item} />
+                  <DevotionalsComponent
+                    devotional={item}
+                    handleOpenModalDelete={handleOpenModal}
+                  />
                 )}
               />
             )}

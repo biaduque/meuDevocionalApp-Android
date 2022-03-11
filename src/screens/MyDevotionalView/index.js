@@ -19,18 +19,18 @@ import {
   WrapperText,
 } from './styles';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
-import {Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import {ScrollView, TouchableOpacity} from 'react-native';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
-  const [oepnModalCreate, setOepnModalCreate] = useState(false);
+  const [openModalCreate, setOpenModalCreate] = useState(false);
 
   const handleOpenCreateDevotional = () => {
-    setOepnModalCreate(true);
+    setOpenModalCreate(true);
   };
 
   const handleCloseCreateDevotional = () => {
-    setOepnModalCreate(false);
+    setOpenModalCreate(false);
   };
 
   const navigateToMusic = () => {
@@ -39,13 +39,10 @@ const MyDevotionalView = ({route, navigation}) => {
     });
   };
 
-  console.log(params);
-
   return (
-    <Layout scrollEnabled={!oepnModalCreate}>
+    <Layout scrollEnabled={!openModalCreate}>
       <ModalSheetBottom
-        height={Dimensions.get('window').height}
-        open={oepnModalCreate}
+        open={openModalCreate}
         onClose={handleCloseCreateDevotional}
         title={'Criar nova devocional'}
         description={

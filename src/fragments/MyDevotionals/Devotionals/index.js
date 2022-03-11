@@ -15,12 +15,12 @@ import Book2 from '../../../assets/illustrations/Variante7.png';
 import Book3 from '../../../assets/illustrations/Variante8.png';
 import Book4 from '../../../assets/illustrations/Variante9.png';
 import {useNavigation} from '@react-navigation/core';
-import VerLeituraRapida from '../../../screens/MyDevotionalView';
 
-const DevotionalsComponent = ({devotional}) => {
+const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
   const navigation = useNavigation();
+
   const onLongPress = () => {
-    alert('pressionou por muito tempo');
+    handleOpenModalDelete(devotional);
   };
 
   const onPress = () => {

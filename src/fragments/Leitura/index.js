@@ -17,7 +17,7 @@ const LeituraScreen = () => {
         <CustomScrollView
           contentContainerStyle={{
             alignItems: 'center',
-            paddingTop: 100,
+            paddingTop: 10,
           }}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
