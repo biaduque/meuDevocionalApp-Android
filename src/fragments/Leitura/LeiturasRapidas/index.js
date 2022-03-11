@@ -16,6 +16,8 @@ const LeiturasRapidas = () => {
         item.backgroundColor = utils.getRandomColor();
         return item;
       });
+
+      console.log(data);
       setLeiturasRapidas(data);
     }
 

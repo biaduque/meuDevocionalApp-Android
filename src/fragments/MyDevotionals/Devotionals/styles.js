@@ -27,8 +27,8 @@ export const FlexContainer = styled.View`
 export const Image = styled.Image.attrs({
   resizeMode: 'contain',
 })`
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
 `;
 
 export const Title = styled.Text`
