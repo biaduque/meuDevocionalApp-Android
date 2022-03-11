@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import BottomNavigation from '../../components/BottomNavigation';
 import Fragments from '../../routes/fragment';
@@ -6,6 +6,9 @@ import {useSelector} from 'react-redux';
 
 const Main = () => {
   const $app = useSelector(state => state.app);
+
+  useEffect(() => {}, [$app]);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar

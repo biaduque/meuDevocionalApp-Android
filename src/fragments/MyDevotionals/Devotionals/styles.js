@@ -18,6 +18,19 @@ export const Container = styled.View`
   margin-left: 10px;
 `;
 
+export const FlexContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const Image = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  width: 100px;
+  height: 100px;
+`;
+
 export const Title = styled.Text`
   font-size: 32px;
   max-width: 200px;

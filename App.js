@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import {Routes} from './src/routes';
 import {IconlyProvider} from 'react-native-iconly';
 import {Provider} from 'react-redux';
