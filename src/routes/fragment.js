@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LeituraScreen} from '../fragments/Leitura';
 import MyDevotionalsScreen from '../fragments/MyDevotionals';
+import Mural from '../fragments/Mural';
 
 const Tab = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ const AppTabs = () => {
       initialRouteName={'Leitura'}>
       <Tab.Screen name="Leitura" component={LeituraScreen} />
       <Tab.Screen name="MyDevotionals" component={MyDevotionalsScreen} />
+      <Tab.Screen name="Mural" component={Mural} />
     </Tab.Navigator>
   );
 };

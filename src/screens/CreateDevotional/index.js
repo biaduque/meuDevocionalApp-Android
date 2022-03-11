@@ -53,7 +53,6 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   useEffect(() => {
     if (params != null) {
-      console.log(params);
       setTitle(params.titulo);
       setBook(params.refBiblica.split(' ')[0]);
       setChapter(params.refBiblica);

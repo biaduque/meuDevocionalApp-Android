@@ -17,7 +17,6 @@ const LeiturasRapidas = () => {
         return item;
       });
 
-      console.log(data);
       setLeiturasRapidas(data);
     }
 
