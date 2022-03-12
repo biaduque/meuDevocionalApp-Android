@@ -4,9 +4,8 @@ export const Layout = styled.View``;
 
 export const Wrapper = styled.View`
   height: 100%;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
-  padding-top: 120px;
   padding-left: 50px;
   padding-right: 50px;
   background: ${({theme}) => theme.colors.background};

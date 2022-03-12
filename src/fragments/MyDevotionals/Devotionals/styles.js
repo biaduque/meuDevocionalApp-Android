@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 
 export const Layout = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.9,
+  activeOpacity: 0.8,
 })`
   padding: 24px 24px;
   flex-direction: row;
   align-items: center;
   background: ${({background}) => (background ? background : '#fff')};
-  border-radius: 20px;
+  border-radius: 15px;
   margin-bottom: 10px;
 `;
 
@@ -57,4 +57,5 @@ export const Tag = styled.Text`
   width: 30%;
   border-radius: 4px;
   text-transform: capitalize;
+  text-align: center;
 `;

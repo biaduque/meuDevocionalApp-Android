@@ -11,24 +11,17 @@ export const ScrollView = styled.ScrollView`
   padding-right: 20px;
 `;
 
-export const WrapperHeader = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 26px;
-`;
-
 export const TransparentButton = styled.TouchableOpacity``;
 
 export const TextButtonSave = styled.Text`
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   color: ${({theme}) => theme.createDevotionalModal.buttonSave};
 `;
 
 export const TextButtonCancel = styled.Text`
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   color: ${({theme}) => theme.createDevotionalModal.buttonCancel};
 `;
 
@@ -122,4 +115,13 @@ export const TextArea = styled.TextInput.attrs({
   font-weight: 500;
   color: ${({theme}) => theme.colors.titlePrimary};
   margin-top: 10px;
+`;
+
+export const WrapperFooter = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  //margin-bottom: 26px;
+  background: ${({theme}) => theme.createDevotionalModal.footerBackground};
+  padding: 20px;
 `;

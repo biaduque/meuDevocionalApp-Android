@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Container, FlatList, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
 import Header from '../../components/Header';
-import {Animated, SafeAreaView} from 'react-native';
+import {Animated, SafeAreaView, Platform, Vibration} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
@@ -47,6 +47,10 @@ const MyDevotionalsScreen = () => {
   const handleOpenModal = async devotional => {
     setOpenModalDelete(true);
     setSelectedDevotional(devotional);
+
+    const DURATION = 100;
+
+    Vibration.vibrate(DURATION);
   };
 
   const handleCloseModal = () => {
@@ -55,45 +59,41 @@ const MyDevotionalsScreen = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}>
-        <Layout>
-          <ModalDeleteSheet
-            open={openModalDelete}
-            devotional={selectedDevotional}
-            handleClose={handleCloseModal}
-            title={'Excluir devocional?'}
-            description={
-              'Deseja criar uma nova devocional através dessa devocional rápida?'
-            }
-            titleConfirm={'Excluir devocional'}
-          />
+    <Layout>
+      <ModalDeleteSheet
+        open={openModalDelete}
+        devotional={selectedDevotional}
+        handleClose={handleCloseModal}
+        title={'Excluir devocional?'}
+        description={
+          'Deseja criar uma nova devocional através dessa devocional rápida?'
+        }
+        titleConfirm={'Excluir devocional'}
+      />
 
-          <Header animatedValue={offset} title={'Meus Devocionais'} />
+      <Header animatedValue={offset} title={'Meus Devocionais'} />
 
-          <Container>
-            {devotionals.length <= 0 ? null : (
-              <FlatList
-                contentContainerStyle={{paddingBottom: 40, paddingTop: 40}}
-                data={devotionals}
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event(
-                  [{nativeEvent: {contentOffset: {y: offset}}}],
-                  {useNativeDriver: false},
-                )}
-                renderItem={({item}) => (
-                  <DevotionalsComponent
-                    devotional={item}
-                    handleOpenModalDelete={handleOpenModal}
-                  />
-                )}
+      <Container>
+        {devotionals.length <= 0 ? null : (
+          <FlatList
+            contentContainerStyle={{paddingBottom: 40, paddingTop: 40}}
+            data={devotionals}
+            showsVerticalScrollIndicator={false}
+            scrollEventThrottle={16}
+            onScroll={Animated.event(
+              [{nativeEvent: {contentOffset: {y: offset}}}],
+              {useNativeDriver: false},
+            )}
+            renderItem={({item}) => (
+              <DevotionalsComponent
+                devotional={item}
+                handleOpenModalDelete={handleOpenModal}
               />
             )}
-          </Container>
-        </Layout>
-      </SafeAreaView>
-    </SafeAreaProvider>
+          />
+        )}
+      </Container>
+    </Layout>
   );
 };
 

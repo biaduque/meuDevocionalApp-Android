@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar, Text} from 'react-native';
+import {StatusBar, Text, View} from 'react-native';
 import {
   DescriptionText,
   FlexContainer,
@@ -12,7 +12,11 @@ import {
 const InfoMyDevotional = () => {
   return (
     <Wrapper>
-      <StatusBar barStyle={'light-content'} backgroundColor={'#000'} />
+      <View style={{justifyContent: 'space-between', width: '100%'}}>
+        <View />
+
+        <Text>Ok</Text>
+      </View>
 
       <TilesWrapper>
         <TilesLimitingWrapper>

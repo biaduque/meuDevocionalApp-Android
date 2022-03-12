@@ -7,6 +7,8 @@ import {
   Container,
   ContentTop,
   Description,
+  Footer,
+  Separator,
   Title,
   WrapperTopContent,
 } from './styles';
@@ -51,16 +53,19 @@ const ModalDeleteSheet = ({
             <Title>{title}</Title>
             <Description>{description}</Description>
           </ContentTop>
-          <ActionCancelButton onPress={() => handleClose()}>
-            <Text style={styles.textCancel}>Cancelar</Text>
-          </ActionCancelButton>
-        </WrapperTopContent>
 
-        {titleConfirm && (
-          <ActionConfirmButton onPress={() => deleteItem()}>
-            <Text style={styles.textConfirm}>{titleConfirm}</Text>
-          </ActionConfirmButton>
-        )}
+          <Footer>
+            <ActionCancelButton onPress={() => handleClose()}>
+              <Text style={styles.textCancel}>Cancelar</Text>
+            </ActionCancelButton>
+
+            <Separator />
+
+            <ActionConfirmButton onPress={() => deleteItem()}>
+              <Text style={styles.textConfirm}>{titleConfirm}</Text>
+            </ActionConfirmButton>
+          </Footer>
+        </WrapperTopContent>
       </Container>
     </ModalSheetBottom>
   );
@@ -68,13 +73,13 @@ const ModalDeleteSheet = ({
 
 const styles = StyleSheet.create({
   textCancel: {
-    color: 'red',
-    fontSize: 22,
+    color: '#d76767',
+    fontSize: 18,
     fontWeight: '500',
   },
   textConfirm: {
     color: '#0179fd',
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: '500',
   },
 });

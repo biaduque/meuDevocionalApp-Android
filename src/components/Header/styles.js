@@ -4,8 +4,10 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 export const Layout = styled.View`
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   background: ${({theme}) => theme.colors.background};
+  padding: 20px;
 `;
 
 export const Container = styled.View`
@@ -13,17 +15,16 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
 `;
-
-export const WrapperData = styled.View``;
 
 export const TitleScreen = styled.Text`
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 400;
   color: ${({theme}) => theme.colors.titlePrimary};
   margin-right: auto;
-  padding: 20px;
+  margin-left: auto;
+  margin-bottom: 100px;
+  margin-top: 100px;
 `;
 
 export const InfoIcon = styled(AntDesign).attrs({

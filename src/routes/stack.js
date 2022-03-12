@@ -27,7 +27,7 @@ const StackRoutes = () => {
         component={CreateDevotional}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ModalPresentationIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -35,7 +35,7 @@ const StackRoutes = () => {
         component={VerLeituraRapida}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.SlideFromRightIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -43,7 +43,7 @@ const StackRoutes = () => {
         component={MyDevotionalView}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.SlideFromRightIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -51,7 +51,7 @@ const StackRoutes = () => {
         component={Webview}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ModalSlideFromBottomIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
 
@@ -60,7 +60,7 @@ const StackRoutes = () => {
         component={InfoMyDevotional}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ModalPresentationIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
     </Stack.Navigator>

@@ -9,6 +9,7 @@ import {
   Layout,
   LeftWrapperHeader,
   RightWrapperHeader,
+  ShareIcon,
   Tag,
   TagsWrapper,
   Text,
@@ -19,7 +20,7 @@ import {
   WrapperText,
 } from './styles';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
-import {ScrollView, TouchableOpacity} from 'react-native';
+import {ScrollView, TouchableOpacity, View} from 'react-native';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
@@ -34,9 +35,18 @@ const MyDevotionalView = ({route, navigation}) => {
   };
 
   const navigateToMusic = () => {
-    navigation.navigate('Webview', {
-      url: params.devotional.musica,
-    });
+    console.log(params.devotional);
+
+    //TODO: verificar se link é valido;
+    if (params.devotional.link != null || params.devotional.link !== '') {
+      navigation.navigate('Webview', {
+        url: params.devotional.link,
+      });
+    } else {
+      navigation.navigate('Webview', {
+        url: 'https://www.youtube.com/watch?v=7SO3ObU99e4&list=RD7SO3ObU99e4&start_radio=1',
+      });
+    }
   };
 
   return (
@@ -59,20 +69,21 @@ const MyDevotionalView = ({route, navigation}) => {
           </LeftWrapperHeader>
         </TouchableOpacity>
 
-        <TitleScreen>Meu devocional</TitleScreen>
+        <View />
 
         <RightWrapperHeader>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{marginTop: 0, marginRight: 10}}>Editar</Text>
             <EditIcon onPress={() => handleOpenCreateDevotional()} />
+            <ShareIcon />
           </TouchableOpacity>
         </RightWrapperHeader>
       </Header>
 
       <ScrollView>
         <WrapperText>
-          <TitleSection>{params.devotional.titulo}</TitleSection>
+          {/* TODO: implementar cor que foi salva no banco */}
+          <TitleSection color={'#000'}>{params.devotional.titulo}</TitleSection>
           <BaseBiblica>{params.devotional.baseBiblica}</BaseBiblica>
           <Text>{params.devotional.reflexao}</Text>
         </WrapperText>

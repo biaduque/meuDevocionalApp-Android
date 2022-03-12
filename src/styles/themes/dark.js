@@ -27,7 +27,9 @@ export default {
   },
   createDevotionalModal: {
     buttonSave: '#D9AB75',
-    buttonCancel: '#d5635d',
+    buttonCancel: '#EB5545',
     borderColor: '#353537',
+    footerBackground: '#3F3F3F',
+    buttonOkMusic: '#fff',
   },
 };

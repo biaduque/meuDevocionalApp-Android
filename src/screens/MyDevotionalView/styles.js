@@ -6,13 +6,14 @@ export const Layout = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.colors.background};
   position: relative;
+  padding: 0 5px;
 `;
 
 export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px 15px;
+  padding: 15px 15px 15px;
   position: absolute;
   top: 0;
   right: 0;
@@ -74,13 +75,13 @@ export const WrapperText = styled.View`
 
 export const TitleSection = styled.Text`
   font-size: 36px;
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.gold};
+  color: ${({color}) => color};
   font-weight: 500;
   margin-top: 10px;
 `;
 
 export const BaseBiblica = styled.Text`
-  font-size: 24px;
+  font-size: 20px;
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.text};
   font-weight: 300;
   margin-top: 10px;
@@ -99,7 +100,9 @@ export const Footer = styled.View`
   padding: 20px;
 `;
 
-export const WorshipTimeWrapper = styled.TouchableOpacity`
+export const WorshipTimeWrapper = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

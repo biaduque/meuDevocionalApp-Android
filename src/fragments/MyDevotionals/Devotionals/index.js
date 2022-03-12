@@ -17,6 +17,7 @@ import Book4 from '../../../assets/illustrations/Variante9.png';
 import {useNavigation} from '@react-navigation/core';
 
 const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
+  console.log(devotional);
   const navigation = useNavigation();
 
   const onLongPress = () => {
@@ -45,7 +46,9 @@ const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
       <Container>
         <FlexContainer>
           <View>
-            <Text style={{fontSize: 26, marginBottom: 20}}>🥳</Text>
+            <Text style={{fontSize: 16, marginBottom: 20, opacity: 0.6}}>
+              11/03/2022
+            </Text>
             <Title>{devotional.titulo}</Title>
             <DateTime>{devotional.baseBiblica}</DateTime>
           </View>
@@ -54,11 +57,9 @@ const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
         </FlexContainer>
 
         <TagsWrapper>
-          {devotional.tags && devotional.tags.length > 0
-            ? devotional.tags.map((tag, index) => (
-                <Tag key={index}>{tag.name}</Tag>
-              ))
-            : null}
+          {devotional.aplicacao1 !== '' && <Tag>{devotional.aplicacao1}</Tag>}
+          {devotional.aplicacao2 !== '' && <Tag>{devotional.aplicacao2}</Tag>}
+          {devotional.aplicacao3 !== '' && <Tag>{devotional.aplicacao3}</Tag>}
         </TagsWrapper>
       </Container>
     </Layout>

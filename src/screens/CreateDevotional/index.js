@@ -13,12 +13,12 @@ import {
   TextInputBorder,
   TextTitle,
   WrapperColorButtons,
-  WrapperHeader,
+  WrapperFooter,
   WrapperInputLabel,
   WrapperReflexao,
   WrapperWorship,
 } from './styles';
-import {StatusBar, Text, TouchableOpacity} from 'react-native';
+import {StatusBar, Text, TouchableOpacity, Alert} from 'react-native';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {useDispatch} from 'react-redux';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
@@ -86,6 +86,10 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
+    //primeiro verde nao utilizar. a partir do verde2.
+    //Tudo que for clicavel, deve ter uma cor. ['','']
+
+    // se apagar a imagem do mural, o background fica da cor do bg do texto.
 
     const data = {
       id: uuid.v4(),
@@ -108,24 +112,13 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
     dispatch(setMyDevotionals(ret));
 
-    alert('Dados salvos com sucesso');
+    Alert.alert('Devocional Criado', 'Dados salvos com sucesso');
     handleBackScreen();
   }
 
   return (
     <Container>
       <ScrollView>
-        <StatusBar barStyle={'light-content'} backgroundColor={'#000'} />
-
-        <WrapperHeader>
-          <TouchableOpacity onPress={() => handleBackScreen()}>
-            <TextButtonCancel>Cancelar</TextButtonCancel>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => saveContent()}>
-            <TextButtonSave>Salvar</TextButtonSave>
-          </TouchableOpacity>
-        </WrapperHeader>
-
         <TextTitle>Cor</TextTitle>
         <WrapperColorButtons>
           {colors.map(item => (
@@ -199,6 +192,29 @@ const CreateDevotionalScreen = ({route, navigation}) => {
           />
         </WrapperReflexao>
       </ScrollView>
+
+      <WrapperFooter>
+        <TouchableOpacity
+          onPress={() => handleBackScreen()}
+          style={{
+            width: '50%',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <TextButtonCancel>Cancelar</TextButtonCancel>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => saveContent()}
+          style={{
+            width: '50%',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <TextButtonSave>Salvar</TextButtonSave>
+        </TouchableOpacity>
+      </WrapperFooter>
     </Container>
   );
 };
