@@ -1,142 +1,99 @@
-import React, {useRef} from 'react';
-import {
-  Container,
-  DescriptionText,
-  FlatList,
-  FlexContainer,
-  Layout,
-  Tile,
-  TilesLimitingWrapper,
-  TilesWrapper,
-  Wrapper,
-} from './styles';
+import React, {useEffect, useRef, useState} from 'react';
+import {Container, FlatList, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
 import Header from '../../components/Header';
-import {Animated, SafeAreaView, Text, View} from 'react-native';
+import {Animated, SafeAreaView, Platform, Vibration} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
+import {useDispatch, useSelector} from 'react-redux';
+import LocalRepositoryService from '../../services/LocalRepositoryService';
+import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
+import ModalDeleteSheet from '../../screens/MyDevotionalView/ModalDeleteSheet';
 
 const MyDevotionalsScreen = () => {
   const offset = useRef(new Animated.Value(0)).current;
+  const dispatch = useDispatch();
 
-  const devotionals = [
-    {
-      id: 1,
-      titulo: 'Minha nova devoção',
-      ref: 'Salmos 88:13',
-      backgroundColor: '#F7D9A1',
-      tags: [
-        {
-          id: 1,
-          name: 'amor',
-        },
-        {
-          id: 2,
-          name: 'salvação',
-        },
-        {
-          id: 3,
-          name: 'vida',
-        },
-      ],
-    },
-    {
-      id: 2,
-      titulo: 'Nem só de pão',
-      ref: 'Matheus 4:4',
-      backgroundColor: '#FDEDCC',
-      tags: [
-        {
-          id: 1,
-          name: 'vida',
-        },
-      ],
-    },
-    {
-      id: 3,
-      titulo:
-        'Dia de trabalho muito produtivo, posso agradecer a Deus por isso',
-      ref: 'Salmos 42:5',
-      backgroundColor: '#FDEDCC',
-      tags: [
-        {
-          id: 1,
-          name: 'paz',
-        },
-        {
-          id: 1,
-          name: 'refugio',
-        },
-        {
-          id: 1,
-          name: 'espírito',
-        },
-      ],
-    },
-    {
-      id: 4,
-      titulo: 'Aquieta minha alma, pois estou em paz',
-      ref: 'Salmos 88:13',
-      backgroundColor: '#8BA293',
-      tags: [
-        {
-          id: 1,
-          name: 'vida',
-        },
-      ],
-    },
-  ];
+  const $myDevotionals = useSelector(state => state.myDevotionals);
+  const [devotionals, setDevotionals] = useState([]);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [selectedDevotional, setSelectedDevotional] = useState(null);
+
+  useEffect(() => {
+    async function getDevotionals() {
+      if ($myDevotionals.devotionals && $myDevotionals.devotionals.length > 0) {
+        setDevotionals($myDevotionals.devotionals);
+        // dispatch(setMyDevotionals([]));
+      } else {
+        const repositoryService = new LocalRepositoryService();
+        const data = await repositoryService.get(
+          repositoryService.DEVOCIONAL_LIST_KEY,
+          true,
+        );
+
+        if (data != null) {
+          dispatch(setMyDevotionals(data));
+          setDevotionals(data);
+        }
+      }
+    }
+
+    getDevotionals();
+
+    return () => {
+      setDevotionals([]);
+    };
+  }, [$myDevotionals]);
+
+  const handleOpenModal = async devotional => {
+    setOpenModalDelete(true);
+    setSelectedDevotional(devotional);
+
+    const DURATION = 100;
+
+    Vibration.vibrate(DURATION);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModalDelete(false);
+    setSelectedDevotional(null);
+  };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}>
-        <Layout>
-          <Header animatedValue={offset} title={'Meus Devocionais'} />
+    <Layout>
+      <ModalDeleteSheet
+        open={openModalDelete}
+        devotional={selectedDevotional}
+        handleClose={handleCloseModal}
+        title={'Excluir devocional?'}
+        description={
+          'Deseja criar uma nova devocional através dessa devocional rápida?'
+        }
+        titleConfirm={'Excluir devocional'}
+      />
 
-          <Container>
-            {devotionals.length <= 0 ? (
-              <Wrapper>
-                <TilesWrapper>
-                  <TilesLimitingWrapper>
-                    <Tile background={'#F7D9A0'} />
-                    <Tile background={'#ECBA7D'} />
-                    <Tile background={'#8BA293'} />
-                  </TilesLimitingWrapper>
-                </TilesWrapper>
+      <Header animatedValue={offset} title={'Meus Devocionais'} />
 
-                <FlexContainer>
-                  <Text style={{marginRight: 26}}>Plus</Text>
-                  <DescriptionText>
-                    Adicione novos itens customizados em sua coleção ao clicar
-                    no botão
-                  </DescriptionText>
-                </FlexContainer>
-
-                <FlexContainer>
-                  <Text style={{marginRight: 26}}>Touch</Text>
-                  <DescriptionText>
-                    Pressione algum item da sua coleção caso queira exclui-lo
-                  </DescriptionText>
-                </FlexContainer>
-              </Wrapper>
-            ) : (
-              <FlatList
-                contentContainerStyle={{paddingBottom: 40, paddingTop: 120}}
-                data={devotionals}
-                showsVerticalScrollIndicator={false}
-                scrollEventThrottle={16}
-                onScroll={Animated.event(
-                  [{nativeEvent: {contentOffset: {y: offset}}}],
-                  {useNativeDriver: false},
-                )}
-                renderItem={({item}) => (
-                  <DevotionalsComponent devotional={item} />
-                )}
+      <Container>
+        {devotionals.length <= 0 ? null : (
+          <FlatList
+            contentContainerStyle={{paddingBottom: 40, paddingTop: 40}}
+            data={devotionals}
+            showsVerticalScrollIndicator={false}
+            scrollEventThrottle={16}
+            onScroll={Animated.event(
+              [{nativeEvent: {contentOffset: {y: offset}}}],
+              {useNativeDriver: false},
+            )}
+            renderItem={({item}) => (
+              <DevotionalsComponent
+                devotional={item}
+                handleOpenModalDelete={handleOpenModal}
               />
             )}
-          </Container>
-        </Layout>
-      </SafeAreaView>
-    </SafeAreaProvider>
+          />
+        )}
+      </Container>
+    </Layout>
   );
 };
 

@@ -1,11 +1,15 @@
-import React, {useRef} from 'react';
-import {SafeAreaView, StyleSheet, StatusBar, Animated} from 'react-native';
+import React, {useEffect} from 'react';
+import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
 import BottomNavigation from '../../components/BottomNavigation';
 import Fragments from '../../routes/fragment';
 import {useSelector} from 'react-redux';
+import HeaderScrollView from 'react-native-header-scroll-view';
 
 const Main = () => {
   const $app = useSelector(state => state.app);
+  console.log($app.theme.colors);
+
+  useEffect(() => {}, [$app]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -15,6 +19,7 @@ const Main = () => {
         }
         backgroundColor={$app.theme.colors.statusBarColor}
       />
+
       <Fragments />
       <BottomNavigation />
     </SafeAreaView>
@@ -24,10 +29,20 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     flexDirection: 'column',
-    justifyContent: 'space-between',
     width: '100%',
+  },
+  headerContainerStyle: {
+    backgroundColor: '#000',
+    borderBottomWidth: 0,
+    borderTopWidth: 0,
+    elevation: 0,
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    shadowOffset: {
+      height: 0,
+      width: 0,
+    },
   },
 });
 

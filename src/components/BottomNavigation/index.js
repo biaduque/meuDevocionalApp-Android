@@ -5,10 +5,13 @@ import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/core';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import {useDispatch} from 'react-redux';
+import {setActiveTab} from '../../store/actions/app.action';
 
 const BottomNavigation = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [selectedRoute, setSelectedRoute] = useState('Leitura');
 
   useEffect(() => {
@@ -23,13 +26,15 @@ const BottomNavigation = () => {
   }, [route]);
 
   const handleChooseFragment = path => {
+    let nameTab = path;
+    if (path === 'MyDevotionals') {
+      nameTab = 'Meus Devocionais';
+    }
+
+    dispatch(setActiveTab(nameTab));
     navigation.navigate('Main', {
       screen: path,
     });
-  };
-
-  const handleChooseScreen = path => {
-    navigation.navigate(path);
   };
 
   const isSelected = path => selectedRoute === path;

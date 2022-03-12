@@ -2,9 +2,11 @@ import React from 'react';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/CreateDevotional';
-import VerLeituraRapida from '../screens/VerLeituraRapida';
+import VerLeituraRapida from '../screens/ViewQuickReader';
 import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import InfoMyDevotional from '../screens/InfoMyDevotional';
+import MyDevotionalView from '../screens/MyDevotionalView';
 
 const Stack = createStackNavigator();
 
@@ -25,7 +27,7 @@ const StackRoutes = () => {
         component={CreateDevotional}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ModalPresentationIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -33,7 +35,15 @@ const StackRoutes = () => {
         component={VerLeituraRapida}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.SlideFromRightIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
+        }}
+      />
+      <Stack.Screen
+        name="MyDevotionalView"
+        component={MyDevotionalView}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -41,7 +51,16 @@ const StackRoutes = () => {
         component={Webview}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ModalSlideFromBottomIOS,
+          ...TransitionPresets.ScaleFromCenterAndroid,
+        }}
+      />
+
+      <Stack.Screen
+        name="InfoMyDevotional"
+        component={InfoMyDevotional}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
     </Stack.Navigator>

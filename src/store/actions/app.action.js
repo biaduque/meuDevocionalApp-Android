@@ -1,9 +1,9 @@
 import ActionTypes from './action-types';
 
-const setActiveTab = product => {
+const setActiveTab = tab => {
   return {
     type: ActionTypes.app.SET_ACTIVE_TAB,
-    payload: product,
+    payload: tab,
   };
 };
 

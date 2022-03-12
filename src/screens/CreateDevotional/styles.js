@@ -3,29 +3,25 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   padding-top: 28px;
-  padding-left: 20px;
-  padding-right: 20px;
   background-color: ${({theme}) => theme.colors.background};
 `;
 
-export const WrapperHeader = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 26px;
+export const ScrollView = styled.ScrollView`
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const TransparentButton = styled.TouchableOpacity``;
 
 export const TextButtonSave = styled.Text`
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   color: ${({theme}) => theme.createDevotionalModal.buttonSave};
 `;
 
 export const TextButtonCancel = styled.Text`
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   color: ${({theme}) => theme.createDevotionalModal.buttonCancel};
 `;
 
@@ -59,7 +55,7 @@ export const TextInput = styled.TextInput.attrs({
 })`
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-bottom: 10px;
   border-bottom-width: 1px;
   border-bottom-color: ${({theme}) => theme.createDevotionalModal.borderColor};
@@ -83,7 +79,7 @@ export const TextInputBorder = styled.TextInput.attrs({
 })`
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-bottom: 10px;
   border: 1px solid ${({theme}) => theme.createDevotionalModal.borderColor}
   padding: 7px 16px;
@@ -117,6 +113,15 @@ export const TextArea = styled.TextInput.attrs({
 })`
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: ${({theme}) => theme.colors.titlePrimary};
   margin-top: 10px;
+`;
+
+export const WrapperFooter = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  //margin-bottom: 26px;
+  background: ${({theme}) => theme.createDevotionalModal.footerBackground};
+  padding: 20px;
 `;

@@ -17,7 +17,7 @@ import {
   WrapperText,
 } from './styles';
 import ModalSheetBottom from '../../components/ModalSheetBottom';
-import {Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
 
 const VerLeituraRapida = ({route, navigation}) => {
   const params = route.params;
@@ -58,7 +58,7 @@ const VerLeituraRapida = ({route, navigation}) => {
           </LeftWrapperHeader>
         </TouchableOpacity>
 
-        <TitleScreen>Leitura rápida</TitleScreen>
+        <View />
 
         <RightWrapperHeader>
           <EditIcon onPress={() => handleOpenCreateDevotional()} />

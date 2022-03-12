@@ -5,7 +5,7 @@ export default {
     statusBarColor: '#FEFEFE',
     iconColor: '#333',
 
-    titlePrimary: '#000',
+    titlePrimary: '#000000',
     titleSecondary: '#333',
 
     white: '#fff',
@@ -22,10 +22,14 @@ export default {
   colorsLeituraRapidaScreen: {
     titleSection: '#5E6C61',
     text: '#000',
+    titleScreen: '#333',
+    gold: '#D9AB75',
   },
   createDevotionalModal: {
-    buttonSave: '#D9AB75',
-    buttonCancel: '#FD453A',
-    borderColor: '#353537',
+    buttonSave: '#597562',
+    buttonCancel: '#EC5B4D',
+    borderColor: '#F2F2F2',
+    footerBackground: '#F2F2F2',
+    buttonOkMusic: '#fff',
   },
 };

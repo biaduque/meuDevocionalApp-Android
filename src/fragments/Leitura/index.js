@@ -1,45 +1,45 @@
-import React, {useRef} from 'react';
-import {ScrollView, Animated, SafeAreaView} from 'react-native';
-import {Container, CustomScrollView, WrapperContent} from './styles';
+import React, {createRef, forwardRef, useEffect, useRef} from 'react';
+import {Animated, ScrollView} from 'react-native';
+import {Container, CustomScrollView, Layout, WrapperContent} from './styles';
 import LeiturasRapidas from './LeiturasRapidas';
 import Cotidiano from './Cotidiano';
-import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 import Header from '../../components/Header';
 
 const LeituraScreen = () => {
-  const offset = useRef(new Animated.Value(0)).current;
+  const headerRef = createRef(Header);
+  let headerScrollNotified = false;
+  const scrollY = new Animated.Value(0);
+  const onScrollInternal = undefined;
+
+  useEffect(() => {
+    return () => {};
+  }, []);
+
+  const setHeaderScrollPosition = scrollY => {
+    if (headerRef.current && !headerScrollNotified) {
+      headerRef.current.setHeaderScrollPosition(scrollY);
+      headerScrollNotified = true;
+    }
+  };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}>
-        <Header animatedValue={offset} title={'Leituras'} />
-
-        <CustomScrollView
-          contentContainerStyle={{
-            alignItems: 'center',
-            paddingTop: 100,
-          }}
-          showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onScroll={Animated.event(
-            [{nativeEvent: {contentOffset: {y: offset}}}],
-            {useNativeDriver: false},
-          )}>
-          <Container>
-            <WrapperContent>
-              <LeiturasRapidas />
-              <Cotidiano />
-              <LeiturasRapidas />
-              <Cotidiano />
-              <LeiturasRapidas />
-              <Cotidiano />
-              <LeiturasRapidas />
-              <Cotidiano />
-            </WrapperContent>
-          </Container>
-        </CustomScrollView>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <Layout>
+      <Header title={'Leituras'} showPlusButton={false} />
+      <Animated.ScrollView>
+        <Container>
+          <WrapperContent>
+            <LeiturasRapidas />
+            <Cotidiano />
+            <LeiturasRapidas />
+            <Cotidiano />
+            <LeiturasRapidas />
+            <Cotidiano />
+            <LeiturasRapidas />
+            <Cotidiano />
+          </WrapperContent>
+        </Container>
+      </Animated.ScrollView>
+    </Layout>
   );
 };
 

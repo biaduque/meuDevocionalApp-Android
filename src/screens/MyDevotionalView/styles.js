@@ -6,13 +6,14 @@ export const Layout = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.colors.background};
   position: relative;
+  padding: 0 5px;
 `;
 
 export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px 15px;
+  padding: 15px 15px 15px;
   position: absolute;
   top: 0;
   right: 0;
@@ -29,13 +30,13 @@ export const LeftWrapperHeader = styled.View`
 
 export const TitleBackScreen = styled.Text`
   font-size: 20px;
-  color: ${({theme}) => theme.colors.titleSecondary};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 
 export const TitleScreen = styled.Text`
   font-size: 22px;
   font-weight: 500;
-  color: ${({theme}) => theme.colors.titlePrimary};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
   margin-right: 20px;
 `;
 
@@ -48,20 +49,21 @@ export const BackIcon = styled(Feather).attrs({
   name: 'chevron-left',
   size: 32,
 })`
-  color: ${({theme}) => theme.colors.iconColor};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
+
 export const EditIcon = styled(Feather).attrs({
   name: 'edit',
   size: 24,
 })`
-  color: ${({theme}) => theme.colors.iconColor};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 
 export const ShareIcon = styled(EvilIcons).attrs({
   name: 'share-apple',
   size: 34,
 })`
-  color: ${({theme}) => theme.colors.iconColor};
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
   margin-left: 20px;
 `;
 
@@ -72,18 +74,18 @@ export const WrapperText = styled.View`
 `;
 
 export const TitleSection = styled.Text`
-  font-size: 28px;
+  font-size: 36px;
+  color: ${({color}) => color};
   font-weight: 500;
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleSection};
-  margin-top: 24px;
+  margin-top: 10px;
 `;
 
-export const TextVersiculo = styled.Text`
+export const BaseBiblica = styled.Text`
   font-size: 20px;
-  font-style: italic;
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.text};
-  font-weight: 400;
+  font-weight: 300;
   margin-top: 10px;
+  opacity: 0.8;
 `;
 
 export const Text = styled.Text`
@@ -93,19 +95,40 @@ export const Text = styled.Text`
   margin-top: 10px;
 `;
 
-export const WorshipTimeWrapper = styled.TouchableOpacity`
+export const Footer = styled.View`
+  margin-bottom: 60px;
+  padding: 20px;
+`;
+
+export const WorshipTimeWrapper = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   padding-top: 0px;
   padding-bottom: 0px;
   margin-top: 20px;
-  margin-bottom: 60px;
   height: 80px;
 `;
 
 export const ImageBackground = styled.Image`
   width: 100%;
   height: 100%;
+`;
+
+export const TagsWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+`;
+
+export const Tag = styled.Text`
+  padding: 5px 10px;
+  background: #edba7d;
+  color: #000;
+  width: 30%;
+  border-radius: 4px;
+  text-align: center;
 `;

@@ -1,6 +1,7 @@
 import ActionTypes from '../actions/action-types';
 import {light, dark} from '../../styles/themes';
 import {Appearance} from 'react-native';
+
 const colorScheme = Appearance.getColorScheme();
 
 const INITIAL_STATE = {

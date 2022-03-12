@@ -1,53 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ButtonOkWorship,
-  ButtonText,
-  ButtonWrapper,
   CircleColorButton,
   Container,
   Form,
   LabelInfo,
-  LeftWrapperButton,
-  ProfileImage,
+  ScrollView,
   TextArea,
-  TextButton,
   TextButtonCancel,
   TextButtonSave,
   TextInput,
   TextInputBorder,
   TextTitle,
-  TransparentButton,
-  Username,
   WrapperColorButtons,
-  WrapperHeader,
+  WrapperFooter,
   WrapperInputLabel,
-  WrapperMenu,
-  WrapperProfile,
   WrapperReflexao,
   WrapperWorship,
 } from './styles';
-import {
-  ScrollView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import TopContent from '../../components/TopContent';
-import {
-  Activity,
-  ArrowLeft,
-  ArrowRight,
-  Heart,
-  Logout,
-  Search,
-  Setting,
-  User,
-} from 'react-native-iconly';
-import {useNavigation} from '@react-navigation/core';
+import {StatusBar, Text, TouchableOpacity, Alert} from 'react-native';
+import LocalRepositoryService from '../../services/LocalRepositoryService';
+import {useDispatch} from 'react-redux';
+import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
+import uuid from 'react-native-uuid';
 
-const ProfileScreen = () => {
-  const navigation = useNavigation();
+const CreateDevotionalScreen = ({route, navigation}) => {
+  const {params} = route;
   const colors = [
     {
       id: '1',
@@ -67,24 +45,80 @@ const ProfileScreen = () => {
     },
   ];
 
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState('');
+  const [book, setBook] = useState('');
+  const [chapter, setChapter] = useState('');
+  const [versicle, setVersicle] = useState('');
+  const [key1, setKey1] = useState('');
+  const [key2, setKey2] = useState('');
+  const [key3, setKey3] = useState('');
+  const [music, setMusic] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    if (params != null) {
+      setTitle(params.titulo);
+      setBook(params.refBiblica.split(' ')[0]);
+      setChapter(params.refBiblica);
+    }
+
+    const arr = {
+      backgroundColor: 'rgba(236,186,125,.3)',
+      conclusao:
+        'Nossa oração deve ser contínua para que estejamos atentos em nossas decisões, e sempre quando estivermos frente às duas portas: a estreita e a larga, escolhamos a porta estreita, que por vezes, mesmo que mais difícil, nos leva para mais perto daquele que mais nos amou. Temos a segurança em saber que a vontade do Pai é boa, perfeita e agradável e por isso, podemos descansar na caminhada. ',
+      desenvolvimento:
+        "Em vida, Jesus pregou em diversos momentos sobre nossa vida com Deus e como é importante que sejamos seguidores em Espírito e em Verdade. Além de falar sobre a importância de produzirmos frutos, amarmos os próximos e espalharmos o amor de Deus, Jesus também falava sobre a dificuldade que encontraríamos em nossos caminhos e no decorrer da vida e uma das analogias usadas para isso foi a da 'Porta estreita'. É muito mais fácil passar por uma porta larga, do que por uma estreita, e assim Jesus comparou a vida do Cristão. As  vezes, seguir a Cristo pode ser difícil. Abrir mão do orgulho, de luxúrias, mentiras, status, amor às coisas materiais e incertezas do cotidiano... abrir a mão do Eu individual para que seu Eu com Cristo seja maior. Entretanto, é a porta mais estreita que nos faz enxergar que todas as coisas que o mundo nos oferecem são poucas perto da grandiosidade do amor de Deus. ",
+      id: 30,
+      introducao:
+        'Entrem pela porta estreita, pois larga é a porta e amplo o caminho que leva à perdição, e são muitos os que entram por ela.',
+      musica: 'https://www.youtube.com/watch?v=7SO3ObU99e4',
+      refBiblica: 'Mateus 7: 13-14',
+      titulo: 'A porta estreita',
+    };
+
+    return () => {};
+  }, [params]);
+
   const handleBackScreen = () => {
     navigation.goBack();
   };
 
+  async function saveContent() {
+    const repositoryService = new LocalRepositoryService();
+    //primeiro verde nao utilizar. a partir do verde2.
+    //Tudo que for clicavel, deve ter uma cor. ['','']
+
+    // se apagar a imagem do mural, o background fica da cor do bg do texto.
+
+    const data = {
+      id: uuid.v4(),
+      titulo: title,
+      baseBiblica: `${book} ${chapter}:${versicle}`,
+      aplicacao1: key1,
+      aplicacao2: key2,
+      aplicacao3: key3,
+      backgroundColor: '#81978c',
+      backgroundImage: '',
+      reflexao: description ? description : '',
+      link: music,
+    };
+
+    const ret = await repositoryService.set(
+      repositoryService.DEVOCIONAL_LIST_KEY,
+      data,
+      true,
+    );
+
+    dispatch(setMyDevotionals(ret));
+
+    Alert.alert('Devocional Criado', 'Dados salvos com sucesso');
+    handleBackScreen();
+  }
+
   return (
     <Container>
       <ScrollView>
-        <StatusBar barStyle={'light-content'} backgroundColor={'#000'} />
-
-        <WrapperHeader>
-          <TouchableOpacity onPress={() => handleBackScreen()}>
-            <TextButtonCancel>Cancelar</TextButtonCancel>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <TextButtonSave>Salvar</TextButtonSave>
-          </TouchableOpacity>
-        </WrapperHeader>
-
         <TextTitle>Cor</TextTitle>
         <WrapperColorButtons>
           {colors.map(item => (
@@ -93,28 +127,51 @@ const ProfileScreen = () => {
         </WrapperColorButtons>
 
         <Form>
-          <TextInput placeholder={'Título'} />
-          <TextInput placeholder={'Livro'} />
-          <TextInput placeholder={'Capítulo'} />
-          <TextInput placeholder={'Versículo'} />
+          <TextInput
+            placeholder={'Título'}
+            value={title}
+            onChangeText={setTitle}
+          />
+          <TextInput
+            placeholder={'Livro'}
+            value={book}
+            onChangeText={setBook}
+          />
+          <TextInput
+            placeholder={'Capítulo'}
+            value={chapter}
+            onChangeText={setChapter}
+          />
+          <TextInput
+            placeholder={'Versículo'}
+            value={versicle}
+            onChangeText={setVersicle}
+          />
           <TextInput
             placeholder={'Palavra chave 1'}
-            placeholderTextColor={'#999'}
+            value={key1}
+            onChangeText={setKey1}
           />
           <TextInput
             placeholder={'Palavra chave 2'}
-            placeholderTextColor={'#999'}
+            value={key2}
+            onChangeText={setKey2}
           />
           <TextInput
             placeholder={'Palavra chave 3'}
-            placeholderTextColor={'#999'}
+            value={key3}
+            onChangeText={setKey3}
           />
         </Form>
 
         <TextTitle style={{marginTop: 42}}>My worship time!</TextTitle>
         <WrapperWorship>
           <WrapperInputLabel>
-            <TextInputBorder placeholder={'Insira um link de música...'} />
+            <TextInputBorder
+              placeholder={'Insira um link de música...'}
+              value={music}
+              onChangeText={setMusic}
+            />
             <LabelInfo>
               Você pode inserir links de música do YouTube, SoundCloud, Apple
               Music e Spotify.
@@ -128,11 +185,38 @@ const ProfileScreen = () => {
 
         <WrapperReflexao>
           <TextTitle>Reflexão</TextTitle>
-          <TextArea placeholder={'Comece a escrever...'} />
+          <TextArea
+            placeholder={'Comece a escrever...'}
+            value={description}
+            onChangeText={setDescription}
+          />
         </WrapperReflexao>
       </ScrollView>
+
+      <WrapperFooter>
+        <TouchableOpacity
+          onPress={() => handleBackScreen()}
+          style={{
+            width: '50%',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <TextButtonCancel>Cancelar</TextButtonCancel>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => saveContent()}
+          style={{
+            width: '50%',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <TextButtonSave>Salvar</TextButtonSave>
+        </TouchableOpacity>
+      </WrapperFooter>
     </Container>
   );
 };
 
-export default ProfileScreen;
+export default CreateDevotionalScreen;

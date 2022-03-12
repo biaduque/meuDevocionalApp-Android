@@ -20,12 +20,16 @@ export default {
     yellow3: '#FCEFD2',
   },
   colorsLeituraRapidaScreen: {
-    titleSection: '#fff',
+    titleSection: '#829769',
     text: '#ccc',
+    titleScreen: '#ECBA7D',
+    gold: '#D9AB75',
   },
   createDevotionalModal: {
     buttonSave: '#D9AB75',
-    buttonCancel: '#d5635d',
+    buttonCancel: '#EB5545',
     borderColor: '#353537',
+    footerBackground: '#3F3F3F',
+    buttonOkMusic: '#fff',
   },
 };

@@ -22,22 +22,6 @@ class Utils {
   getRandomColor() {
     return this.randomItemArray(this.colors);
   }
-
-  getData = async (key, isObject = false) => {
-    try {
-      const value = await AsyncStorage.getItem(key);
-
-      if (value != null) {
-        if (isObject) {
-          return JSON.parse(value);
-        } else {
-          return value;
-        }
-      }
-    } catch (e) {
-      return null;
-    }
-  };
 }
 
 export default Utils;
