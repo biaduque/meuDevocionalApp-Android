@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Container, FlatList, Layout} from './styles';
+import {Container, FlatList, FloatingButtonCreate, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
 import Header from '../../components/Header';
 import {Animated, Vibration} from 'react-native';
@@ -8,6 +8,8 @@ import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
 import ModalDeleteSheet from '../../screens/Devocional/View/ModalDeleteSheet';
 import Utils from '../../common/Utils';
+import {Plus} from 'react-native-iconly';
+import {PlusIcon} from '../../components/Header/styles';
 
 const MyDevotionalsScreen = () => {
   const utils = new Utils();
@@ -93,6 +95,10 @@ const MyDevotionalsScreen = () => {
         }
         titleConfirm={'Excluir devocional'}
       />
+
+      <FloatingButtonCreate>
+        <PlusIcon />
+      </FloatingButtonCreate>
 
       <Header
         animatedValue={offset}

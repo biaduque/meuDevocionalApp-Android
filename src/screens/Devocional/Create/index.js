@@ -30,6 +30,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
 import uuid from 'react-native-uuid';
 import CustomRadioButton from '../../../components/CustomRadioButton';
+import moment from 'moment';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;
@@ -56,7 +57,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   const [key3, setKey3] = useState('');
   const [music, setMusic] = useState('');
   const [description, setDescription] = useState('');
-  const [selectedColor, setSelectedColor] = useState('verde1');
+  const [selectedColor, setSelectedColor] = useState('verde2');
 
   useEffect(() => {
     if (params != null) {
@@ -89,7 +90,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       backgroundImage: '',
       reflexao: description ? description : '',
       link: music === '' ? null : music,
-      createdAt: new Date(),
+      createdAt: moment().format('DD/MM/YYYY'),
     };
 
     const ret = await repositoryService.set(

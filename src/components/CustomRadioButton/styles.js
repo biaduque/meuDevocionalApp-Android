@@ -15,8 +15,7 @@ export const Option = styled.Pressable`
   height: 50px;
   border-radius: 25px;
   border-width: 3px;
-  border-color: ${({active}) =>
-    active ? props => props.theme.colors.titlePrimary : 'transparent'};
+  border-color: ${({active}) => (active ? '#485F50' : 'transparent')};
   justify-content: center;
   align-items: center;
   background: ${({background}) => background};
