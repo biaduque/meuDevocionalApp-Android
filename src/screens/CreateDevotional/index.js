@@ -88,7 +88,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       backgroundColor: selectedColor,
       backgroundImage: '',
       reflexao: description ? description : '',
-      link: music,
+      link: music === '' ? null : music,
       createdAt: new Date(),
     };
 

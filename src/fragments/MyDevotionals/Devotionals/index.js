@@ -31,6 +31,7 @@ const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
   const onPress = () => {
     navigation.navigate('MyDevotionalView', {
       devotional,
+      colors: parseColors(),
     });
   };
 
