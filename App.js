@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import React, {useEffect, useState, useCallback} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {Routes} from './src/routes';
 import {IconlyProvider} from 'react-native-iconly';
 import {Provider} from 'react-redux';
@@ -10,23 +10,23 @@ import {Appearance} from 'react-native';
 import {dark, light} from './src/styles/themes';
 
 const App = () => {
-  const colorScheme = Appearance.getColorScheme();
   const [themeApp, setThemeApp] = useState(
-    colorScheme === 'dark' ? dark : light,
+    Appearance.getColorScheme() === 'dark' ? dark : light,
   );
 
+  const updateColorScheme = useCallback(() => {
+    const theme = Appearance.getColorScheme() === 'dark' ? dark : light;
+    store.getState().app.theme = theme;
+    setThemeApp(theme);
+  }, []);
+
   useEffect(() => {
-    function getStoragedTheme() {
-      const theme = colorScheme === 'dark' ? dark : light;
+    const listener = Appearance.addChangeListener(updateColorScheme);
 
-      store.getState().app.theme = theme;
-      setThemeApp(theme);
-    }
-
-    getStoragedTheme();
-
-    return () => {};
-  }, [colorScheme]);
+    return () => {
+      listener.remove();
+    };
+  }, [updateColorScheme]);
 
   return (
     <Provider store={store}>

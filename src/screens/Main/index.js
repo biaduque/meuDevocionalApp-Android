@@ -3,11 +3,9 @@ import {SafeAreaView, StatusBar, StyleSheet, Text} from 'react-native';
 import BottomNavigation from '../../components/BottomNavigation';
 import Fragments from '../../routes/fragment';
 import {useSelector} from 'react-redux';
-import HeaderScrollView from 'react-native-header-scroll-view';
 
 const Main = () => {
   const $app = useSelector(state => state.app);
-  console.log($app.theme.colors);
 
   useEffect(() => {}, [$app]);
 
