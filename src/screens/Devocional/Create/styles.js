@@ -52,9 +52,10 @@ export const Form = styled.View`
 
 export const TextInput = styled.TextInput.attrs({
   placeholderTextColor: '#ccc',
+  returnKeyType: 'next',
 })`
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   color: ${({theme}) => theme.colors.titlePrimary};
   margin-bottom: 10px;
   border-bottom-width: 1px;
@@ -78,7 +79,7 @@ export const TextInputBorder = styled.TextInput.attrs({
   placeholderTextColor: '#ccc',
 })`
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   color: ${({theme}) => theme.colors.titlePrimary};
   margin-bottom: 10px;
   border: 1px solid ${({theme}) => theme.createDevotionalModal.borderColor}
@@ -93,7 +94,7 @@ export const LabelInfo = styled.Text`
 `;
 
 export const ButtonOkWorship = styled.TouchableOpacity`
-  background-color: #50695b;
+  background-color: ${({theme}) => theme.colors.accent};
   border-radius: 4px;
   height: 45px;
   align-items: center;
@@ -112,7 +113,7 @@ export const TextArea = styled.TextInput.attrs({
   textAlignVertical: 'top',
 })`
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   color: ${({theme}) => theme.colors.titlePrimary};
   margin-top: 10px;
 `;

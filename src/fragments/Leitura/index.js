@@ -20,23 +20,10 @@ const LeituraScreen = () => {
   const opacitySmallTitle = new Animated.Value(0);
 
   const onScroll = e => {
-    const scrollY = parseInt(e.nativeEvent.contentOffset.y, 10);
-    handleToggleBigTitle(scrollY);
-
     Animated.event([{nativeEvent: {contentOffset: {y: offset}}}], {
       useNativeDriver: false,
     })(e);
   };
-
-  function handleToggleBigTitle(scrollY) {
-    if (scrollY > 50) {
-      utils.changeDynamicAnimation(opacityBigTitle, 1);
-      utils.changeDynamicAnimation(opacitySmallTitle, 1);
-    } else {
-      utils.changeDynamicAnimation(opacityBigTitle, 0);
-      utils.changeDynamicAnimation(opacitySmallTitle, 0);
-    }
-  }
 
   return (
     <SafeAreaProvider>
@@ -49,6 +36,7 @@ const LeituraScreen = () => {
             animatedOpacityBigTitle={opacityBigTitle}
             animatedOpacitySmallTitle={opacitySmallTitle}
           />
+
           <Animated.ScrollView
             style={{flex: 1}}
             contentContainerStyle={{

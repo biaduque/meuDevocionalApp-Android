@@ -12,7 +12,7 @@ const Mural = () => {
       id: 1,
       title: 'Pela minha família',
       createdAt: '20/01/2022',
-      image: '../../assets/illustrations/Variante9.png',
+      image: '../../assets/illustrations/book-amarelo2.png',
       backgroundColor: '#ecba7d',
     },
     {

@@ -19,7 +19,7 @@ import {
   WorshipTimeWrapper,
   WrapperText,
 } from './styles';
-import ModalSheetBottom from '../../components/ModalSheetBottom';
+import ModalSheetBottom from '../../../components/ModalSheetBottom';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 
 const MyDevotionalView = ({route, navigation}) => {
@@ -35,19 +35,36 @@ const MyDevotionalView = ({route, navigation}) => {
   };
 
   const navigateToMusic = () => {
-    console.log(params.devotional);
+    let link;
+    const linkMusic = params.devotional.link;
+    const defaultLinkMusic =
+      'https://www.youtube.com/watch?v=7SO3ObU99e4&list=RD7SO3ObU99e4&start_radio=1';
 
-    //TODO: verificar se link é valido;
-    if (params.devotional.link != null || params.devotional.link !== '') {
-      navigation.navigate('Webview', {
-        url: params.devotional.link,
-      });
+    if (linkMusic != null) {
+      isValidHttpUrl(linkMusic)
+        ? (link = linkMusic)
+        : (link = defaultLinkMusic);
     } else {
-      navigation.navigate('Webview', {
-        url: 'https://www.youtube.com/watch?v=7SO3ObU99e4&list=RD7SO3ObU99e4&start_radio=1',
-      });
+      link = defaultLinkMusic;
     }
+
+    navigation.navigate('Webview', {
+      url: link,
+    });
   };
+
+  function isValidHttpUrl(string) {
+    const pattern = new RegExp(
+      '^(https?:\\/\\/)?' +
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+        '((\\d{1,3}\\.){3}\\d{1,3}))' +
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+        '(\\?[;&a-z\\d%_.~+=-]*)?' +
+        '(\\#[-a-z\\d_]*)?$',
+      'i',
+    );
+    return !!pattern.test(string);
+  }
 
   return (
     <Layout scrollEnabled={!openModalCreate}>
@@ -82,9 +99,8 @@ const MyDevotionalView = ({route, navigation}) => {
 
       <ScrollView>
         <WrapperText>
-          {/* TODO: implementar cor que foi salva no banco */}
           {params.devotional.titulo !== '' && (
-            <TitleSection color={'#000'}>
+            <TitleSection color={params.colors.background}>
               {params.devotional.titulo}
             </TitleSection>
           )}
@@ -100,18 +116,24 @@ const MyDevotionalView = ({route, navigation}) => {
       <Footer>
         <WorshipTimeWrapper onPress={() => navigateToMusic()}>
           <ImageBackground
-            source={require('../../assets/illustrations/whorshipTime.png')}
+            source={require('../../../assets/illustrations/whorshipTime.png')}
           />
         </WorshipTimeWrapper>
         <TagsWrapper>
           {params.devotional.aplicacao1 !== '' && (
-            <Tag>{params.devotional.aplicacao1}</Tag>
+            <Tag color={params.colors.tagsBackground}>
+              {params.devotional.aplicacao1}
+            </Tag>
           )}
           {params.devotional.aplicacao2 !== '' && (
-            <Tag>{params.devotional.aplicacao2}</Tag>
+            <Tag color={params.colors.tagsBackground}>
+              {params.devotional.aplicacao2}
+            </Tag>
           )}
           {params.devotional.aplicacao3 !== '' && (
-            <Tag>{params.devotional.aplicacao3}</Tag>
+            <Tag color={params.colors.tagsBackground}>
+              {params.devotional.aplicacao3}
+            </Tag>
           )}
         </TagsWrapper>
       </Footer>

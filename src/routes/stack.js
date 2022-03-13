@@ -1,12 +1,12 @@
 import React from 'react';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
-import CreateDevotional from '../screens/CreateDevotional';
-import VerLeituraRapida from '../screens/ViewQuickReader';
+import CreateDevotional from '../screens/Devocional/Create';
+import VerLeituraRapida from '../screens/LeituraRapida/View';
 import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import InfoMyDevotional from '../screens/InfoMyDevotional';
-import MyDevotionalView from '../screens/MyDevotionalView';
+import InfoMyDevotional from '../screens/Devocional/Info';
+import MyDevotionalView from '../screens/Devocional/View';
 
 const Stack = createStackNavigator();
 

@@ -1,21 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Container, FlatList, Layout} from './styles';
+import {Container, FlatList, FloatingButtonCreate, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
 import Header from '../../components/Header';
-import {Animated, SafeAreaView, Platform, Vibration} from 'react-native';
+import {Animated, Vibration} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
-import ModalDeleteSheet from '../../screens/MyDevotionalView/ModalDeleteSheet';
+import ModalDeleteSheet from '../../screens/Devocional/View/ModalDeleteSheet';
 import Utils from '../../common/Utils';
+import {Plus} from 'react-native-iconly';
+import {PlusIcon} from '../../components/Header/styles';
 
 const MyDevotionalsScreen = () => {
   const utils = new Utils();
   const dispatch = useDispatch();
 
   const offset = useRef(new Animated.Value(0)).current;
-  const opacityBigTitle = new Animated.Value(0);
-  const opacitySmallTitle = new Animated.Value(0);
 
   const $myDevotionals = useSelector(state => state.myDevotionals);
   const [devotionals, setDevotionals] = useState([]);
@@ -49,23 +49,10 @@ const MyDevotionalsScreen = () => {
   }, [$myDevotionals]);
 
   const onScroll = e => {
-    const scrollY = parseInt(e.nativeEvent.contentOffset.y, 10);
-    handleToggleBigTitle(scrollY);
-
     Animated.event([{nativeEvent: {contentOffset: {y: offset}}}], {
       useNativeDriver: false,
     })(e);
   };
-
-  function handleToggleBigTitle(scrollY) {
-    if (scrollY > 50) {
-      utils.changeDynamicAnimation(opacityBigTitle, 1);
-      utils.changeDynamicAnimation(opacitySmallTitle, 1);
-    } else {
-      utils.changeDynamicAnimation(opacityBigTitle, 0);
-      utils.changeDynamicAnimation(opacitySmallTitle, 0);
-    }
-  }
 
   const handleOpenModal = async devotional => {
     setOpenModalDelete(true);
@@ -94,18 +81,14 @@ const MyDevotionalsScreen = () => {
         titleConfirm={'Excluir devocional'}
       />
 
-      <Header
-        animatedValue={offset}
-        title={'Meus Devocionais'}
-        animatedOpacityBigTitle={opacityBigTitle}
-        animatedOpacitySmallTitle={opacitySmallTitle}
-      />
+      <Header animatedValue={offset} title={'Meus Devocionais'} />
 
       <Container>
         {devotionals.length <= 0 ? null : (
           <FlatList
             contentContainerStyle={{
-              paddingTop: 220,
+              paddingTop: 230,
+              paddingBottom: 60,
             }}
             showsVerticalScrollIndicator={false}
             scrollEventThrottle={16}

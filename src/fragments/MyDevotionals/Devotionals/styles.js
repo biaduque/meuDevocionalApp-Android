@@ -35,12 +35,12 @@ export const Title = styled.Text`
   font-size: 32px;
   max-width: 200px;
   font-weight: bold;
-  color: #000;
+  color: ${({color}) => color};
 `;
 
-export const DateTime = styled.Text`
+export const BaseBiblica = styled.Text`
   font-size: 20px;
-  color: #282828;
+  color: ${({color}) => color};
 `;
 
 export const TagsWrapper = styled.View`

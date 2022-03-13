@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import ModalSheetBottom from '../../../components/ModalSheetBottom';
+import ModalSheetBottom from '../../../../components/ModalSheetBottom';
 import {
   ActionCancelButton,
   ActionConfirmButton,
@@ -14,8 +14,8 @@ import {
   Title,
   WrapperTopContent,
 } from './styles';
-import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
-import LocalRepositoryService from '../../../services/LocalRepositoryService';
+import {setMyDevotionals} from '../../../../store/actions/mydevotionals.action';
+import LocalRepositoryService from '../../../../services/LocalRepositoryService';
 import {useDispatch} from 'react-redux';
 
 const ModalDeleteSheet = ({

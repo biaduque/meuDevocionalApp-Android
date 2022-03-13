@@ -16,7 +16,7 @@ import {
   WorshipTimeWrapper,
   WrapperText,
 } from './styles';
-import ModalSheetBottom from '../../components/ModalSheetBottom';
+import ModalSheetBottom from '../../../components/ModalSheetBottom';
 import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
 
 const VerLeituraRapida = ({route, navigation}) => {
@@ -87,7 +87,7 @@ const VerLeituraRapida = ({route, navigation}) => {
 
         <WorshipTimeWrapper onPress={() => navigateToMusic()}>
           <ImageBackground
-            source={require('../../assets/illustrations/whorshipTime.png')}
+            source={require('../../../assets/illustrations/whorshipTime.png')}
           />
         </WorshipTimeWrapper>
       </ScrollView>

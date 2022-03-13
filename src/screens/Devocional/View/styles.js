@@ -126,7 +126,7 @@ export const TagsWrapper = styled.View`
 
 export const Tag = styled.Text`
   padding: 5px 10px;
-  background: #edba7d;
+  background: ${({color}) => color};
   color: #000;
   width: 30%;
   border-radius: 4px;
