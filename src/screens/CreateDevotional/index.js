@@ -56,7 +56,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   const [key3, setKey3] = useState('');
   const [music, setMusic] = useState('');
   const [description, setDescription] = useState('');
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState('verde1');
 
   useEffect(() => {
     if (params != null) {

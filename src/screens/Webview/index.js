@@ -2,13 +2,13 @@ import React from 'react';
 import {WebView} from 'react-native-webview';
 import {BackIcon, Header, Layout, Title, WrapperBrowser} from './styles';
 
-const WebViewScreen = ({route}) => {
+const WebViewScreen = ({route, navigation}) => {
   const {url} = route.params;
 
   return (
     <Layout>
       <Header>
-        <BackIcon onPress={() => {}} />
+        <BackIcon onPress={() => navigation.goBack()} />
         <Title>Worship Time</Title>
       </Header>
 

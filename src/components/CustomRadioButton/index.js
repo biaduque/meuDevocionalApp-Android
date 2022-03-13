@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Layout, Option, WrapperColorButtons} from './styles';
 
 const CustomRadioButton = ({data, onSelect}) => {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState('#8BA293');
 
   const onSelectHandler = value => {
     onSelect(value.label);
