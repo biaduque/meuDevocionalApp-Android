@@ -7,7 +7,6 @@ import HeaderScrollView from 'react-native-header-scroll-view';
 
 const Main = () => {
   const $app = useSelector(state => state.app);
-  console.log($app.theme.colors);
 
   useEffect(() => {}, [$app]);
 

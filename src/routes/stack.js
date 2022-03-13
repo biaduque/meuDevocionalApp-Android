@@ -54,7 +54,6 @@ const StackRoutes = () => {
           ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
-
       <Stack.Screen
         name="InfoMyDevotional"
         component={InfoMyDevotional}

@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Animated} from 'react-native';
 
 class Utils {
   constructor() {
@@ -22,6 +22,15 @@ class Utils {
   getRandomColor() {
     return this.randomItemArray(this.colors);
   }
+
+  changeDynamicAnimation = (property, toValue, duration = 10) => {
+    console.log(property, toValue);
+    Animated.timing(property, {
+      toValue: toValue,
+      duration: duration,
+      useNativeDriver: false,
+    }).start();
+  };
 }
 
 export default Utils;

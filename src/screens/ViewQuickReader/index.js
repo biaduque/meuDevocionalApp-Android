@@ -68,16 +68,21 @@ const VerLeituraRapida = ({route, navigation}) => {
 
       <ScrollView>
         <WrapperText>
-          <TitleSection>{params.titulo}</TitleSection>
-          <TextVersiculo>
-            {params.introducao} - {params.refBiblica}
-          </TextVersiculo>
+          {params.titulo !== '' && <TitleSection>{params.titulo}</TitleSection>}
+
+          {params.introducao !== '' && params.refBiblica !== '' && (
+            <TextVersiculo>
+              {params.introducao} - {params.refBiblica}
+            </TextVersiculo>
+          )}
 
           <TitleSection>Contextualização</TitleSection>
-          <Text>{params.desenvolvimento}</Text>
+          {params.desenvolvimento !== '' && (
+            <Text>{params.desenvolvimento}</Text>
+          )}
 
           <TitleSection>Reflexão</TitleSection>
-          <Text>{params.conclusao}</Text>
+          {params.conclusao !== '' && <Text>{params.conclusao}</Text>}
         </WrapperText>
 
         <WorshipTimeWrapper onPress={() => navigateToMusic()}>

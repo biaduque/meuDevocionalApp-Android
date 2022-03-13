@@ -11,10 +11,15 @@ export const Layout = styled.View`
 `;
 
 export const Container = styled.View`
-  width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background: ${({theme}) => theme.colors.background};
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 20px;
 `;
 
 export const TitleScreen = styled.Text`

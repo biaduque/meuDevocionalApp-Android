@@ -83,9 +83,17 @@ const MyDevotionalView = ({route, navigation}) => {
       <ScrollView>
         <WrapperText>
           {/* TODO: implementar cor que foi salva no banco */}
-          <TitleSection color={'#000'}>{params.devotional.titulo}</TitleSection>
-          <BaseBiblica>{params.devotional.baseBiblica}</BaseBiblica>
-          <Text>{params.devotional.reflexao}</Text>
+          {params.devotional.titulo !== '' && (
+            <TitleSection color={'#000'}>
+              {params.devotional.titulo}
+            </TitleSection>
+          )}
+          {params.devotional.baseBiblica !== '' && (
+            <BaseBiblica>{params.devotional.baseBiblica}</BaseBiblica>
+          )}
+          {params.devotional.reflexao !== '' && (
+            <Text>{params.devotional.reflexao}</Text>
+          )}
         </WrapperText>
       </ScrollView>
 
@@ -96,13 +104,13 @@ const MyDevotionalView = ({route, navigation}) => {
           />
         </WorshipTimeWrapper>
         <TagsWrapper>
-          {params.devotional.aplicacao1 && (
+          {params.devotional.aplicacao1 !== '' && (
             <Tag>{params.devotional.aplicacao1}</Tag>
           )}
-          {params.devotional.aplicacao2 && (
+          {params.devotional.aplicacao2 !== '' && (
             <Tag>{params.devotional.aplicacao2}</Tag>
           )}
-          {params.devotional.aplicacao3 && (
+          {params.devotional.aplicacao3 !== '' && (
             <Tag>{params.devotional.aplicacao3}</Tag>
           )}
         </TagsWrapper>

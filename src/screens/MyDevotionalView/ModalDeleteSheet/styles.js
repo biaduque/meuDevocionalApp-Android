@@ -6,7 +6,7 @@ export const Container = styled.View`
 `;
 
 export const WrapperTopContent = styled.View`
-  background: #fff;
+  background: ${({theme}) => theme.colors.background};
   border-radius: 20px;
   align-items: center;
 `;
@@ -18,7 +18,7 @@ export const ContentTop = styled.View`
 export const Title = styled.Text`
   font-size: 18px;
   font-weight: 500;
-  color: #333;
+  color: ${({theme}) => theme.colors.titlePrimary};
 `;
 
 export const Description = styled.Text`
@@ -45,7 +45,7 @@ export const ActionCancelButton = styled.TouchableOpacity.attrs({
 export const Separator = styled.View`
   height: 20px;
   width: 2px;
-  background: #eee;
+  background: ${({theme}) => theme.createDevotionalModal.borderColor};
 `;
 
 export const ActionConfirmButton = styled.TouchableOpacity.attrs({
@@ -55,4 +55,16 @@ export const ActionConfirmButton = styled.TouchableOpacity.attrs({
   border-radius: 20px;
   padding: 16px;
   align-items: center;
+`;
+
+export const TextConfirm = styled.Text`
+  font-size: 18px;
+  font-weight: 500;
+  color: ${({theme}) => theme.createDevotionalModal.buttonSave};
+`;
+
+export const TextCancel = styled.Text`
+  font-size: 18px;
+  font-weight: 500;
+  color: ${({theme}) => theme.createDevotionalModal.buttonCancel};
 `;

@@ -17,7 +17,6 @@ import Book4 from '../../../assets/illustrations/Variante9.png';
 import {useNavigation} from '@react-navigation/core';
 
 const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
-  console.log(devotional);
   const navigation = useNavigation();
 
   const onLongPress = () => {
