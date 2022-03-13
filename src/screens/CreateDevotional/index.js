@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   ButtonOkWorship,
   CircleColorButton,
@@ -18,34 +18,35 @@ import {
   WrapperReflexao,
   WrapperWorship,
 } from './styles';
-import {StatusBar, Text, TouchableOpacity, Alert} from 'react-native';
+import {
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Vibration,
+} from 'react-native';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
 import uuid from 'react-native-uuid';
+import CustomRadioButton from '../../components/CustomRadioButton';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;
-  const colors = [
-    {
-      id: '1',
-      color: '#81978c',
-    },
-    {
-      id: '1',
-      color: '#ebb275',
-    },
-    {
-      id: '1',
-      color: '#f7d49c',
-    },
-    {
-      id: '1',
-      color: '#fce9c6',
-    },
-  ];
 
   const dispatch = useDispatch();
+  const $app = useSelector(state => state.app);
+
+  const input1 = useRef();
+  const input2 = useRef();
+  const input3 = useRef();
+  const input4 = useRef();
+  const input5 = useRef();
+  const input6 = useRef();
+  const input7 = useRef();
+  const input8 = useRef();
+  const input9 = useRef();
+
   const [title, setTitle] = useState('');
   const [book, setBook] = useState('');
   const [chapter, setChapter] = useState('');
@@ -55,6 +56,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   const [key3, setKey3] = useState('');
   const [music, setMusic] = useState('');
   const [description, setDescription] = useState('');
+  const [selectedColor, setSelectedColor] = useState(null);
 
   useEffect(() => {
     if (params != null) {
@@ -62,20 +64,6 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       setBook(params.refBiblica.split(' ')[0]);
       setChapter(params.refBiblica);
     }
-
-    const arr = {
-      backgroundColor: 'rgba(236,186,125,.3)',
-      conclusao:
-        'Nossa oração deve ser contínua para que estejamos atentos em nossas decisões, e sempre quando estivermos frente às duas portas: a estreita e a larga, escolhamos a porta estreita, que por vezes, mesmo que mais difícil, nos leva para mais perto daquele que mais nos amou. Temos a segurança em saber que a vontade do Pai é boa, perfeita e agradável e por isso, podemos descansar na caminhada. ',
-      desenvolvimento:
-        "Em vida, Jesus pregou em diversos momentos sobre nossa vida com Deus e como é importante que sejamos seguidores em Espírito e em Verdade. Além de falar sobre a importância de produzirmos frutos, amarmos os próximos e espalharmos o amor de Deus, Jesus também falava sobre a dificuldade que encontraríamos em nossos caminhos e no decorrer da vida e uma das analogias usadas para isso foi a da 'Porta estreita'. É muito mais fácil passar por uma porta larga, do que por uma estreita, e assim Jesus comparou a vida do Cristão. As  vezes, seguir a Cristo pode ser difícil. Abrir mão do orgulho, de luxúrias, mentiras, status, amor às coisas materiais e incertezas do cotidiano... abrir a mão do Eu individual para que seu Eu com Cristo seja maior. Entretanto, é a porta mais estreita que nos faz enxergar que todas as coisas que o mundo nos oferecem são poucas perto da grandiosidade do amor de Deus. ",
-      id: 30,
-      introducao:
-        'Entrem pela porta estreita, pois larga é a porta e amplo o caminho que leva à perdição, e são muitos os que entram por ela.',
-      musica: 'https://www.youtube.com/watch?v=7SO3ObU99e4',
-      refBiblica: 'Mateus 7: 13-14',
-      titulo: 'A porta estreita',
-    };
 
     return () => {};
   }, [params]);
@@ -86,22 +74,22 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
-    //primeiro verde nao utilizar. a partir do verde2.
-    //Tudo que for clicavel, deve ter uma cor. ['','']
-
     // se apagar a imagem do mural, o background fica da cor do bg do texto.
+
+    const concatCapVerse = versicle !== '' ? `${chapter}:${versicle}` : chapter;
 
     const data = {
       id: uuid.v4(),
       titulo: title,
-      baseBiblica: `${book} ${chapter}:${versicle}`,
+      baseBiblica: `${book} ${concatCapVerse}`,
       aplicacao1: key1,
       aplicacao2: key2,
       aplicacao3: key3,
-      backgroundColor: '#81978c',
+      backgroundColor: selectedColor,
       backgroundImage: '',
       reflexao: description ? description : '',
       link: music,
+      createdAt: new Date(),
     };
 
     const ret = await repositoryService.set(
@@ -113,52 +101,83 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     dispatch(setMyDevotionals(ret));
 
     Alert.alert('Devocional Criado', 'Dados salvos com sucesso');
+    const DURATION = 100;
+
+    Vibration.vibrate(DURATION);
     handleBackScreen();
   }
+
+  const colorsRadioButtons = () => {
+    const colors = Object.entries($app.theme.devotionalColors).map(color => {
+      const [key, value] = color;
+      return {
+        label: key,
+        value: value,
+      };
+    });
+
+    return colors;
+  };
 
   return (
     <Container>
       <ScrollView>
         <TextTitle>Cor</TextTitle>
         <WrapperColorButtons>
-          {colors.map(item => (
-            <CircleColorButton background={item.color} />
-          ))}
+          <CustomRadioButton
+            data={colorsRadioButtons()}
+            onSelect={setSelectedColor}
+          />
         </WrapperColorButtons>
 
         <Form>
           <TextInput
+            ref={input1}
             placeholder={'Título'}
             value={title}
             onChangeText={setTitle}
+            autoFocus={true}
+            onSubmitEditing={() => input2.current.focus()}
           />
           <TextInput
+            ref={input2}
             placeholder={'Livro'}
             value={book}
             onChangeText={setBook}
+            onSubmitEditing={() => input3.current.focus()}
           />
           <TextInput
+            ref={input3}
             placeholder={'Capítulo'}
             value={chapter}
             onChangeText={setChapter}
+            onSubmitEditing={() => input4.current.focus()}
           />
           <TextInput
+            ref={input4}
             placeholder={'Versículo'}
             value={versicle}
             onChangeText={setVersicle}
+            onSubmitEditing={() => input5.current.focus()}
           />
           <TextInput
+            ref={input5}
             placeholder={'Palavra chave 1'}
+            onSubmitEditing={() => input6.current.focus()}
             value={key1}
             onChangeText={setKey1}
           />
           <TextInput
+            ref={input6}
             placeholder={'Palavra chave 2'}
+            onSubmitEditing={() => input7.current.focus()}
             value={key2}
             onChangeText={setKey2}
           />
           <TextInput
+            ref={input7}
             placeholder={'Palavra chave 3'}
+            onSubmitEditing={() => input8.current.focus()}
             value={key3}
             onChangeText={setKey3}
           />
@@ -171,6 +190,9 @@ const CreateDevotionalScreen = ({route, navigation}) => {
               placeholder={'Insira um link de música...'}
               value={music}
               onChangeText={setMusic}
+              ref={input8}
+              returnKeyType={'next'}
+              onSubmitEditing={() => input9.current.focus()}
             />
             <LabelInfo>
               Você pode inserir links de música do YouTube, SoundCloud, Apple
@@ -179,7 +201,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
           </WrapperInputLabel>
 
           <ButtonOkWorship>
-            <Text style={{fontSize: 20}}>OK</Text>
+            <Text style={{fontSize: 20, color: '#333'}}>OK</Text>
           </ButtonOkWorship>
         </WrapperWorship>
 
@@ -189,6 +211,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
             placeholder={'Comece a escrever...'}
             value={description}
             onChangeText={setDescription}
+            ref={input9}
           />
         </WrapperReflexao>
       </ScrollView>

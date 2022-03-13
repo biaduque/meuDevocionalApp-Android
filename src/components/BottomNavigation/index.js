@@ -5,13 +5,15 @@ import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/core';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setActiveTab} from '../../store/actions/app.action';
 
 const BottomNavigation = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const $app = useSelector(state => state.app);
+
   const [selectedRoute, setSelectedRoute] = useState('Leitura');
 
   useEffect(() => {
@@ -38,7 +40,8 @@ const BottomNavigation = () => {
   };
 
   const isSelected = path => selectedRoute === path;
-  const isSelectedColor = path => (isSelected(path) ? '#5d7465' : '#999');
+  const isSelectedColor = path =>
+    isSelected(path) ? $app.theme.colors.accent : '#999';
 
   return (
     <Layout>

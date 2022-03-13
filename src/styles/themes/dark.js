@@ -1,6 +1,7 @@
 export default {
   name: 'dark',
   colors: {
+    accent: '#ECBA7D',
     background: '#2D2D2D',
     statusBarColor: '#2D2D2D',
     iconColor: '#999',
@@ -31,5 +32,11 @@ export default {
     borderColor: '#353537',
     footerBackground: '#3F3F3F',
     buttonOkMusic: '#fff',
+  },
+  devotionalColors: {
+    verde2: '#8BA293',
+    amarelo1: '#ECBA7D',
+    amarelo2: '#F7D9A0',
+    amarelo3: '#FCEDCB',
   },
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Container,
-  DateTime,
+  BaseBiblica,
   FlexContainer,
   Image,
   Layout,
@@ -10,14 +10,19 @@ import {
   Title,
 } from './styles';
 import {Text, View} from 'react-native';
-import Book1 from '../../../assets/illustrations/Variante6.png';
-import Book2 from '../../../assets/illustrations/Variante7.png';
-import Book3 from '../../../assets/illustrations/Variante8.png';
-import Book4 from '../../../assets/illustrations/Variante9.png';
+import GreenBook1 from '../../../assets/illustrations/book-verde2.png';
+import YellowBook1 from '../../../assets/illustrations/book-amarelo1.png';
+import YellowBook2 from '../../../assets/illustrations/book-amarelo2.png';
+import YellowBook3 from '../../../assets/illustrations/book-amarelo3.png';
 import {useNavigation} from '@react-navigation/core';
+import Utils from '../../../common/Utils';
+import {useSelector} from 'react-redux';
 
 const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
+  const utils = new Utils();
   const navigation = useNavigation();
+
+  const $app = useSelector(state => state.app);
 
   const onLongPress = () => {
     handleOpenModalDelete(devotional);
@@ -30,35 +35,66 @@ const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
   };
 
   const renderImageBook = () => {
-    if (devotional.backgroundColor === 'green1') {
-      return Book4;
+    switch (parseColors().image) {
+      case 'amarelo1':
+        return YellowBook1;
+      case 'amarelo2':
+        return YellowBook2;
+      case 'amarelo3':
+        return YellowBook3;
+      case 'verde2':
+        return GreenBook1;
+      default:
+        return YellowBook1;
     }
+  };
 
-    return Book1;
+  const parseColors = () => {
+    return utils.transformDataColor(devotional.backgroundColor, $app.theme);
   };
 
   return (
     <Layout
-      background={devotional.backgroundColor}
+      background={parseColors().background}
       onLongPress={() => onLongPress()}
       onPress={() => onPress()}>
       <Container>
         <FlexContainer>
           <View>
-            <Text style={{fontSize: 16, marginBottom: 20, opacity: 0.6}}>
+            <Text
+              style={{
+                fontSize: 16,
+                marginBottom: 20,
+                opacity: 0.6,
+                color: parseColors().titulo,
+              }}>
               11/03/2022
             </Text>
-            <Title>{devotional.titulo}</Title>
-            <DateTime>{devotional.baseBiblica}</DateTime>
+            <Title color={parseColors().titulo}>{devotional.titulo}</Title>
+            <BaseBiblica color={parseColors().baseBiblica}>
+              {devotional.baseBiblica}
+            </BaseBiblica>
           </View>
 
           <Image source={renderImageBook()} />
         </FlexContainer>
 
         <TagsWrapper>
-          {devotional.aplicacao1 !== '' && <Tag>{devotional.aplicacao1}</Tag>}
-          {devotional.aplicacao2 !== '' && <Tag>{devotional.aplicacao2}</Tag>}
-          {devotional.aplicacao3 !== '' && <Tag>{devotional.aplicacao3}</Tag>}
+          {devotional.aplicacao1 !== '' && (
+            <Tag background={parseColors().tagsBackground}>
+              {devotional.aplicacao1}
+            </Tag>
+          )}
+          {devotional.aplicacao2 !== '' && (
+            <Tag background={parseColors().tagsBackground}>
+              {devotional.aplicacao2}
+            </Tag>
+          )}
+          {devotional.aplicacao3 !== '' && (
+            <Tag background={parseColors().tagsBackground}>
+              {devotional.aplicacao3}
+            </Tag>
+          )}
         </TagsWrapper>
       </Container>
     </Layout>

@@ -75,7 +75,7 @@ export const WrapperText = styled.View`
 export const TitleSection = styled.Text`
   font-size: 28px;
   font-weight: 500;
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleSection};
+  color: ${({theme}) => theme.colors.accent};
   margin-top: 24px;
 `;
 

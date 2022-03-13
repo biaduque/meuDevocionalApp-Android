@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Container, FlatList, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
 import Header from '../../components/Header';
-import {Animated, SafeAreaView, Platform, Vibration} from 'react-native';
+import {Animated, Vibration} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
@@ -106,6 +106,7 @@ const MyDevotionalsScreen = () => {
           <FlatList
             contentContainerStyle={{
               paddingTop: 220,
+              paddingBottom: 60,
             }}
             showsVerticalScrollIndicator={false}
             scrollEventThrottle={16}

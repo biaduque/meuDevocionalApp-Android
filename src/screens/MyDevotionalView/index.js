@@ -35,8 +35,6 @@ const MyDevotionalView = ({route, navigation}) => {
   };
 
   const navigateToMusic = () => {
-    console.log(params.devotional);
-
     //TODO: verificar se link é valido;
     if (params.devotional.link != null || params.devotional.link !== '') {
       navigation.navigate('Webview', {
