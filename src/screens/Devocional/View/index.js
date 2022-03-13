@@ -19,7 +19,7 @@ import {
   WorshipTimeWrapper,
   WrapperText,
 } from './styles';
-import ModalSheetBottom from '../../components/ModalSheetBottom';
+import ModalSheetBottom from '../../../components/ModalSheetBottom';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 
 const MyDevotionalView = ({route, navigation}) => {
@@ -116,7 +116,7 @@ const MyDevotionalView = ({route, navigation}) => {
       <Footer>
         <WorshipTimeWrapper onPress={() => navigateToMusic()}>
           <ImageBackground
-            source={require('../../assets/illustrations/whorshipTime.png')}
+            source={require('../../../assets/illustrations/whorshipTime.png')}
           />
         </WorshipTimeWrapper>
         <TagsWrapper>

@@ -25,11 +25,11 @@ import {
   Alert,
   Vibration,
 } from 'react-native';
-import LocalRepositoryService from '../../services/LocalRepositoryService';
+import LocalRepositoryService from '../../../services/LocalRepositoryService';
 import {useDispatch, useSelector} from 'react-redux';
-import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
+import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
 import uuid from 'react-native-uuid';
-import CustomRadioButton from '../../components/CustomRadioButton';
+import CustomRadioButton from '../../../components/CustomRadioButton';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;

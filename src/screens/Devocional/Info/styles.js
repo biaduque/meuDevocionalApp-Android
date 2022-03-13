@@ -1,14 +1,24 @@
 import styled from 'styled-components/native';
 
-export const Layout = styled.View``;
+export const Layout = styled.View`
+  background: ${({theme}) => theme.colors.background};
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+`;
 
 export const Wrapper = styled.View`
-  height: 100%;
-  justify-content: space-between;
   flex-direction: column;
-  padding-left: 50px;
-  padding-right: 50px;
-  background: ${({theme}) => theme.colors.background};
+  max-width: 80%;
+  width: 100%;
+  margin: 0 auto;
+`;
+
+export const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
 `;
 
 export const TilesWrapper = styled.View`

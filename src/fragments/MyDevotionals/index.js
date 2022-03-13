@@ -6,7 +6,7 @@ import {Animated, Vibration} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
-import ModalDeleteSheet from '../../screens/MyDevotionalView/ModalDeleteSheet';
+import ModalDeleteSheet from '../../screens/Devocional/View/ModalDeleteSheet';
 import Utils from '../../common/Utils';
 
 const MyDevotionalsScreen = () => {
