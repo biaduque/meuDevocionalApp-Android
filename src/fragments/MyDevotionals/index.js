@@ -16,8 +16,6 @@ const MyDevotionalsScreen = () => {
   const dispatch = useDispatch();
 
   const offset = useRef(new Animated.Value(0)).current;
-  const opacityBigTitle = new Animated.Value(0);
-  const opacitySmallTitle = new Animated.Value(0);
 
   const $myDevotionals = useSelector(state => state.myDevotionals);
   const [devotionals, setDevotionals] = useState([]);
@@ -51,23 +49,10 @@ const MyDevotionalsScreen = () => {
   }, [$myDevotionals]);
 
   const onScroll = e => {
-    const scrollY = parseInt(e.nativeEvent.contentOffset.y, 10);
-    handleToggleBigTitle(scrollY);
-
     Animated.event([{nativeEvent: {contentOffset: {y: offset}}}], {
       useNativeDriver: false,
     })(e);
   };
-
-  function handleToggleBigTitle(scrollY) {
-    if (scrollY > 50) {
-      utils.changeDynamicAnimation(opacityBigTitle, 1);
-      utils.changeDynamicAnimation(opacitySmallTitle, 1);
-    } else {
-      utils.changeDynamicAnimation(opacityBigTitle, 0);
-      utils.changeDynamicAnimation(opacitySmallTitle, 0);
-    }
-  }
 
   const handleOpenModal = async devotional => {
     setOpenModalDelete(true);
@@ -96,22 +81,13 @@ const MyDevotionalsScreen = () => {
         titleConfirm={'Excluir devocional'}
       />
 
-      <FloatingButtonCreate>
-        <PlusIcon />
-      </FloatingButtonCreate>
-
-      <Header
-        animatedValue={offset}
-        title={'Meus Devocionais'}
-        animatedOpacityBigTitle={opacityBigTitle}
-        animatedOpacitySmallTitle={opacitySmallTitle}
-      />
+      <Header animatedValue={offset} title={'Meus Devocionais'} />
 
       <Container>
         {devotionals.length <= 0 ? null : (
           <FlatList
             contentContainerStyle={{
-              paddingTop: 220,
+              paddingTop: 230,
               paddingBottom: 60,
             }}
             showsVerticalScrollIndicator={false}

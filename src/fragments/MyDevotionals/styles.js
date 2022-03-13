@@ -20,11 +20,11 @@ export const FloatingButtonCreate = styled.TouchableOpacity`
   position: absolute;
   bottom: 20px;
   right: 20px;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 500px;
   border: 1px solid ${({theme}) => theme.colors.accent};
-  background: ${({theme}) => theme.createDevotionalModal.footerBackground};
+  background: ${({theme}) => theme.colors.background};
   justify-content: center;
   align-items: center;
   z-index: 9999;
