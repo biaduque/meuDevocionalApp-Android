@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, Layout, TitleScreen} from './styles';
 import RepeaterCotidiano from './Repeater';
-import MockData from '../../../common/MockData';
+import MockData from '../../../common/mockData';
 
 const Cotidiano = () => {
   const mockData = new MockData();

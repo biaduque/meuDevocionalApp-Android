@@ -1,66 +1,44 @@
-import React, {useEffect, useRef} from 'react';
-import {Animated, SafeAreaView, Platform, Dimensions} from 'react-native';
+import React from 'react';
+import {Animated, SafeAreaView} from 'react-native';
 import {Container, Layout, WrapperContent} from './styles';
 import LeiturasRapidas from './LeiturasRapidas';
 import Cotidiano from './Cotidiano';
-import Header from '../../components/Header';
 import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
-import Utils from '../../common/Utils';
-
-const {height: SCREEN_HEIGHT} = Dimensions.get('window');
-
-const IS_IPHONE_X = SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 896;
-const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 44 : 20) : 0;
-const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
+import {useSelector} from 'react-redux';
 
 const LeituraScreen = () => {
-  const utils = new Utils();
-  const offset = useRef(new Animated.Value(0)).current;
-  const opacityBigTitle = new Animated.Value(0);
-  const opacitySmallTitle = new Animated.Value(0);
+  const $app = useSelector(state => state.app);
 
   const onScroll = e => {
-    Animated.event([{nativeEvent: {contentOffset: {y: offset}}}], {
+    Animated.event([{nativeEvent: {contentOffset: {y: $app.offset}}}], {
       useNativeDriver: false,
     })(e);
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}} forceInset={{top: 'always'}}>
-        <Layout>
-          <Header
-            animatedValue={offset}
-            title={'Leituras'}
-            showPlusButton={false}
-            animatedOpacityBigTitle={opacityBigTitle}
-            animatedOpacitySmallTitle={opacitySmallTitle}
-          />
-
-          <Animated.ScrollView
-            style={{flex: 1}}
-            contentContainerStyle={{
-              alignItems: 'center',
-              paddingTop: 220,
-            }}
-            showsVerticalScrollIndicator={false}
-            scrollEventThrottle={16}
-            onScroll={e => onScroll(e)}>
-            <Container>
-              <WrapperContent>
-                <LeiturasRapidas />
-                <Cotidiano />
-                <LeiturasRapidas />
-                <Cotidiano />
-                <LeiturasRapidas />
-                <Cotidiano />
-                <LeiturasRapidas />
-              </WrapperContent>
-            </Container>
-          </Animated.ScrollView>
-        </Layout>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <Layout>
+      <Animated.ScrollView
+        style={{flex: 1}}
+        contentContainerStyle={{
+          alignItems: 'center',
+          paddingTop: 220,
+        }}
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
+        onScroll={e => onScroll(e)}>
+        <Container>
+          <WrapperContent>
+            <LeiturasRapidas />
+            <Cotidiano />
+            <LeiturasRapidas />
+            <Cotidiano />
+            <LeiturasRapidas />
+            <Cotidiano />
+            <LeiturasRapidas />
+          </WrapperContent>
+        </Container>
+      </Animated.ScrollView>
+    </Layout>
   );
 };
 

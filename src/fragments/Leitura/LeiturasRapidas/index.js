@@ -3,7 +3,7 @@ import {ActivityIndicator, View} from 'react-native';
 import {FlatList, Layout, TitleScreen} from './styles';
 import RepeaterQuickReader from './Repeater';
 import {api} from '../../../services/api';
-import Utils from '../../../common/Utils';
+import Utils from '../../../common/utils';
 
 const LeiturasRapidas = () => {
   const utils = new Utils();

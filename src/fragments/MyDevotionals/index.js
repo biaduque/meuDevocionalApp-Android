@@ -1,32 +1,27 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Container, FlatList, FloatingButtonCreate, Layout} from './styles';
+import React, {useEffect, useState} from 'react';
+import {Container, FlatList, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
-import Header from '../../components/Header';
-import {Animated, Vibration} from 'react-native';
+import {ActivityIndicator, Animated, Vibration, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
 import ModalDeleteSheet from '../../screens/Devocional/View/ModalDeleteSheet';
-import Utils from '../../common/Utils';
-import {Plus} from 'react-native-iconly';
-import {PlusIcon} from '../../components/Header/styles';
 
 const MyDevotionalsScreen = () => {
-  const utils = new Utils();
   const dispatch = useDispatch();
 
-  const offset = useRef(new Animated.Value(0)).current;
-
+  const $app = useSelector(state => state.app);
   const $myDevotionals = useSelector(state => state.myDevotionals);
   const [devotionals, setDevotionals] = useState([]);
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const [selectedDevotional, setSelectedDevotional] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getDevotionals() {
       if ($myDevotionals.devotionals && $myDevotionals.devotionals.length > 0) {
         setDevotionals($myDevotionals.devotionals);
-        // dispatch(setMyDevotionals([]));
+        setLoading(false);
       } else {
         const repositoryService = new LocalRepositoryService();
         const data = await repositoryService.get(
@@ -37,6 +32,7 @@ const MyDevotionalsScreen = () => {
         if (data != null) {
           dispatch(setMyDevotionals(data));
           setDevotionals(data);
+          setLoading(false);
         }
       }
     }
@@ -49,7 +45,7 @@ const MyDevotionalsScreen = () => {
   }, [$myDevotionals]);
 
   const onScroll = e => {
-    Animated.event([{nativeEvent: {contentOffset: {y: offset}}}], {
+    Animated.event([{nativeEvent: {contentOffset: {y: $app.offset}}}], {
       useNativeDriver: false,
     })(e);
   };
@@ -81,28 +77,32 @@ const MyDevotionalsScreen = () => {
         titleConfirm={'Excluir devocional'}
       />
 
-      <Header animatedValue={offset} title={'Meus Devocionais'} />
-
-      <Container>
-        {devotionals.length <= 0 ? null : (
-          <FlatList
-            contentContainerStyle={{
-              paddingTop: 230,
-              paddingBottom: 60,
-            }}
-            showsVerticalScrollIndicator={false}
-            scrollEventThrottle={16}
-            onScroll={e => onScroll(e)}
-            data={devotionals}
-            renderItem={({item}) => (
-              <DevotionalsComponent
-                devotional={item}
-                handleOpenModalDelete={handleOpenModal}
-              />
-            )}
-          />
-        )}
-      </Container>
+      {loading ? (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator size={'large'} color={'#fff'} />
+        </View>
+      ) : (
+        <Container>
+          {devotionals.length <= 0 ? null : (
+            <FlatList
+              contentContainerStyle={{
+                paddingTop: 260,
+                paddingBottom: 60,
+              }}
+              showsVerticalScrollIndicator={false}
+              scrollEventThrottle={16}
+              onScroll={e => onScroll(e)}
+              data={devotionals}
+              renderItem={({item}) => (
+                <DevotionalsComponent
+                  devotional={item}
+                  handleOpenModalDelete={handleOpenModal}
+                />
+              )}
+            />
+          )}
+        </Container>
+      )}
     </Layout>
   );
 };
