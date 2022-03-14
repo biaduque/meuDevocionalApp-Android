@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Activity, Bookmark, Star} from 'react-native-iconly';
-import {Button, Container, Layout, Text} from './styles';
+import {Star} from 'react-native-iconly';
+import {BackdropBackground, Button, Container, Layout, Text} from './styles';
 import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/core';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -45,6 +45,8 @@ const BottomNavigation = () => {
 
   return (
     <Layout>
+      <BackdropBackground />
+
       <Container>
         <Button onPress={() => handleChooseFragment('Leitura')}>
           <Feather

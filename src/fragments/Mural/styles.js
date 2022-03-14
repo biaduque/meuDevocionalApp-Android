@@ -7,10 +7,10 @@ export const Layout = styled.View`
 
 export const Container = styled.View`
   flex-direction: column;
+  padding-right: 20px;
+  padding-left: 10px;
 `;
 
 export const FlatList = styled.FlatList`
   padding-top: 10px;
-  padding-right: 20px;
-  padding-left: 10px;
 `;

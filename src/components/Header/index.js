@@ -1,21 +1,33 @@
-import React from 'react';
-import {Animated, Dimensions, TouchableOpacity, View} from 'react-native';
-import {Container, InfoIcon, PlusIcon} from './styles';
+import React, {useEffect, useState} from 'react';
+import {Animated, TouchableOpacity, View} from 'react-native';
+import {BackdropBackground, Container, InfoIcon, PlusIcon} from './styles';
 import {useNavigation} from '@react-navigation/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
+import {BlurView} from '@react-native-community/blur';
 
-const Header = ({title, showPlusButton = true, animatedValue}) => {
+const Header = ({title, animatedValue}) => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+
   const $app = useSelector(state => state.app);
+  const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
   const HEADER_HEIGHT = 200;
   const headerHeight = animatedValue.interpolate({
     inputRange: [0, HEADER_HEIGHT + insets.top],
-    outputRange: [HEADER_HEIGHT + insets.top, insets.top + 44],
+    outputRange: [HEADER_HEIGHT + insets.top, insets.top + 63],
     extrapolate: 'clamp',
   });
+
+  const verifyTitlePlusButton = () => {
+    switch (title) {
+      case 'Leituras':
+        return false;
+      case 'Meus Devocionais':
+        return true;
+    }
+  };
 
   const onPressInfoButton = () => {
     switch (title) {
@@ -39,8 +51,12 @@ const Header = ({title, showPlusButton = true, animatedValue}) => {
   const fadeIn = () => {
     return {
       opacity: animatedValue.interpolate({
-        inputRange: [0, HEADER_HEIGHT + insets.top - 30],
-        outputRange: [0, 1],
+        inputRange: [
+          0,
+          HEADER_HEIGHT + insets.top - 120,
+          HEADER_HEIGHT + insets.top - 30,
+        ],
+        outputRange: [0, 0, 1],
       }),
     };
   };
@@ -57,6 +73,23 @@ const Header = ({title, showPlusButton = true, animatedValue}) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+      <AnimatedBlurView
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          zIndex: -1,
+          opacity: fadeIn().opacity,
+        }}
+        blurType="dark"
+        blurAmount={10}
+        blurRadius={10}
+        overlayColor={'transparent'}
+        reducedTransparencyFallbackColor="black"
+      />
+      <BackdropBackground />
       <Container>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <InfoIcon onPress={() => onPressInfoButton()} />
@@ -65,13 +98,13 @@ const Header = ({title, showPlusButton = true, animatedValue}) => {
               fontSize: 24,
               marginLeft: 20,
               color: $app.theme.colors.titlePrimary,
-              opacity: fadeIn(0).opacity,
+              opacity: fadeIn().opacity,
             }}>
             {title}
           </Animated.Text>
         </View>
 
-        {showPlusButton && (
+        {verifyTitlePlusButton() && (
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => navigation.navigate('CreateDevotional')}>
@@ -87,7 +120,7 @@ const Header = ({title, showPlusButton = true, animatedValue}) => {
           marginLeft: 'auto',
           color: $app.theme.colors.titlePrimary,
           marginTop: 10,
-          opacity: fadeOut(0).opacity,
+          opacity: fadeOut().opacity,
         }}>
         {title}
       </Animated.Text>

@@ -15,7 +15,7 @@ import YellowBook1 from '../../../assets/illustrations/book-amarelo1.png';
 import YellowBook2 from '../../../assets/illustrations/book-amarelo2.png';
 import YellowBook3 from '../../../assets/illustrations/book-amarelo3.png';
 import {useNavigation} from '@react-navigation/core';
-import Utils from '../../../common/Utils';
+import Utils from '../../../common/utils';
 import {useSelector} from 'react-redux';
 
 const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {

@@ -4,7 +4,23 @@ export const Layout = styled.View`
   flex: 1;
   flex-direction: row;
   max-height: 62px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+export const BackdropBackground = styled.View`
   background: ${({theme}) => theme.colors.background};
+  width: 100%;
+  padding: 20px;
+  min-height: 62px;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 export const Container = styled.View`
@@ -12,7 +28,7 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 10px 24px;
 `;
 
 export const Button = styled.TouchableOpacity`
