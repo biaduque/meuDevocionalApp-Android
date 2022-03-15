@@ -24,6 +24,7 @@ const RepeaterQuickReader = ({item}) => {
       titulo: item.titulo,
       introducao: item.introducao,
       desenvolvimento: item.desenvolvimento,
+      reflexao: item.reflexao,
       conclusao: item.conclusao,
       refBiblica: item.refBiblica,
       musica: item.musica,

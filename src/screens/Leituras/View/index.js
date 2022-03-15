@@ -20,6 +20,7 @@ import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
 
 const LeiturasView = ({route, navigation}) => {
   const params = route.params;
+
   const {parent} = params;
   const [openModalCreate, setOpenModalCreate] = useState(false);
 
@@ -70,10 +71,15 @@ const LeiturasView = ({route, navigation}) => {
         <WrapperText>
           {params.titulo !== '' && <TitleSection>{params.titulo}</TitleSection>}
 
-          {params.introducao !== '' && params.refBiblica !== '' && (
-            <TextVersiculo>
-              {params.introducao} - {params.refBiblica}
-            </TextVersiculo>
+          {parent === 'LeiturasRapidas' ? (
+            params.introducao !== '' &&
+            params.refBiblica !== '' && (
+              <TextVersiculo>
+                {params.introducao} - {params.refBiblica}
+              </TextVersiculo>
+            )
+          ) : (
+            <TextVersiculo>{params.refBiblica}</TextVersiculo>
           )}
 
           <TitleSection>Contextualização</TitleSection>
@@ -81,7 +87,14 @@ const LeiturasView = ({route, navigation}) => {
             <Text>{params.desenvolvimento}</Text>
           )}
 
-          <TitleSection>Reflexão</TitleSection>
+          {params.reflexao != null && (
+            <>
+              <TitleSection>Reflexão</TitleSection>
+              <Text>{params.reflexao}</Text>
+            </>
+          )}
+
+          <TitleSection>Conclusão</TitleSection>
           {params.conclusao !== '' && <Text>{params.conclusao}</Text>}
         </WrapperText>
 

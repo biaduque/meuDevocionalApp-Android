@@ -81,9 +81,8 @@ export const TitleSection = styled.Text`
 
 export const TextVersiculo = styled.Text`
   font-size: 20px;
-  font-style: italic;
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.text};
-  font-weight: 400;
+  font-weight: 300;
   margin-top: 10px;
 `;
 

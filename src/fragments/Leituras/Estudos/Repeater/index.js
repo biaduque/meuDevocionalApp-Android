@@ -5,8 +5,11 @@ import estudoBase2 from '../../../../assets/illustrations/estudos/estudosBase2.p
 import estudoBase3 from '../../../../assets/illustrations/estudos/estudosBase3.png';
 import estudoBase4 from '../../../../assets/illustrations/estudos/estudosBase4.png';
 import estudoBase5 from '../../../../assets/illustrations/estudos/estudosBase5.png';
+import {useNavigation} from '@react-navigation/core';
 
 const RepeaterEstudos = ({item}) => {
+  const navigation = useNavigation();
+
   const transformImageBackground = path => {
     if (path.includes('estudosBase1')) {
       return estudoBase1;
@@ -23,8 +26,22 @@ const RepeaterEstudos = ({item}) => {
     }
   };
 
+  const onClickItem = () => {
+    navigation.navigate('LeiturasView', {
+      parent: 'Estudos',
+      id: item.id,
+      titulo: item.titulo,
+      introducao: item.introducao,
+      desenvolvimento: item.contextualizacao,
+      reflexao: item.reflexao,
+      conclusao: item.conclusao,
+      refBiblica: item.baseBiblica,
+      musica: item.musica,
+    });
+  };
+
   return (
-    <WrapperLeitura>
+    <WrapperLeitura onPress={() => onClickItem()}>
       <Image
         fromWeb={false}
         source={transformImageBackground(item.backgroundImage)}

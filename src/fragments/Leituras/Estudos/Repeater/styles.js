@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
-export const WrapperLeitura = styled.View`
+export const WrapperLeitura = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})`
   justify-content: space-between;
   margin-right: 10px;
   background-color: #89a091;
