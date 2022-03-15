@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LeituraScreen} from '../fragments/Leitura';
-import MyDevotionalsScreen from '../fragments/MyDevotionals';
+import {LeituraScreen} from '../fragments/Leituras';
+import MyDevotionalsScreen from '../fragments/MeusDevocionais';
 import Mural from '../fragments/Mural';
 import {useDispatch} from 'react-redux';
 import {setOffset} from '../store/actions/app.action';
@@ -23,8 +23,8 @@ const AppTabs = () => {
           dispatch(setOffset(new Animated.Value(0)));
         },
       }}
-      initialRouteName={'Leitura'}>
-      <Tab.Screen name="Leitura" component={LeituraScreen} />
+      initialRouteName={'Leituras'}>
+      <Tab.Screen name="Leituras" component={LeituraScreen} />
       <Tab.Screen name="MyDevotionals" component={MyDevotionalsScreen} />
       <Tab.Screen name="Mural" component={Mural} />
     </Tab.Navigator>

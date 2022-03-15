@@ -14,7 +14,7 @@ const BottomNavigation = () => {
   const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
 
-  const [selectedRoute, setSelectedRoute] = useState('Leitura');
+  const [selectedRoute, setSelectedRoute] = useState('Leituras');
 
   useEffect(() => {
     if (route?.params?.screen) {
@@ -23,7 +23,7 @@ const BottomNavigation = () => {
     }
 
     return () => {
-      setSelectedRoute('Leitura');
+      setSelectedRoute('Leituras');
     };
   }, [route]);
 
@@ -48,14 +48,14 @@ const BottomNavigation = () => {
       <BackdropBackground />
 
       <Container>
-        <Button onPress={() => handleChooseFragment('Leitura')}>
+        <Button onPress={() => handleChooseFragment('Leituras')}>
           <Feather
             name="book-open"
             size={24}
-            color={isSelectedColor('Leitura')}
-            filled={isSelected('Leitura')}
+            color={isSelectedColor('Leituras')}
+            filled={isSelected('Leituras')}
           />
-          <Text color={isSelectedColor('Leitura')}>Leituras</Text>
+          <Text color={isSelectedColor('Leituras')}>Leituras</Text>
         </Button>
 
         <Button onPress={() => handleChooseFragment('MyDevotionals')}>
