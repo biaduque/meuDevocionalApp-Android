@@ -5,7 +5,7 @@ import {Animated, Appearance} from 'react-native';
 const colorScheme = Appearance.getColorScheme();
 
 const INITIAL_STATE = {
-  activeTab: 'Leitura',
+  activeTab: 'Leituras',
   theme: colorScheme === 'dark' ? dark : light,
   offset: new Animated.Value(0),
 };

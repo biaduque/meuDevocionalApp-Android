@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
-export const WrapperLeitura = styled.View`
+export const WrapperLeitura = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})`
   justify-content: space-between;
   margin-right: 10px;
   background-color: #89a091;
@@ -35,12 +37,12 @@ export const FooterWrapper = styled.View`
 export const Title = styled.Text`
   font-weight: 700;
   font-size: 20px;
-  color: #000;
+  color: #485f50;
 `;
 
 export const RefBiblia = styled.Text`
   font-weight: 400;
   font-size: 14px;
   opacity: 0.5;
-  color: #000;
+  color: #485f50;
 `;

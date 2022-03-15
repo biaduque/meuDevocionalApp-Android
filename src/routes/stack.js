@@ -3,7 +3,7 @@ import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/Devocional/Create';
 import CreateMural from '../screens/Mural/Create';
-import VerLeituraRapida from '../screens/LeituraRapida/View';
+import LeiturasView from '../screens/Leituras/View';
 import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import InfoGeneric from '../screens/InfoGeneric';
@@ -39,8 +39,8 @@ const StackRoutes = () => {
         }}
       />
       <Stack.Screen
-        name="VerLeituraRapida"
-        component={VerLeituraRapida}
+        name="LeiturasView"
+        component={LeiturasView}
         options={{
           gestureEnabled: true,
           ...TransitionPresets.ScaleFromCenterAndroid,

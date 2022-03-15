@@ -5,8 +5,10 @@ import RepeaterMural from './Repeater';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMural} from '../../store/actions/mydevotionals.action';
+import Utils from '../../common/utils';
 
 const Mural = () => {
+  const utils = new Utils();
   const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
   const $myDevotionals = useSelector(state => state.myDevotionals);
@@ -17,7 +19,12 @@ const Mural = () => {
   useEffect(() => {
     async function getMural() {
       if ($myDevotionals.mural && $myDevotionals.mural.length > 0) {
-        setMuralLocal($myDevotionals.mural);
+        const assertedArray = utils.assertArray(
+          $myDevotionals.mural,
+          'createdAt',
+        );
+        setMuralLocal(assertedArray);
+
         setLoading(false);
       } else {
         const repositoryService = new LocalRepositoryService();
@@ -28,7 +35,8 @@ const Mural = () => {
 
         if (data != null) {
           dispatch(setMural(data));
-          setMuralLocal(data);
+          const assertedArray = utils.assertArray(data, 'createdAt');
+          setMuralLocal(assertedArray);
           setLoading(false);
         }
       }

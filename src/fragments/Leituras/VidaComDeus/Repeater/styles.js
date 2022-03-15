@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
-export const WrapperLeitura = styled.View`
+export const WrapperLeitura = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})`
   justify-content: space-between;
   margin-right: 10px;
   background-color: #89a091;
@@ -26,7 +28,7 @@ export const Description = styled.Text`
 `;
 
 export const FooterWrapper = styled.View`
-  background: ${({background}) => background};
+  background: #f9d9a1;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 10px 16px;
@@ -35,12 +37,12 @@ export const FooterWrapper = styled.View`
 export const Title = styled.Text`
   font-weight: 700;
   font-size: 20px;
-  color: #fff;
+  color: #485f50;
 `;
 
 export const RefBiblia = styled.Text`
   font-weight: 400;
   font-size: 14px;
   opacity: 0.5;
-  color: #fff;
+  color: #485f50;
 `;

@@ -1,5 +1,6 @@
 [
-    {
+  {
+    "id": 1,
     "titulo": "Frutos do espírito",
     "baseBiblica": "Gálatas 5: 16-26",
     "contextualizacao": "A carta de Gálatas deixa bem clara a relação que devemos ter com nossa fé: a de liberdade vinda por meio de Cristo. Isso porque, mesmo após a vida e morte de Jesus, muitas pessoas ainda achavam que para ser salvas precisavam viver uma vida regrada de leis (construídas pelos próprios homens), rituais e costumes considerados sagrados. Nessa carta, e mais em específico, na base bíblica dessa devocional, Paulo explica o verdadeiro significado de relacionamento e vida com Deus.",
@@ -12,7 +13,9 @@
     "backgroundImage": "../assets/illustrations/estudos/estudosBase1.png",
     "link": "https://www.youtube.com/watch?v=BlOtVv6h1rY",
     "storyImage": "estudosStory1"
-  },{
+  },
+  {
+    "id": 2,
     "titulo": "Religiosidade",
     "baseBiblica": "Mateus 15: 1‭-‬20",
     "contextualizacao": "Na passagem dessa devocional, Jesus enfrenta uma situação onde escribas e fariseus (homens da lei e religiosos) confrontaram a ele e aos seus discípulos por não lavarem as mãos (se purificarem) antes de começarem a comer, afinal, essa era uma das tradições que eram consideradas sagradas e por isso deveria ser seguida a risca. Assim, Jesus mostra a eles uma visão diferente da situação e até mesmo os chama de hipócritas. Por que afinal, homens tão 'corretos' e religiosos seriam hipócritas?",
@@ -25,7 +28,9 @@
     "backgroundImage": "../assets/illustrations/estudos/estudosBase2.png",
     "link": "https://www.youtube.com/watch?v=_qDKrvstS9c",
     "storyImage": "estudosStory2"
-  },{
+  },
+  {
+    "id": 3,
     "titulo": "O que é graça?",
     "baseBiblica": "Efésios 2: 1-10",
     "contextualizacao": "Éfeso era um porto na costa oeste da Ásia Menor. Efésios, então, é uma carta de Paulo escrita para essa igreja que tem como o objetivo orienta-los sobre o caráter daqueles que verdadeiramente andam com Cristo. É muito comum nessa carta encontrarmos versos que falam sobre a vida de Cristo e tudo o que ele quis ensinar, principalmente focando no significado da sua morte na Cruz. O texto base da devocional nos explica sobre o caráter do ser humano e o caráter de Cristo.",
@@ -38,7 +43,9 @@
     "backgroundImage": "../assets/illustrations/estudos/estudosBase3.png",
     "link": "https://www.youtube.com/watch?v=afI7c26HHEk",
     "storyImage": "estudosStory3"
-  },{
+  },
+  {
+    "id": 4,
     "titulo": "Buraco da agulha?",
     "baseBiblica": "Mateus 19: 23-24",
     "contextualizacao": "O livro de Mateus tem sua autoria atribuída ao Apóstulo Mateus, que conta através de sua visão a história da vida de Jesus. Cristo passava ensinamentos através de sentidos figurados principalmente porque seguia grande perseguição dos donos da lei na época. No versículo base dessa devocional, Jesus faz o uso de uma analogia um tanto curiosa para passar um ensinamento: é mais fácil que um camelo passe pelo buraco de uma agulha do que um rico entrar no reino dos céus.",
@@ -51,7 +58,9 @@
     "backgroundImage": "../assets/illustrations/estudos/estudosBase4.png",
     "link": "https://www.youtube.com/watch?v=v11UtxKcXTc",
     "storyImage": "estudosStory4"
-  },{
+  },
+  {
+    "id": 5,
     "titulo": "A rainha Ester",
     "baseBiblica": "Ester 4: 1-17",
     "contextualizacao": "Acredita-se que a história no livro de Ester se desenrola num período de quatro anos, iniciando no terceiro reinado do rei Assuero (acredita-se que esse rei tenha sido Xerxes). O livro se trata de um estudo da sobrevivência do povo de Deus (judeus) em meio à perseguição. Hamã, um homem muito importante no reino (que tinha seu cargo apenas abaixo do rei) manipulava o rei para que os judeus fossem aniquilados já que eles se negavam a adorar a Hamã, pois serviam e amavam apenas a Deus. ",

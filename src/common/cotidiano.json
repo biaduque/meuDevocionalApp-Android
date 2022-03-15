@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "titulo": "O que eu cultivo no meu coração?",
     "baseBiblica": "Provérbios 4:23",
     "contextualizacao": "O livro de provérbios foi escrito por Salomão, um rei considerado um dos mais sábios e uma das coisas mais importantes na sua história era que ele sempre pedia sabedoria para Deus: para tomar decisões, aprender coisas novas e principalmente para entender as coisas que aconteciam em sua vida e que envolviam os planos de Deus. O livro de provérbios nos ensina muito sobre o caráter daqueles que querem ser filhos de Deus e como tudo isso nos conduz à integridade e satisfação.",
@@ -12,7 +13,9 @@
     "backgroundImage": "../assets/illustrations/cotidianoBase1.png",
     "link": "https://www.youtube.com/watch?v=OXBCV5WixCU",
     "storyImage": "cotidianoStory1"
-  }, {
+  },
+  {
+    "id": 2,
     "titulo": "Tomando decisões",
     "baseBiblica": "Salmos 37: 1-7",
     "contextualizacao": "O livro de Salmos tem sua autoria atribuida a diversos autores (como por exemplo, Davi, Asafe, Filhos de Corá, etc), entretanto, o livro inteiro é muito rico por apresentar passagens que demonstram uma vida de comunhão com Deus em oração e louvor. Uma das coisas que o versículo base dessa devocional pode nos ensinar é exatamente sobre isso: comunhão e relacionamento. Deus nos mostra que uma vida de relacionamento com Ele afasta de nós todo o medo e insegurança.",
@@ -25,7 +28,9 @@
     "backgroundImage": "../assets/illustrations/cotidianoBase2.png",
     "link": "https://www.youtube.com/watch?v=ePdRgBWhvog",
     "storyImage": "cotidianoStory2"
-  }, {
+  },
+  {
+    "id": 3,
     "titulo": "Por que estou passando por isso?",
     "baseBiblica": "Atos 26: 1-23",
     "contextualizacao": "Paulo tem uma história incrível. Ele perseguia cristãos e era cheio de ódio em seu coração, até que um dia, conheceu o Amor de Jesus de verdade (Atos 9) e se apaixonou. Depois disso, fez-se disposto a espalhar aquilo que ele mais amava para outras pessoas. Na passagem base dessa devocional, Paulo está se defendendo diante de um tribunal que quer atribuir a ele uma pena de morte já que autoridades da época se incomodavam com a pregação da palavra de Cristo.",
@@ -38,7 +43,9 @@
     "backgroundImage": "../assets/illustrations/cotidianoBase3.png",
     "link": "https://www.youtube.com/watch?v=V5ixXXGYdPE",
     "storyImage": "cotidianoStory3"
-  }, {
+  },
+  {
+    "id": 4,
     "titulo": "Faça o que eles dizem?",
     "baseBiblica": "Gálatas 1:10",
     "contextualizacao": "O livro de Gálatas é uma carta de Paulo endereçada à uma igreja em uma região da Ásia menor. Vemos uma grande preocupação de Paulo em mostrar que nossos próprios esforços não nos salvam do mundo, e sim que a morte de Jesus é que na verdade nos traz liberdade para vivermos uma vida onde somos libertos do pecado, quando aceitamos a Jesus. A base bíblica dessa devocional fala muito sobre a nossa maneira de estarmos apegados naquilo que os outros pensam de nós, em cobranças e fardos.",
@@ -51,7 +58,9 @@
     "backgroundImage": "../assets/illustrations/cotidianoBase4.png",
     "link": "https://www.youtube.com/watch?v=2CeP-CutFiM",
     "storyImage": "cotidianoStory4"
-  }, {
+  },
+  {
+    "id": 5,
     "titulo": "Minha vocação",
     "baseBiblica": "2 Timóteo 1: 3-11",
     "contextualizacao": "A carta de Paulo é destinada a Timóteo e ela tem o objetivo de avisar como era importante que ele realmente vivesse aquilo que Deus tinha separado para ele. Paulo deixa claro em suas cartas como é importante que nós nos entreguemos de corpo e alma para cumprir aquilo que nos é designado (no caso de Timóteo, cuidar de uma igreja e da pregação do evangelho). No verso base da devocional, Paulo incentiva Timóteo a viver uma vida sem medo de cumprir o propósito que Deus o designou.",

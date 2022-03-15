@@ -69,7 +69,7 @@ const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
                 opacity: 0.6,
                 color: parseColors().titulo,
               }}>
-              11/03/2022
+              {devotional.createdAt}
             </Text>
             <Title color={parseColors().titulo}>{devotional.titulo}</Title>
             <BaseBiblica color={parseColors().baseBiblica}>
