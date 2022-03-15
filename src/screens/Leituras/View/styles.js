@@ -82,6 +82,7 @@ export const WrapperText = styled.View`
 
 export const CustomizedContent = styled.View`
   padding-top: 5px;
+  margin-top: -20px;
 `;
 
 export const MinhaAplicacaoWrapper = styled.View`
@@ -95,8 +96,11 @@ export const InputAplicacao = styled.TextInput.attrs({
   returnKeyType: 'next',
 })`
   width: 100%;
-  border-bottom-color: ${({theme}) => theme.createDevotionalModal.borderColor};
-  border-bottom-width: 1px;
+  border-color: ${({theme}) => theme.createDevotionalModal.borderColor};
+  border-width: 1px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
   color: ${({theme}) => theme.colors.titlePrimary};
 `;
 
@@ -154,4 +158,20 @@ export const ImageBackground = styled.Image`
   left: 20px;
   right: 0;
   bottom: 0;
+`;
+
+export const AnnotationsWrapper = styled.View`
+  padding: 0 20px 160px 20px;
+  margin-top: -40px;
+`;
+
+export const AnnotationsTextArea = styled.TextInput.attrs({
+  placeholderTextColor: '#ccc',
+  multiline: true,
+  numberOfLines: 10,
+  textAlignVertical: 'top',
+})`
+  width: 100%;
+  color: ${({theme}) => theme.colors.titlePrimary};
+  margin-top: 10px;
 `;

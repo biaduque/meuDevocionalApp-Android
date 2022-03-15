@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {
+  AnnotationsTextArea,
+  AnnotationsWrapper,
   BackIcon,
   CirclePlay,
   CustomizedContent,
@@ -104,11 +106,17 @@ const LeiturasView = ({route, navigation}) => {
         </WrapperText>
 
         {parent === 'LeiturasRapidas' ? (
-          <WorshipTimeWrapper onPress={() => navigateToMusic()}>
-            <ImageBackground
-              source={require('../../../assets/illustrations/whorshipTime.png')}
-            />
-          </WorshipTimeWrapper>
+          <>
+            <WrapperText style={{marginTop: -10, marginBottom: -20}}>
+              <TitleSection>Worship Time!</TitleSection>
+            </WrapperText>
+
+            <WorshipTimeWrapper onPress={() => navigateToMusic()}>
+              <ImageBackground
+                source={require('../../../assets/illustrations/whorshipTime.png')}
+              />
+            </WorshipTimeWrapper>
+          </>
         ) : (
           <CustomizedContent>
             <WrapperText style={{marginTop: 0}}>
@@ -134,6 +142,10 @@ const LeiturasView = ({route, navigation}) => {
               </MinhaAplicacaoWrapper>
             </WrapperText>
 
+            <WrapperText style={{marginTop: -30, marginBottom: -20}}>
+              <TitleSection>Worship Time!</TitleSection>
+            </WrapperText>
+
             <WorshipTimeWrapper>
               <ImageBackground
                 source={require('../../../assets/illustrations/whorshipTime.png')}
@@ -145,6 +157,11 @@ const LeiturasView = ({route, navigation}) => {
                 <PlayIcon />
               </CirclePlay>
             </WorshipTimeWrapper>
+
+            <AnnotationsWrapper>
+              <TitleSection>Anotações</TitleSection>
+              <AnnotationsTextArea placeholder={'Comece a escrever...'} />
+            </AnnotationsWrapper>
           </CustomizedContent>
         )}
       </ScrollView>
