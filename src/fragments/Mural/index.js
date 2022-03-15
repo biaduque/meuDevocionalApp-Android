@@ -4,10 +4,7 @@ import {Container, Layout} from './styles';
 import RepeaterMural from './Repeater';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
-import {
-  setMural,
-  setMyDevotionals,
-} from '../../store/actions/mydevotionals.action';
+import {setMural} from '../../store/actions/mydevotionals.action';
 
 const Mural = () => {
   const dispatch = useDispatch();

@@ -5,6 +5,7 @@ import LeiturasRapidas from './LeiturasRapidas';
 import Cotidiano from './Cotidiano';
 import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 import {useSelector} from 'react-redux';
+import VidaComDeus from './VidaComDeus';
 
 const LeituraScreen = () => {
   const $app = useSelector(state => state.app);
@@ -31,7 +32,7 @@ const LeituraScreen = () => {
           <WrapperContent>
             <LeiturasRapidas />
             <Cotidiano />
-            <LeiturasRapidas />
+            <VidaComDeus />
             <Cotidiano />
             <LeiturasRapidas />
             <Cotidiano />
