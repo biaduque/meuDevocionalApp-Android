@@ -35,12 +35,12 @@ export const FooterWrapper = styled.View`
 export const Title = styled.Text`
   font-weight: 700;
   font-size: 20px;
-  color: #000;
+  color: #485f50;
 `;
 
 export const RefBiblia = styled.Text`
   font-weight: 400;
   font-size: 14px;
   opacity: 0.5;
-  color: #000;
+  color: #485f50;
 `;

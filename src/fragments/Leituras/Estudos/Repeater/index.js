@@ -30,7 +30,7 @@ const RepeaterEstudos = ({item}) => {
         source={transformImageBackground(item.backgroundImage)}
       />
 
-      <FooterWrapper background={'#485F50'}>
+      <FooterWrapper>
         <Title>{item.titulo}</Title>
         <RefBiblia>{item.baseBiblica}</RefBiblia>
       </FooterWrapper>
