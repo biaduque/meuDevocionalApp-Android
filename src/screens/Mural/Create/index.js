@@ -3,6 +3,7 @@ import {
   ButtonOkWorship,
   Container,
   DraftContainer,
+  DraftContainerImage,
   Form,
   MuralDraftVisualWrapper,
   PhotoIcon,
@@ -25,6 +26,7 @@ import uuid from 'react-native-uuid';
 import CustomRadioButton from '../../../components/CustomRadioButton';
 import moment from 'moment';
 import Utils from '../../../common/utils';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const CreateMural = ({route, navigation}) => {
   const {params} = route;
@@ -35,15 +37,13 @@ const CreateMural = ({route, navigation}) => {
 
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
-  const [photo, setPhoto] = useState(null);
-  const [book, setBook] = useState('');
+  const [backgroundImage, setBackgroundImage] = useState(null);
   const [chapter, setChapter] = useState('');
   const [selectedColor, setSelectedColor] = useState('verde2');
 
   useEffect(() => {
     if (params != null) {
       setTitle(params.titulo);
-      setBook(params.refBiblica.split(' ')[0]);
       setChapter(params.refBiblica);
     }
 
@@ -56,13 +56,11 @@ const CreateMural = ({route, navigation}) => {
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
-    // se apagar a imagem do mural, o background fica da cor do bg do texto.
-
     const data = {
       id: uuid.v4(),
       titulo: title,
       backgroundColor: selectedColor,
-      backgroundImage: image,
+      backgroundImage: backgroundImage,
       createdAt: moment().format('DD/MM/YYYY'),
     };
 
@@ -97,6 +95,16 @@ const CreateMural = ({route, navigation}) => {
     return colors;
   };
 
+  async function getImageCamera() {
+    const ret = await ImagePicker.openPicker({
+      width: 300,
+      height: 300,
+      cropping: true,
+    });
+    setImage(ret.path);
+    setBackgroundImage(ret.path);
+  }
+
   return (
     <Container>
       <ScrollView>
@@ -127,11 +135,25 @@ const CreateMural = ({route, navigation}) => {
         </Form>
 
         <MuralDraftVisualWrapper>
-          <DraftContainer background={parseColors().background}>
-            <TextContent color={parseColors().titulo}>{title}</TextContent>
-          </DraftContainer>
+          {image != null ? (
+            <DraftContainerImage source={{uri: image}}>
+              <TextContent
+                background={parseColors().background}
+                color={parseColors().titulo}>
+                {title === '' ? 'Seu motivo aqui' : title}
+              </TextContent>
+            </DraftContainerImage>
+          ) : (
+            <DraftContainer background={parseColors().background}>
+              <TextContent
+                background={parseColors().background}
+                color={parseColors().titulo}>
+                {title === '' ? 'Seu motivo aqui' : title}
+              </TextContent>
+            </DraftContainer>
+          )}
 
-          <PhotoIcon />
+          <PhotoIcon onPress={() => getImageCamera()} />
         </MuralDraftVisualWrapper>
       </ScrollView>
 

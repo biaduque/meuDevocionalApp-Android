@@ -1,51 +1,48 @@
-import React from 'react';
-import {Animated, SafeAreaView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Animated, ActivityIndicator, View} from 'react-native';
 import {Container, Layout} from './styles';
-import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 import RepeaterMural from './Repeater';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import LocalRepositoryService from '../../services/LocalRepositoryService';
+import {
+  setMural,
+  setMyDevotionals,
+} from '../../store/actions/mydevotionals.action';
 
 const Mural = () => {
+  const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
-  const mural = [
-    {
-      id: 1,
-      title: 'Pela minha família',
-      createdAt: '20/01/2022',
-      image: '../../assets/illustrations/book-amarelo2.png',
-      backgroundColor: '#ecba7d',
-    },
-    {
-      id: 2,
-      title: 'Pelos meus amigos',
-      createdAt: '20/01/2022',
-      backgroundColor: '#F7D9A0',
-    },
-    {
-      id: 3,
-      title: 'Por recomeços',
-      createdAt: '20/01/2022',
-      backgroundColor: '#8BA293',
-    },
-    {
-      id: 4,
-      title: 'Pela minha vida',
-      createdAt: '20/01/2022',
-      backgroundColor: '#F7D9A0',
-    },
-    {
-      id: 5,
-      title: 'Por recomeços',
-      createdAt: '20/01/2022',
-      backgroundColor: '#ecba7d',
-    },
-    {
-      id: 6,
-      title: 'Pela minha vida',
-      createdAt: '20/01/2022',
-      backgroundColor: '#8BA293',
-    },
-  ];
+  const $myDevotionals = useSelector(state => state.myDevotionals);
+
+  const [muralLocal, setMuralLocal] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getMural() {
+      if ($myDevotionals.mural && $myDevotionals.mural.length > 0) {
+        setMuralLocal($myDevotionals.mural);
+        setLoading(false);
+      } else {
+        const repositoryService = new LocalRepositoryService();
+        const data = await repositoryService.get(
+          repositoryService.MURAL_LIST_KEY,
+          true,
+        );
+
+        if (data != null) {
+          dispatch(setMural(data));
+          setMuralLocal(data);
+          setLoading(false);
+        }
+      }
+    }
+
+    getMural();
+
+    return () => {
+      setMuralLocal([]);
+    };
+  }, [$myDevotionals]);
 
   const onScroll = e => {
     Animated.event([{nativeEvent: {contentOffset: {y: $app.offset}}}], {
@@ -55,27 +52,28 @@ const Mural = () => {
 
   return (
     <Layout>
-      <Container>
-        <Animated.FlatList
-          data={mural}
-          numColumns={2}
-          contentContainerStyle={{
-            paddingTop: 260,
-            paddingBottom: 120,
-          }}
-          showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onScroll={e => onScroll(e)}
-          renderItem={({item}) => (
-            <RepeaterMural
-              backgroundColor={item.backgroundColor}
-              title={item.title}
-              createdAt={item.createdAt}
-              image={item.image}
-            />
-          )}
-        />
-      </Container>
+      {loading ? (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator size={'large'} color={'#fff'} />
+        </View>
+      ) : (
+        <Container>
+          <Animated.FlatList
+            data={muralLocal}
+            numColumns={2}
+            contentContainerStyle={{
+              paddingTop: 260,
+              paddingBottom: 120,
+            }}
+            showsVerticalScrollIndicator={false}
+            scrollEventThrottle={16}
+            onScroll={e => onScroll(e)}
+            renderItem={({item}) => (
+              <RepeaterMural item={item} theme={$app.theme} />
+            )}
+          />
+        </Container>
+      )}
     </Layout>
   );
 };

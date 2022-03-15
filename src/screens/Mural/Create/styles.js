@@ -103,6 +103,16 @@ export const MuralDraftVisualWrapper = styled.View`
   align-items: center;
 `;
 
+export const DraftContainerImage = styled.ImageBackground`
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 350px;
+  width: 300px;
+  margin-top: 36px;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const DraftContainer = styled.View`
   background: ${({background}) => background};
   border-radius: 10px;
@@ -116,16 +126,19 @@ export const DraftContainer = styled.View`
 
 export const TextContent = styled.Text`
   color: ${({color}) => color};
+  background: ${({background}) => background};
   text-align: center;
   font-size: 26px;
+  padding: 0 7px;
+  width: 100%;
 `;
 
 export const PhotoIcon = styled(EvilIcons).attrs({
   name: 'camera',
-  size: 52,
+  size: 38,
 })`
   color: ${({theme}) => theme.colors.accent};
-  margin-top: 20px;
+  margin-top: 28px;
 `;
 
 export const WrapperFooter = styled.View`
