@@ -5,7 +5,6 @@ import {
   EditIcon,
   Footer,
   Header,
-  ImageBackground,
   Layout,
   LeftWrapperHeader,
   RightWrapperHeader,
@@ -14,13 +13,12 @@ import {
   TagsWrapper,
   Text,
   TitleBackScreen,
-  TitleScreen,
   TitleSection,
-  WorshipTimeWrapper,
   WrapperText,
 } from './styles';
 import ModalSheetBottom from '../../../components/ModalSheetBottom';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
+import WorshipTime from '../../../components/WorshipTime';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
@@ -114,11 +112,7 @@ const MyDevotionalView = ({route, navigation}) => {
       </ScrollView>
 
       <Footer>
-        <WorshipTimeWrapper onPress={() => navigateToMusic()}>
-          <ImageBackground
-            source={require('../../../assets/illustrations/whorshipTime.png')}
-          />
-        </WorshipTimeWrapper>
+        <WorshipTime navigateToMusic={navigateToMusic} />
         <TagsWrapper>
           {params.devotional.aplicacao1 !== '' && (
             <Tag color={params.colors.tagsBackground}>

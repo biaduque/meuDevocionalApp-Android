@@ -7,9 +7,9 @@ import {
 } from './styles';
 import {View} from 'react-native';
 
-const WorshipTime = ({navigateToMusic}) => {
+const WorshipTime = ({navigateToMusic, ...rest}) => {
   return (
-    <WorshipTimeWrapper>
+    <WorshipTimeWrapper {...rest}>
       <ImageBackground
         source={require('../../assets/illustrations/whorshipTime.png')}
       />
