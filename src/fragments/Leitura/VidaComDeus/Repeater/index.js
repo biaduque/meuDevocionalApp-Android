@@ -30,14 +30,6 @@ const RepeaterVidaComDeus = ({item}) => {
     }
   };
 
-  const parseColors = () => {
-    const utils = new Utils();
-    const ret = utils.transformDataColor('verde2', $app.theme);
-    console.log(ret);
-
-    return ret;
-  };
-
   return (
     <WrapperLeitura>
       <Image
@@ -45,7 +37,7 @@ const RepeaterVidaComDeus = ({item}) => {
         source={transformImageBackground(item.backgroundImage)}
       />
 
-      <FooterWrapper background={parseColors().background}>
+      <FooterWrapper background={'#485F50'}>
         <Title>{item.titulo}</Title>
         <RefBiblia>{item.baseBiblica}</RefBiblia>
       </FooterWrapper>

@@ -1,11 +1,11 @@
 import React from 'react';
-import {Animated, SafeAreaView} from 'react-native';
+import {Animated} from 'react-native';
 import {Container, Layout, WrapperContent} from './styles';
 import LeiturasRapidas from './LeiturasRapidas';
 import Cotidiano from './Cotidiano';
-import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 import {useSelector} from 'react-redux';
 import VidaComDeus from './VidaComDeus';
+import Estudos from './Estudos';
 
 const LeituraScreen = () => {
   const $app = useSelector(state => state.app);
@@ -33,10 +33,7 @@ const LeituraScreen = () => {
             <LeiturasRapidas />
             <Cotidiano />
             <VidaComDeus />
-            <Cotidiano />
-            <LeiturasRapidas />
-            <Cotidiano />
-            <LeiturasRapidas />
+            <Estudos />
           </WrapperContent>
         </Container>
       </Animated.ScrollView>
