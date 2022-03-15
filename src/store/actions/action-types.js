@@ -6,6 +6,7 @@ const ActionTypes = {
   },
   myDevotionals: {
     SET_MY_DEVOTIONALS: 'SET_MY_DEVOTIONALS',
+    SET_MURAL: 'SET_MURAL',
   },
 };
 

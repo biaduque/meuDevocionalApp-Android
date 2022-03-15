@@ -4,6 +4,7 @@ import {nanoid} from 'nanoid';
 class LocalRepositoryService {
   constructor() {
     this.DEVOCIONAL_LIST_KEY = '@meudevocional-devocionais';
+    this.MURAL_LIST_KEY = '@meudevocional-mural';
   }
 
   async get(key, isObject = false) {
