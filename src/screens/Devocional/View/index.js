@@ -113,6 +113,17 @@ const MyDevotionalView = ({route, navigation}) => {
 
       <Footer>
         <WorshipTime navigateToMusic={navigateToMusic} />
+
+        {params.devotional.aplicacao1 !== '' ||
+          params.devotional.aplicacao2 !== '' ||
+          (params.devotional.aplicacao3 !== '' && (
+            <TagsWrapper>
+              <Tag>{params.devotional.aplicacao1}</Tag>
+              <Tag>{params.devotional.aplicacao2}</Tag>
+              <Tag>{params.devotional.aplicacao3}</Tag>
+            </TagsWrapper>
+          ))}
+
         <TagsWrapper>
           {params.devotional.aplicacao1 !== '' && (
             <Tag color={params.colors.tagsBackground}>

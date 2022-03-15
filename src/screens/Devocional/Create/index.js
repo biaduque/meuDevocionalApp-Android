@@ -90,7 +90,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       backgroundImage: '',
       reflexao: description ? description : '',
       link: music === '' ? null : music,
-      createdAt: moment().format('DD/MM/YYYY'),
+      createdAt: moment().format('DD/MM/YYYY HH:mm:ss'),
     };
 
     const ret = await repositoryService.set(

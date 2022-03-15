@@ -95,16 +95,15 @@ export const Text = styled.Text`
   margin-top: 10px;
 `;
 
-export const Footer = styled.View`
-  margin-bottom: 60px;
-`;
+export const Footer = styled.View``;
 
 export const TagsWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: -30px;
+  margin-top: -40px;
   padding: 0 20px;
   width: 100%;
+  margin-bottom: 30px;
 `;
 
 export const Tag = styled.Text`

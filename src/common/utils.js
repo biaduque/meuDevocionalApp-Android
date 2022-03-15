@@ -13,8 +13,8 @@ class Utils {
 
   assertArray(array, property) {
     return array.sort((a, b) => {
-      const dateEnd = moment(b[property], 'DD/MM/YYYY').unix();
-      const startEnd = moment(a[property], 'DD/MM/YYYY').unix();
+      const dateEnd = moment(b[property], 'DD/MM/YYYY HH:mm:ss').unix();
+      const startEnd = moment(a[property], 'DD/MM/YYYY HH:mm:ss').unix();
 
       return new Date(dateEnd).getTime() - new Date(startEnd).getTime();
     });
