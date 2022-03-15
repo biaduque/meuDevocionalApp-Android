@@ -3,27 +3,24 @@ import {
   AnnotationsTextArea,
   AnnotationsWrapper,
   BackIcon,
-  CirclePlay,
   CustomizedContent,
   EditIcon,
   Header,
-  ImageBackground,
   InputAplicacao,
   Layout,
   LeftWrapperHeader,
   MinhaAplicacaoWrapper,
-  PlayIcon,
   RightWrapperHeader,
   ShareIcon,
   Text,
   TextVersiculo,
   TitleBackScreen,
   TitleSection,
-  WorshipTimeWrapper,
   WrapperText,
 } from './styles';
-import ModalSheetBottom from '../../../components/ModalSheetBottom';
 import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
+import ModalCreateSheet from './ModalCreateSheet';
+import WorshipTime from '../../../components/WorshipTime';
 
 const LeiturasView = ({route, navigation}) => {
   const params = route.params;
@@ -47,10 +44,11 @@ const LeiturasView = ({route, navigation}) => {
 
   return (
     <Layout scrollEnabled={!openModalCreate}>
-      <ModalSheetBottom
+      <ModalCreateSheet
         height={Dimensions.get('window').height}
         open={openModalCreate}
-        onClose={handleCloseCreateDevotional}
+        itemLeitura={params}
+        handleClose={handleCloseCreateDevotional}
         title={'Criar nova devocional'}
         description={
           'Deseja criar uma nova devocional através dessa devocional rápida?'
@@ -111,11 +109,7 @@ const LeiturasView = ({route, navigation}) => {
               <TitleSection>Worship Time!</TitleSection>
             </WrapperText>
 
-            <WorshipTimeWrapper onPress={() => navigateToMusic()}>
-              <ImageBackground
-                source={require('../../../assets/illustrations/whorshipTime.png')}
-              />
-            </WorshipTimeWrapper>
+            <WorshipTime navigateToMusic={navigateToMusic} />
           </>
         ) : (
           <CustomizedContent>
@@ -146,17 +140,7 @@ const LeiturasView = ({route, navigation}) => {
               <TitleSection>Worship Time!</TitleSection>
             </WrapperText>
 
-            <WorshipTimeWrapper>
-              <ImageBackground
-                source={require('../../../assets/illustrations/whorshipTime.png')}
-              />
-
-              <View />
-
-              <CirclePlay onPress={() => navigateToMusic()}>
-                <PlayIcon />
-              </CirclePlay>
-            </WorshipTimeWrapper>
+            <WorshipTime navigateToMusic={navigateToMusic} />
 
             <AnnotationsWrapper>
               <TitleSection>Anotações</TitleSection>

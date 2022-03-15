@@ -27,6 +27,7 @@ export default {
     gold: '#D9AB75',
   },
   createDevotionalModal: {
+    selectionBg: '#fff',
     buttonSave: '#D9AB75',
     buttonCancel: '#EB5545',
     borderColor: '#353537',

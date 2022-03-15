@@ -21,6 +21,7 @@ export default {
     yellow3: '#FCEDCB',
   },
   colorsLeituraRapidaScreen: {
+    selectionBg: '#000',
     titleSection: '#5E6C61',
     text: '#000',
     titleScreen: '#333',

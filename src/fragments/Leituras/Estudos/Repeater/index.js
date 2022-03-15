@@ -36,7 +36,7 @@ const RepeaterEstudos = ({item}) => {
       reflexao: item.reflexao,
       conclusao: item.conclusao,
       refBiblica: item.baseBiblica,
-      musica: item.musica,
+      musica: item.link,
     });
   };
 

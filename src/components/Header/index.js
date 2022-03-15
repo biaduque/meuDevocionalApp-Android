@@ -1,6 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Animated, TouchableOpacity, View} from 'react-native';
-import {BackdropBackground, Container, InfoIcon, PlusIcon} from './styles';
+import {
+  BackdropBackground,
+  Container,
+  InfoIcon,
+  PlusIcon,
+  TitleScreen,
+} from './styles';
 import {useNavigation} from '@react-navigation/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
@@ -129,17 +135,12 @@ const Header = ({title, animatedValue}) => {
         )}
       </Container>
 
-      <Animated.Text
+      <TitleScreen
         style={{
-          fontSize: 36,
-          marginRight: 'auto',
-          marginLeft: 'auto',
-          color: $app.theme.colors.titlePrimary,
-          marginTop: 10,
           opacity: fadeOut().opacity,
         }}>
         {title}
-      </Animated.Text>
+      </TitleScreen>
     </Animated.View>
   );
 };
