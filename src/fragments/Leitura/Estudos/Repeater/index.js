@@ -5,12 +5,8 @@ import estudoBase2 from '../../../../assets/illustrations/estudos/estudosBase2.p
 import estudoBase3 from '../../../../assets/illustrations/estudos/estudosBase3.png';
 import estudoBase4 from '../../../../assets/illustrations/estudos/estudosBase4.png';
 import estudoBase5 from '../../../../assets/illustrations/estudos/estudosBase5.png';
-import Utils from '../../../../common/utils';
-import {useSelector} from 'react-redux';
 
 const RepeaterEstudos = ({item}) => {
-  const $app = useSelector(state => state.app);
-
   const transformImageBackground = path => {
     if (path.includes('estudosBase1')) {
       return estudoBase1;

@@ -6,12 +6,8 @@ import vidaBase3 from '../../../../assets/illustrations/vida/vidaBase3.png';
 import vidaBase4 from '../../../../assets/illustrations/vida/vidaBase4.png';
 import vidaBase5 from '../../../../assets/illustrations/vida/vidaBase5.png';
 import vidaBase6 from '../../../../assets/illustrations/vida/vidaBase6.png';
-import Utils from '../../../../common/utils';
-import {useSelector} from 'react-redux';
 
 const RepeaterVidaComDeus = ({item}) => {
-  const $app = useSelector(state => state.app);
-
   const transformImageBackground = path => {
     if (path.includes('vidaBase1')) {
       return vidaBase1;
