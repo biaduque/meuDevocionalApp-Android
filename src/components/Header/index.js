@@ -34,7 +34,10 @@ const Header = ({title, animatedValue}) => {
       case 'Leituras':
         break;
       case 'Meus Devocionais':
-        navigation.navigate('InfoMyDevotional');
+        navigation.navigate('InfoGeneric');
+        break;
+      case 'Mural':
+        navigation.navigate('InfoGeneric');
         break;
     }
   };

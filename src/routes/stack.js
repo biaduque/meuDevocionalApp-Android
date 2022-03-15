@@ -5,7 +5,7 @@ import CreateDevotional from '../screens/Devocional/Create';
 import VerLeituraRapida from '../screens/LeituraRapida/View';
 import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import InfoMyDevotional from '../screens/Devocional/Info';
+import InfoGeneric from '../screens/InfoGeneric';
 import MyDevotionalView from '../screens/Devocional/View';
 
 const Stack = createStackNavigator();
@@ -54,9 +54,10 @@ const StackRoutes = () => {
           ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
+
       <Stack.Screen
-        name="InfoMyDevotional"
-        component={InfoMyDevotional}
+        name="InfoGeneric"
+        component={InfoGeneric}
         options={{
           gestureEnabled: true,
           ...TransitionPresets.ScaleFromCenterAndroid,
