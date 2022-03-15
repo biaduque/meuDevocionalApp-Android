@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 import {
   BackIcon,
+  CirclePlay,
+  CustomizedContent,
   EditIcon,
   Header,
   ImageBackground,
+  InputAplicacao,
   Layout,
   LeftWrapperHeader,
+  MinhaAplicacaoWrapper,
+  PlayIcon,
   RightWrapperHeader,
   ShareIcon,
   Text,
@@ -98,17 +103,50 @@ const LeiturasView = ({route, navigation}) => {
           {params.conclusao !== '' && <Text>{params.conclusao}</Text>}
         </WrapperText>
 
-        {parent === 'LeiturasRapidas' ? null : (
-          <View>
-            <Text>bla bla bla</Text>
-          </View>
-        )}
+        {parent === 'LeiturasRapidas' ? (
+          <WorshipTimeWrapper onPress={() => navigateToMusic()}>
+            <ImageBackground
+              source={require('../../../assets/illustrations/whorshipTime.png')}
+            />
+          </WorshipTimeWrapper>
+        ) : (
+          <CustomizedContent>
+            <WrapperText style={{marginTop: 0}}>
+              <TitleSection style={{marginBottom: 10}}>
+                Minha aplicação
+              </TitleSection>
+              <MinhaAplicacaoWrapper>
+                <InputAplicacao
+                  placeholder={'Como posso aplicar isso na minha vida?'}
+                />
+              </MinhaAplicacaoWrapper>
 
-        <WorshipTimeWrapper onPress={() => navigateToMusic()}>
-          <ImageBackground
-            source={require('../../../assets/illustrations/whorshipTime.png')}
-          />
-        </WorshipTimeWrapper>
+              <MinhaAplicacaoWrapper>
+                <InputAplicacao
+                  placeholder={'Como posso aplicar isso na minha vida?'}
+                />
+              </MinhaAplicacaoWrapper>
+
+              <MinhaAplicacaoWrapper>
+                <InputAplicacao
+                  placeholder={'Como posso aplicar isso na minha vida?'}
+                />
+              </MinhaAplicacaoWrapper>
+            </WrapperText>
+
+            <WorshipTimeWrapper>
+              <ImageBackground
+                source={require('../../../assets/illustrations/whorshipTime.png')}
+              />
+
+              <View />
+
+              <CirclePlay onPress={() => navigateToMusic()}>
+                <PlayIcon />
+              </CirclePlay>
+            </WorshipTimeWrapper>
+          </CustomizedContent>
+        )}
       </ScrollView>
     </Layout>
   );
