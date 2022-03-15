@@ -87,7 +87,7 @@ const MyDevotionalsScreen = () => {
             <FlatList
               contentContainerStyle={{
                 paddingTop: 260,
-                paddingBottom: 60,
+                paddingBottom: 120,
               }}
               showsVerticalScrollIndicator={false}
               scrollEventThrottle={16}

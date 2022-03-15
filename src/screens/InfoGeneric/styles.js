@@ -21,6 +21,12 @@ export const Header = styled.View`
   padding: 20px 40px;
 `;
 
+export const OkText = styled.Text`
+  color: ${({theme}) => theme.colors.accent};
+  font-weight: bold;
+  font-size: 20px;
+`;
+
 export const TilesWrapper = styled.View`
   flex-direction: column;
   align-items: center;

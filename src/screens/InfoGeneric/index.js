@@ -5,20 +5,21 @@ import {
   FlexContainer,
   Header,
   Layout,
+  OkText,
   Tile,
   TilesLimitingWrapper,
   TilesWrapper,
   Wrapper,
 } from './styles';
 
-const InfoMyDevotional = ({navigation}) => {
+const InfoGeneric = ({navigation}) => {
   return (
     <Layout>
       <Header>
         <View />
 
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={{fontWeight: 'bold', fontSize: 20}}>OK</Text>
+          <OkText>OK</OkText>
         </TouchableOpacity>
       </Header>
 
@@ -54,4 +55,4 @@ const InfoMyDevotional = ({navigation}) => {
   );
 };
 
-export default InfoMyDevotional;
+export default InfoGeneric;

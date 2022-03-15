@@ -1,10 +1,11 @@
 import React from 'react';
-import {Animated, SafeAreaView} from 'react-native';
+import {Animated} from 'react-native';
 import {Container, Layout, WrapperContent} from './styles';
 import LeiturasRapidas from './LeiturasRapidas';
 import Cotidiano from './Cotidiano';
-import {SafeAreaProvider} from 'react-native-safe-area-context/src/SafeAreaContext';
 import {useSelector} from 'react-redux';
+import VidaComDeus from './VidaComDeus';
+import Estudos from './Estudos';
 
 const LeituraScreen = () => {
   const $app = useSelector(state => state.app);
@@ -22,6 +23,7 @@ const LeituraScreen = () => {
         contentContainerStyle={{
           alignItems: 'center',
           paddingTop: 220,
+          paddingBottom: 120,
         }}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
@@ -30,11 +32,8 @@ const LeituraScreen = () => {
           <WrapperContent>
             <LeiturasRapidas />
             <Cotidiano />
-            <LeiturasRapidas />
-            <Cotidiano />
-            <LeiturasRapidas />
-            <Cotidiano />
-            <LeiturasRapidas />
+            <VidaComDeus />
+            <Estudos />
           </WrapperContent>
         </Container>
       </Animated.ScrollView>

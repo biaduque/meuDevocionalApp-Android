@@ -2,6 +2,7 @@ import ActionTypes from '../actions/action-types';
 
 const INITIAL_STATE = {
   devotionals: [],
+  mural: [],
 };
 
 const myDevotionalsReducer = (state = INITIAL_STATE, {type, payload}) => {
@@ -10,6 +11,11 @@ const myDevotionalsReducer = (state = INITIAL_STATE, {type, payload}) => {
       return {
         ...state,
         devotionals: payload,
+      };
+    case ActionTypes.myDevotionals.SET_MURAL:
+      return {
+        ...state,
+        mural: payload,
       };
     default:
       return state;

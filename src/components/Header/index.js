@@ -26,6 +26,8 @@ const Header = ({title, animatedValue}) => {
         return false;
       case 'Meus Devocionais':
         return true;
+      case 'Mural':
+        return true;
     }
   };
 
@@ -34,7 +36,21 @@ const Header = ({title, animatedValue}) => {
       case 'Leituras':
         break;
       case 'Meus Devocionais':
-        navigation.navigate('InfoMyDevotional');
+        navigation.navigate('InfoGeneric');
+        break;
+      case 'Mural':
+        navigation.navigate('InfoGeneric');
+        break;
+    }
+  };
+
+  const navigateToCreate = () => {
+    switch (title) {
+      case 'Meus Devocionais':
+        navigation.navigate('CreateDevotional');
+        break;
+      case 'Mural':
+        navigation.navigate('CreateMural');
         break;
     }
   };
@@ -107,7 +123,7 @@ const Header = ({title, animatedValue}) => {
         {verifyTitlePlusButton() && (
           <TouchableOpacity
             activeOpacity={1}
-            onPress={() => navigation.navigate('CreateDevotional')}>
+            onPress={() => navigateToCreate()}>
             <PlusIcon />
           </TouchableOpacity>
         )}

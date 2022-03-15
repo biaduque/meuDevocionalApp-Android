@@ -7,4 +7,11 @@ const setMyDevotionals = payload => {
   };
 };
 
-export {setMyDevotionals};
+const setMural = payload => {
+  return {
+    type: ActionTypes.myDevotionals.SET_MURAL,
+    payload,
+  };
+};
+
+export {setMyDevotionals, setMural};
