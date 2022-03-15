@@ -18,7 +18,8 @@ const RepeaterQuickReader = ({item}) => {
   };
 
   const onClickLeitura = () => {
-    navigation.navigate('VerLeituraRapida', {
+    navigation.navigate('LeiturasView', {
+      parent: 'LeiturasRapidas',
       id: item.id,
       titulo: item.titulo,
       introducao: item.introducao,

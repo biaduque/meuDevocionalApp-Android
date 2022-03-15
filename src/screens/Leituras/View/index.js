@@ -11,7 +11,6 @@ import {
   Text,
   TextVersiculo,
   TitleBackScreen,
-  TitleScreen,
   TitleSection,
   WorshipTimeWrapper,
   WrapperText,
@@ -19,16 +18,17 @@ import {
 import ModalSheetBottom from '../../../components/ModalSheetBottom';
 import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
 
-const VerLeituraRapida = ({route, navigation}) => {
+const LeiturasView = ({route, navigation}) => {
   const params = route.params;
-  const [oepnModalCreate, setOepnModalCreate] = useState(false);
+  const {parent} = params;
+  const [openModalCreate, setOpenModalCreate] = useState(false);
 
   const handleOpenCreateDevotional = () => {
-    setOepnModalCreate(true);
+    setOpenModalCreate(true);
   };
 
   const handleCloseCreateDevotional = () => {
-    setOepnModalCreate(false);
+    setOpenModalCreate(false);
   };
 
   const navigateToMusic = () => {
@@ -38,10 +38,10 @@ const VerLeituraRapida = ({route, navigation}) => {
   };
 
   return (
-    <Layout scrollEnabled={!oepnModalCreate}>
+    <Layout scrollEnabled={!openModalCreate}>
       <ModalSheetBottom
         height={Dimensions.get('window').height}
-        open={oepnModalCreate}
+        open={openModalCreate}
         onClose={handleCloseCreateDevotional}
         title={'Criar nova devocional'}
         description={
@@ -85,6 +85,12 @@ const VerLeituraRapida = ({route, navigation}) => {
           {params.conclusao !== '' && <Text>{params.conclusao}</Text>}
         </WrapperText>
 
+        {parent === 'LeiturasRapidas' ? null : (
+          <View>
+            <Text>bla bla bla</Text>
+          </View>
+        )}
+
         <WorshipTimeWrapper onPress={() => navigateToMusic()}>
           <ImageBackground
             source={require('../../../assets/illustrations/whorshipTime.png')}
@@ -95,4 +101,4 @@ const VerLeituraRapida = ({route, navigation}) => {
   );
 };
 
-export default VerLeituraRapida;
+export default LeiturasView;
