@@ -1,4 +1,5 @@
 import {Animated} from 'react-native';
+import moment from 'moment';
 
 class Utils {
   constructor() {
@@ -8,6 +9,15 @@ class Utils {
       'rgba(247,217,160,.3)',
       'rgba(252,237,203,.3)',
     ];
+  }
+
+  assertArray(array, property) {
+    return array.sort((a, b) => {
+      const dateEnd = moment(b[property], 'DD/MM/YYYY').unix();
+      const startEnd = moment(a[property], 'DD/MM/YYYY').unix();
+
+      return new Date(dateEnd).getTime() - new Date(startEnd).getTime();
+    });
   }
 
   randomItemArray(arr) {

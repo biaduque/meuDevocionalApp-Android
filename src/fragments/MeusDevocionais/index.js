@@ -6,8 +6,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
 import ModalDeleteSheet from '../../screens/Devocional/View/ModalDeleteSheet';
+import Utils from '../../common/utils';
 
 const MyDevotionalsScreen = () => {
+  const utils = new Utils();
   const dispatch = useDispatch();
 
   const $app = useSelector(state => state.app);
@@ -20,7 +22,11 @@ const MyDevotionalsScreen = () => {
   useEffect(() => {
     async function getDevotionals() {
       if ($myDevotionals.devotionals && $myDevotionals.devotionals.length > 0) {
-        setDevotionals($myDevotionals.devotionals);
+        const assertedArray = utils.assertArray(
+          $myDevotionals.devotionals,
+          'createdAt',
+        );
+        setDevotionals(assertedArray);
         setLoading(false);
       } else {
         const repositoryService = new LocalRepositoryService();
@@ -31,7 +37,8 @@ const MyDevotionalsScreen = () => {
 
         if (data != null) {
           dispatch(setMyDevotionals(data));
-          setDevotionals(data);
+          const assertedArray = utils.assertArray(data, 'createdAt');
+          setDevotionals(assertedArray);
           setLoading(false);
         }
       }

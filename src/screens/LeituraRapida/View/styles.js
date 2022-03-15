@@ -75,7 +75,7 @@ export const WrapperText = styled.View`
 export const TitleSection = styled.Text`
   font-size: 28px;
   font-weight: 500;
-  color: ${({theme}) => theme.colors.accent};
+  color: ${({theme}) => theme.devotionalColors.verde2};
   margin-top: 24px;
 `;
 
