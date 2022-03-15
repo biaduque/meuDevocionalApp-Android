@@ -61,7 +61,7 @@ const Mural = () => {
           numColumns={2}
           contentContainerStyle={{
             paddingTop: 260,
-            paddingBottom: 40,
+            paddingBottom: 120,
           }}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}

@@ -22,6 +22,7 @@ const LeituraScreen = () => {
         contentContainerStyle={{
           alignItems: 'center',
           paddingTop: 220,
+          paddingBottom: 120,
         }}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
