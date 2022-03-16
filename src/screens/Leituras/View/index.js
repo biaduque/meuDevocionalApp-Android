@@ -29,16 +29,20 @@ import {
   TouchableOpacity,
   View,
   Keyboard,
+  Share,
 } from 'react-native';
 import ModalCreateSheet from './ModalCreateSheet';
 import WorshipTime from '../../../components/WorshipTime';
 import ModalUpdateSheet from './ModalUpdateSheet';
 import uuid from 'react-native-uuid';
 import LocalRepositoryService from '../../../services/LocalRepositoryService';
+import {default as ShareRN} from 'react-native-share';
+import Utils from '../../../common/utils';
 
 const LeiturasView = ({route, navigation}) => {
   const params = route.params;
   const localRepository = new LocalRepositoryService();
+  const utils = new Utils();
 
   const {parent} = params;
   const [openModalCreate, setOpenModalCreate] = useState(false);
@@ -113,6 +117,56 @@ const LeiturasView = ({route, navigation}) => {
     });
   };
 
+  async function shareData() {
+    if (parent === 'LeiturasRapidas') {
+      await shareLeiturasRapidas();
+    } else {
+      await shareGeneric();
+    }
+  }
+
+  async function shareLeiturasRapidas() {
+    Keyboard.dismiss();
+    const shareContent = {
+      title: 'Compartilhar leitura',
+      message: `
+Olha a devocional que eu encontrei no Meu Devocional app!
+✨${params.titulo}
+✨${params.refBiblica}
+✨${params.desenvolvimento}
+✨${params.conclusao}
+✨${params.musica}
+`,
+    };
+
+    await Share.share(shareContent, {
+      dialogTitle: 'Compartilhar leitura',
+    });
+  }
+
+  async function shareGeneric() {
+    Keyboard.dismiss();
+
+    const shareContent = {
+      title: 'Compartilhar leitura',
+      url: utils.getImageToShare(params.storyImage),
+      backgroundImage: utils.getImageToShare(params.storyImage),
+      social: ShareRN.Social.INSTAGRAM_STORIES,
+      message: `
+Olha a devocional que eu encontrei no Meu Devocional app!
+✨${params.titulo}
+✨${params.refBiblica}
+✨${params.desenvolvimento}
+✨${params.conclusao}
+✨${params.musica}
+`,
+    };
+
+    try {
+      await ShareRN.open(shareContent);
+    } catch (e) {}
+  }
+
   return (
     <Layout>
       <ModalCreateSheet
@@ -161,7 +215,8 @@ const LeiturasView = ({route, navigation}) => {
                 <SaveIcon />
               </TouchableOpacity>
             )}
-            <ShareIcon />
+
+            <ShareIcon onPress={() => shareData()} />
           </RightWrapperHeader>
         </ContainerHeader>
       </Header>

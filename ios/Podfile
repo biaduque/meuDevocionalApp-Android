@@ -32,6 +32,8 @@ target 'MeuDevocional' do
 
   pod 'RNShare', :path => '../node_modules/react-native-share'
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'MeuDevocionalTests' do
     inherit! :complete
     # Pods for testing

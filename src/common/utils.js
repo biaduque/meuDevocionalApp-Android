@@ -1,5 +1,8 @@
 import {Animated} from 'react-native';
 import moment from 'moment';
+import cotidianoBase64 from '../assets/story/cotidiano/base64.json';
+import estudosBase64 from '../assets/story/estudos/base64.json';
+import vidaBase64 from '../assets/story/vida/base64.json';
 
 class Utils {
   constructor() {
@@ -92,6 +95,45 @@ class Utils {
       };
     }
   }
+
+  getImageToShare = storyImage => {
+    switch (storyImage) {
+      case 'cotidianoStory1':
+        return cotidianoBase64.cotidiano1;
+      case 'cotidianoStory2':
+        return cotidianoBase64.cotidiano2;
+      case 'cotidianoStory3':
+        return cotidianoBase64.cotidiano3;
+      case 'cotidianoStory4':
+        return cotidianoBase64.cotidiano4;
+      case 'cotidianoStory5':
+        return cotidianoBase64.cotidiano5;
+      case 'estudosStory1':
+        return estudosBase64.estudos1;
+      case 'estudosStory2':
+        return estudosBase64.estudos2;
+      case 'estudosStory3':
+        return estudosBase64.estudos3;
+      case 'estudosStory4':
+        return estudosBase64.estudos4;
+      case 'estudosStory5':
+        return estudosBase64.estudos5;
+      case 'vidaStory1':
+        return vidaBase64.vida1;
+      case 'vidaStory2':
+        return vidaBase64.vida2;
+      case 'vidaStory3':
+        return vidaBase64.vida3;
+      case 'vidaStory4':
+        return vidaBase64.vida4;
+      case 'vidaStory5':
+        return vidaBase64.vida5;
+      case 'vidaStory6':
+        return vidaBase64.vida6;
+      default:
+        return null;
+    }
+  };
 }
 
 export default Utils;

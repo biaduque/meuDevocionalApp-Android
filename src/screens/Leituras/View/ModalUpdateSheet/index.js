@@ -25,7 +25,6 @@ const ModalUpdateSheet = ({
   handleClose,
   itemToUpdate,
 }) => {
-  const navigation = useNavigation();
   const localRepository = new LocalRepositoryService();
 
   async function openScreen() {

@@ -39,6 +39,7 @@ const RepeaterVidaComDeus = ({item}) => {
       reflexao: item.reflexao,
       conclusao: item.conclusao,
       refBiblica: item.baseBiblica,
+      storyImage: item.storyImage,
       musica: item.link,
     });
   };
