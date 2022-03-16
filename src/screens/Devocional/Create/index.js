@@ -57,14 +57,19 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       setTitle(params.titulo);
       if (params.refBiblica != null) {
         const livro = params.refBiblica.split(' ')[0];
-        const capitulo = params.refBiblica.split(' ')[1].split(':')[0];
-        const versiculo = params.refBiblica.split(' ')[1].split(':')[1];
+
+        const assertCapVers = params.refBiblica
+          .replace(/\w+\s+/g, '')
+          .replace(/\s/g, '');
+
+        const capitulo = assertCapVers.split(':')[0];
+        const versiculo = assertCapVers.split(':')[1];
 
         setBook(livro);
         setChapter(capitulo);
         setVersicle(versiculo);
         setMusic(params.musica || params.link);
-        setDescription(params.reflexao);
+        setDescription(params.desenvolvimento);
       }
     }
 

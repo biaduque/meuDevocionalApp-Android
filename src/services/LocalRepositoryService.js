@@ -4,6 +4,7 @@ class LocalRepositoryService {
   constructor() {
     this.DEVOCIONAL_LIST_KEY = '@meudevocional-devocionais';
     this.MURAL_LIST_KEY = '@meudevocional-mural';
+    this.LEITURAS_LIST_KEY = '@meudevocional-leituras';
   }
 
   async get(key, isObject = false) {
