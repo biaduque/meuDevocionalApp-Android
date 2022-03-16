@@ -30,6 +30,8 @@ target 'MeuDevocional' do
 
   pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
 
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
   target 'MeuDevocionalTests' do
     inherit! :complete
     # Pods for testing
