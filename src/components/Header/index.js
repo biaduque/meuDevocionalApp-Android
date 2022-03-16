@@ -5,6 +5,7 @@ import {
   Container,
   InfoIcon,
   PlusIcon,
+  SearchIcon,
   TitleScreen,
 } from './styles';
 import {useNavigation} from '@react-navigation/core';
@@ -37,6 +38,17 @@ const Header = ({title, animatedValue}) => {
     }
   };
 
+  const verifyTitleSearchButton = () => {
+    switch (title) {
+      case 'Leituras':
+        return false;
+      case 'Meus Devocionais':
+        return true;
+      case 'Mural':
+        return false;
+    }
+  };
+
   const onPressInfoButton = () => {
     switch (title) {
       case 'Leituras':
@@ -59,6 +71,10 @@ const Header = ({title, animatedValue}) => {
         navigation.navigate('CreateMural');
         break;
     }
+  };
+
+  const navigateTo = path => {
+    navigation.navigate(path);
   };
 
   const fadeOut = () => {
@@ -126,18 +142,29 @@ const Header = ({title, animatedValue}) => {
           </Animated.Text>
         </View>
 
-        {verifyTitlePlusButton() && (
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => navigateToCreate()}>
-            <PlusIcon />
-          </TouchableOpacity>
-        )}
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          {verifyTitleSearchButton() && (
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => navigateTo('SearchDevocionais')}>
+              <SearchIcon />
+            </TouchableOpacity>
+          )}
+
+          {verifyTitlePlusButton() && (
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => navigateToCreate()}>
+              <PlusIcon />
+            </TouchableOpacity>
+          )}
+        </View>
       </Container>
 
       <TitleScreen
         style={{
           opacity: fadeOut().opacity,
+          marginTop: 36,
         }}>
         {title}
       </TitleScreen>

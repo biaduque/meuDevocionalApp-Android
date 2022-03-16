@@ -8,6 +8,7 @@ import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import InfoGeneric from '../screens/InfoGeneric';
 import MyDevotionalView from '../screens/Devocional/View';
+import SearchDevocionais from '../fragments/SearchDevocionais';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,14 @@ const StackRoutes = () => {
       <Stack.Screen
         name="CreateDevotional"
         component={CreateDevotional}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.ScaleFromCenterAndroid,
+        }}
+      />
+      <Stack.Screen
+        name="SearchDevocionais"
+        component={SearchDevocionais}
         options={{
           gestureEnabled: true,
           ...TransitionPresets.ScaleFromCenterAndroid,
