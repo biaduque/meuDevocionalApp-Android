@@ -8,7 +8,7 @@ const Estudos = () => {
 
   return (
     <Layout>
-      <TitleScreen>Estudos</TitleScreen>
+      <TitleScreen>Estudos Biblícos</TitleScreen>
 
       <FlatList
         horizontal
