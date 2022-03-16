@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {
   AnnotationsTextArea,
   AnnotationsWrapper,
+  BackdropBackgroundHeader,
   BackIcon,
   CustomizedContent,
   EditIcon,
@@ -11,6 +12,7 @@ import {
   LeftWrapperHeader,
   MinhaAplicacaoWrapper,
   RightWrapperHeader,
+  SaveIcon,
   ShareIcon,
   Text,
   TextVersiculo,
@@ -43,7 +45,7 @@ const LeiturasView = ({route, navigation}) => {
   };
 
   return (
-    <Layout scrollEnabled={!openModalCreate}>
+    <Layout>
       <ModalCreateSheet
         height={Dimensions.get('window').height}
         open={openModalCreate}
@@ -57,7 +59,10 @@ const LeiturasView = ({route, navigation}) => {
       />
 
       <Header>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <BackdropBackgroundHeader />
+        <TouchableOpacity
+          style={{paddingLeft: 14}}
+          onPress={() => navigation.goBack()}>
           <LeftWrapperHeader>
             <BackIcon />
             <TitleBackScreen>Leituras</TitleBackScreen>
@@ -67,12 +72,18 @@ const LeiturasView = ({route, navigation}) => {
         <View />
 
         <RightWrapperHeader>
-          <EditIcon onPress={() => handleOpenCreateDevotional()} />
+          {parent === 'LeiturasRapidas' ? (
+            <EditIcon onPress={() => handleOpenCreateDevotional()} />
+          ) : (
+            <SaveIcon onPress={() => handleOpenCreateDevotional()} />
+          )}
           <ShareIcon />
         </RightWrapperHeader>
       </Header>
 
-      <ScrollView>
+      <ScrollView
+        scrollEnabled={!openModalCreate}
+        showsVerticalScrollIndicator={false}>
         <WrapperText>
           {params.titulo !== '' && <TitleSection>{params.titulo}</TitleSection>}
 

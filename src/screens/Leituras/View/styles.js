@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import Feather from 'react-native-vector-icons/Feather';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {BlurView} from '@react-native-community/blur';
 
 export const Layout = styled.View`
   flex: 1;
@@ -8,18 +8,37 @@ export const Layout = styled.View`
   position: relative;
 `;
 
-export const Header = styled.View`
+export const Header = styled(BlurView).attrs({
+  blurType: 'dark',
+  blurAmount: 10,
+  blurRadius: 10,
+  overlayColor: 'transparent',
+  reducedTransparencyFallbackColor: 'black',
+})`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px 15px;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  background: ${({theme}) => theme.colors.background};
   z-index: 1;
   height: 62px;
+`;
+
+export const BackdropBackgroundHeader = styled.View`
+  background: ${({theme}) => theme.colors.background};
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+
+  width: 100%;
+  padding: 20px;
+  height: 62px;
+  opacity: 0.7;
 `;
 
 export const LeftWrapperHeader = styled.View`
@@ -42,6 +61,7 @@ export const TitleScreen = styled.Text`
 export const RightWrapperHeader = styled.View`
   flex-direction: row;
   align-items: center;
+  padding-right: 24px;
 `;
 
 export const BackIcon = styled(Feather).attrs({
@@ -58,9 +78,16 @@ export const EditIcon = styled(Feather).attrs({
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 
-export const ShareIcon = styled(EvilIcons).attrs({
-  name: 'share-apple',
-  size: 34,
+export const SaveIcon = styled(Feather).attrs({
+  name: 'save',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+`;
+
+export const ShareIcon = styled(Feather).attrs({
+  name: 'share',
+  size: 24,
 })`
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
   margin-left: 20px;
