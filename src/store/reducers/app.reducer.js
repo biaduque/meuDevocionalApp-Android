@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   activeTab: 'Leituras',
   theme: colorScheme === 'dark' ? dark : light,
   offset: new Animated.Value(0),
+  isLoaded: false,
 };
 
 const appReducer = (state = INITIAL_STATE, {type, payload}) => {
@@ -22,10 +23,10 @@ const appReducer = (state = INITIAL_STATE, {type, payload}) => {
         ...state,
         theme: payload,
       };
-    case ActionTypes.app.SET_OFFSET:
+    case ActionTypes.app.SET_IS_LOADED:
       return {
         ...state,
-        offset: payload,
+        isLoaded: payload,
       };
     default:
       return state;

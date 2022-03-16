@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Animated} from 'react-native';
 import {Container, Layout, WrapperContent} from './styles';
 import LeiturasRapidas from './LeiturasRapidas';

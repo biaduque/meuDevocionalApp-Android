@@ -7,8 +7,10 @@ import store from './src/store';
 import {PortalProvider} from '@gorhom/portal';
 import {ThemeProvider} from 'styled-components';
 import {dark, light} from './src/styles/themes';
+import AnimatedSplash from 'react-native-animated-splash-screen';
 
 const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [themeApp, setThemeApp] = useState(
     Appearance.getColorScheme() === 'dark' ? dark : light,
   );
@@ -27,13 +29,30 @@ const App = () => {
     };
   }, [updateColorScheme]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 3000);
+  }, []);
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={themeApp}>
         <PortalProvider>
           <SafeAreaView style={styles.container}>
             <IconlyProvider>
-              <Routes currentTheme={themeApp.name} />
+              {!isLoaded && (
+                <AnimatedSplash
+                  translucent={true}
+                  isLoaded={isLoaded}
+                  logoImage={require('./assets/logo.png')}
+                  backgroundColor={'#8BA293'}
+                  logoHeight={150}
+                  logoWidth={150}
+                />
+              )}
+
+              {isLoaded && <Routes currentTheme={themeApp.name} />}
             </IconlyProvider>
           </SafeAreaView>
         </PortalProvider>
