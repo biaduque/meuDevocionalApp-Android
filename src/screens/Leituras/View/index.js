@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   AnnotationsTextArea,
   AnnotationsWrapper,
@@ -23,13 +23,22 @@ import {
   UncheckIcon,
   WrapperText,
 } from './styles';
-import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Keyboard,
+} from 'react-native';
 import ModalCreateSheet from './ModalCreateSheet';
 import WorshipTime from '../../../components/WorshipTime';
 import ModalUpdateSheet from './ModalUpdateSheet';
+import uuid from 'react-native-uuid';
+import LocalRepositoryService from '../../../services/LocalRepositoryService';
 
 const LeiturasView = ({route, navigation}) => {
   const params = route.params;
+  const localRepository = new LocalRepositoryService();
 
   const {parent} = params;
   const [openModalCreate, setOpenModalCreate] = useState(false);
@@ -37,8 +46,42 @@ const LeiturasView = ({route, navigation}) => {
   const [aplicacao1, setAplicacao1] = useState('');
   const [aplicacao2, setAplicacao2] = useState('');
   const [aplicacao3, setAplicacao3] = useState('');
+  const [reflexao, setReflexao] = useState('');
+  const [itemToUpdate, setItemToUpdate] = useState({});
+
+  useEffect(() => {
+    async function getData() {
+      const data = await localRepository.get(
+        localRepository.LEITURAS_LIST_KEY,
+        true,
+      );
+
+      if (data != null) {
+        const currentItem = data.find(
+          item => item.localId === params.id && item.type === parent,
+        );
+
+        if (currentItem != null) {
+          const aplicacao1 = currentItem.aplicacao1;
+          const aplicacao2 = currentItem.aplicacao2;
+          const aplicacao3 = currentItem.aplicacao3;
+          const reflexao = currentItem.reflexao;
+
+          setAplicacao1(aplicacao1);
+          setAplicacao2(aplicacao2);
+          setAplicacao3(aplicacao3);
+          setReflexao(reflexao);
+        }
+      }
+    }
+
+    getData();
+
+    return () => {};
+  }, []);
 
   const handleOpenCreateDevotional = () => {
+    Keyboard.dismiss();
     setOpenModalCreate(true);
   };
 
@@ -47,7 +90,17 @@ const LeiturasView = ({route, navigation}) => {
   };
 
   const handleOpenUpdateDevotional = () => {
+    Keyboard.dismiss();
     setOpenModalUpdate(true);
+    setItemToUpdate({
+      localId: params.id,
+      id: uuid.v4(),
+      type: parent,
+      aplicacao1,
+      aplicacao2,
+      aplicacao3,
+      reflexao,
+    });
   };
 
   const handleCloseUpdateDevotional = () => {
@@ -77,7 +130,7 @@ const LeiturasView = ({route, navigation}) => {
       <ModalUpdateSheet
         height={Dimensions.get('window').height}
         open={openModalUpdate}
-        itemLeitura={params}
+        itemToUpdate={itemToUpdate}
         handleClose={handleCloseUpdateDevotional}
         title={'Atualizar Dados'}
         description={'Deseja atualizar os dados?'}
@@ -100,9 +153,13 @@ const LeiturasView = ({route, navigation}) => {
 
           <RightWrapperHeader>
             {parent === 'LeiturasRapidas' ? (
-              <EditIcon onPress={() => handleOpenCreateDevotional()} />
+              <TouchableOpacity onPress={() => handleOpenCreateDevotional()}>
+                <EditIcon />
+              </TouchableOpacity>
             ) : (
-              <SaveIcon onPress={() => handleOpenUpdateDevotional()} />
+              <TouchableOpacity onPress={() => handleOpenUpdateDevotional()}>
+                <SaveIcon />
+              </TouchableOpacity>
             )}
             <ShareIcon />
           </RightWrapperHeader>
@@ -159,8 +216,9 @@ const LeiturasView = ({route, navigation}) => {
               <MinhaAplicacaoWrapper>
                 {aplicacao1 !== '' ? <CheckedIcon /> : <UncheckIcon />}
                 <InputAplicacao
-                  onChangeText={setAplicacao1}
                   placeholder={'Como posso aplicar isso na minha vida?'}
+                  onChangeText={setAplicacao1}
+                  value={aplicacao1}
                 />
               </MinhaAplicacaoWrapper>
 
@@ -169,14 +227,16 @@ const LeiturasView = ({route, navigation}) => {
                 <InputAplicacao
                   placeholder={'Como posso aplicar isso na minha vida?'}
                   onChangeText={setAplicacao2}
+                  value={aplicacao2}
                 />
               </MinhaAplicacaoWrapper>
 
               <MinhaAplicacaoWrapper>
                 {aplicacao3 !== '' ? <CheckedIcon /> : <UncheckIcon />}
                 <InputAplicacao
-                  onChangeText={setAplicacao3}
                   placeholder={'Como posso aplicar isso na minha vida?'}
+                  onChangeText={setAplicacao3}
+                  value={aplicacao3}
                 />
               </MinhaAplicacaoWrapper>
             </WrapperText>
@@ -189,7 +249,11 @@ const LeiturasView = ({route, navigation}) => {
 
             <AnnotationsWrapper>
               <TitleSection>Anotações</TitleSection>
-              <AnnotationsTextArea placeholder={'Comece a escrever...'} />
+              <AnnotationsTextArea
+                placeholder={'Comece a escrever...'}
+                onChangeText={setReflexao}
+                value={reflexao}
+              />
             </AnnotationsWrapper>
           </CustomizedContent>
         )}

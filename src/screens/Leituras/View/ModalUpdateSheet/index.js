@@ -15,6 +15,7 @@ import {
   WrapperTopContent,
 } from './styles';
 import {useNavigation} from '@react-navigation/core';
+import LocalRepositoryService from '../../../../services/LocalRepositoryService';
 
 const ModalUpdateSheet = ({
   title,
@@ -22,14 +23,17 @@ const ModalUpdateSheet = ({
   titleConfirm,
   open,
   handleClose,
-  itemLeitura,
+  itemToUpdate,
 }) => {
   const navigation = useNavigation();
+  const localRepository = new LocalRepositoryService();
 
   async function openScreen() {
-    navigation.navigate('CreateDevotional', {
-      ...itemLeitura,
-    });
+    await localRepository.set(
+      localRepository.LEITURAS_LIST_KEY,
+      itemToUpdate,
+      true,
+    );
 
     handleClose();
   }

@@ -130,9 +130,8 @@ export const MinhaAplicacaoWrapper = styled.View`
 
 export const InputAplicacao = styled.TextInput.attrs({
   placeholderTextColor: '#ccc',
-  returnKeyType: 'next',
 })`
-  width: 100%;
+  flex: 1;
   border-color: ${({theme}) => theme.createDevotionalModal.borderColor};
   border-width: 1px;
   border-radius: 8px;
