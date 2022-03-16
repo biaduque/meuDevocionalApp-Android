@@ -4,6 +4,7 @@ import {
   AnnotationsWrapper,
   BackdropBackgroundHeader,
   BackIcon,
+  CheckedIcon,
   ContainerHeader,
   CustomizedContent,
   EditIcon,
@@ -19,17 +20,23 @@ import {
   TextVersiculo,
   TitleBackScreen,
   TitleSection,
+  UncheckIcon,
   WrapperText,
 } from './styles';
 import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
 import ModalCreateSheet from './ModalCreateSheet';
 import WorshipTime from '../../../components/WorshipTime';
+import ModalUpdateSheet from './ModalUpdateSheet';
 
 const LeiturasView = ({route, navigation}) => {
   const params = route.params;
 
   const {parent} = params;
   const [openModalCreate, setOpenModalCreate] = useState(false);
+  const [openModalUpdate, setOpenModalUpdate] = useState(false);
+  const [aplicacao1, setAplicacao1] = useState('');
+  const [aplicacao2, setAplicacao2] = useState('');
+  const [aplicacao3, setAplicacao3] = useState('');
 
   const handleOpenCreateDevotional = () => {
     setOpenModalCreate(true);
@@ -37,6 +44,14 @@ const LeiturasView = ({route, navigation}) => {
 
   const handleCloseCreateDevotional = () => {
     setOpenModalCreate(false);
+  };
+
+  const handleOpenUpdateDevotional = () => {
+    setOpenModalUpdate(true);
+  };
+
+  const handleCloseUpdateDevotional = () => {
+    setOpenModalUpdate(false);
   };
 
   const navigateToMusic = () => {
@@ -59,6 +74,16 @@ const LeiturasView = ({route, navigation}) => {
         titleConfirm={'Criar nova devocional'}
       />
 
+      <ModalUpdateSheet
+        height={Dimensions.get('window').height}
+        open={openModalUpdate}
+        itemLeitura={params}
+        handleClose={handleCloseUpdateDevotional}
+        title={'Atualizar Dados'}
+        description={'Deseja atualizar os dados?'}
+        titleConfirm={'Atualizar'}
+      />
+
       <Header>
         <BackdropBackgroundHeader />
         <ContainerHeader>
@@ -77,7 +102,7 @@ const LeiturasView = ({route, navigation}) => {
             {parent === 'LeiturasRapidas' ? (
               <EditIcon onPress={() => handleOpenCreateDevotional()} />
             ) : (
-              <SaveIcon onPress={() => handleOpenCreateDevotional()} />
+              <SaveIcon onPress={() => handleOpenUpdateDevotional()} />
             )}
             <ShareIcon />
           </RightWrapperHeader>
@@ -132,19 +157,25 @@ const LeiturasView = ({route, navigation}) => {
                 Minha aplicação
               </TitleSection>
               <MinhaAplicacaoWrapper>
+                {aplicacao1 !== '' ? <CheckedIcon /> : <UncheckIcon />}
                 <InputAplicacao
+                  onChangeText={setAplicacao1}
                   placeholder={'Como posso aplicar isso na minha vida?'}
                 />
               </MinhaAplicacaoWrapper>
 
               <MinhaAplicacaoWrapper>
+                {aplicacao2 !== '' ? <CheckedIcon /> : <UncheckIcon />}
                 <InputAplicacao
                   placeholder={'Como posso aplicar isso na minha vida?'}
+                  onChangeText={setAplicacao2}
                 />
               </MinhaAplicacaoWrapper>
 
               <MinhaAplicacaoWrapper>
+                {aplicacao3 !== '' ? <CheckedIcon /> : <UncheckIcon />}
                 <InputAplicacao
+                  onChangeText={setAplicacao3}
                   placeholder={'Como posso aplicar isso na minha vida?'}
                 />
               </MinhaAplicacaoWrapper>

@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
-import Feather from 'react-native-vector-icons/Feather';
 import {BlurView} from '@react-native-community/blur';
+import Feather from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const Layout = styled.View`
   flex: 1;
@@ -8,34 +9,28 @@ export const Layout = styled.View`
   position: relative;
 `;
 
-export const Header = styled(BlurView).attrs({
-  blurType: 'dark',
-  blurAmount: 10,
-  blurRadius: 10,
-  overlayColor: 'transparent',
-  reducedTransparencyFallbackColor: 'black',
-})`
+export const Header = styled.View`
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1;
-  height: 62px;
+  height: 60px;
 `;
 
 export const BackdropBackgroundHeader = styled.View`
   background: ${({theme}) => theme.colors.background};
+  opacity: 0.9;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 1;
 
   width: 100%;
   padding: 20px;
   height: 65px;
-  opacity: 0.7;
 `;
 
 export const ContainerHeader = styled.View`
@@ -43,7 +38,7 @@ export const ContainerHeader = styled.View`
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  height: 62px;
+  height: 60px;
 `;
 
 export const LeftWrapperHeader = styled.View`
@@ -96,6 +91,24 @@ export const ShareIcon = styled(Feather).attrs({
 })`
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
   margin-left: 20px;
+`;
+
+export const UncheckIcon = styled(AntDesign).attrs({
+  name: 'checkcircleo',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  margin-right: 10px;
+  margin-bottom: 10px;
+`;
+
+export const CheckedIcon = styled(AntDesign).attrs({
+  name: 'checkcircle',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  margin-right: 10px;
+  margin-bottom: 10px;
 `;
 
 export const WrapperText = styled.View`
