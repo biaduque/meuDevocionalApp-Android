@@ -18,7 +18,6 @@ const StackRoutes = () => {
         headerShown: false,
         animation: 'none',
         headerStyle: {height: 0},
-        cardOverlayEnabled: true,
       }}
       initialRouteName={'OnBoarding'}>
       <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
@@ -70,6 +69,8 @@ const StackRoutes = () => {
         options={{
           gestureEnabled: true,
           ...TransitionPresets.ScaleFromCenterAndroid,
+          cardStyle: {backgroundColor: 'transparent'},
+          cardOverlayEnabled: true,
         }}
       />
     </Stack.Navigator>

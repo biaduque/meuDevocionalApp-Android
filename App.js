@@ -1,12 +1,11 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Appearance, SafeAreaView, StyleSheet} from 'react-native';
 import {Routes} from './src/routes';
 import {IconlyProvider} from 'react-native-iconly';
 import {Provider} from 'react-redux';
 import store from './src/store';
 import {PortalProvider} from '@gorhom/portal';
 import {ThemeProvider} from 'styled-components';
-import {Appearance} from 'react-native';
 import {dark, light} from './src/styles/themes';
 
 const App = () => {
@@ -34,7 +33,7 @@ const App = () => {
         <PortalProvider>
           <SafeAreaView style={styles.container}>
             <IconlyProvider>
-              <Routes />
+              <Routes currentTheme={themeApp.name} />
             </IconlyProvider>
           </SafeAreaView>
         </PortalProvider>
