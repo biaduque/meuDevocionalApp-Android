@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   ButtonOkWorship,
-  CircleColorButton,
   Container,
   Form,
   LabelInfo,
@@ -18,13 +17,7 @@ import {
   WrapperReflexao,
   WrapperWorship,
 } from './styles';
-import {
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  Alert,
-  Vibration,
-} from 'react-native';
+import {Text, TouchableOpacity, Alert, Vibration} from 'react-native';
 import LocalRepositoryService from '../../../services/LocalRepositoryService';
 import {useDispatch, useSelector} from 'react-redux';
 import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
@@ -62,8 +55,22 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   useEffect(() => {
     if (params != null) {
       setTitle(params.titulo);
-      setBook(params.refBiblica.split(' ')[0]);
-      setChapter(params.refBiblica);
+      if (params.refBiblica != null) {
+        const livro = params.refBiblica.split(' ')[0];
+
+        const assertCapVers = params.refBiblica
+          .replace(/\w+\s+/g, '')
+          .replace(/\s/g, '');
+
+        const capitulo = assertCapVers.split(':')[0];
+        const versiculo = assertCapVers.split(':')[1];
+
+        setBook(livro);
+        setChapter(capitulo);
+        setVersicle(versiculo);
+        setMusic(params.musica || params.link);
+        setDescription(params.desenvolvimento);
+      }
     }
 
     return () => {};
@@ -75,8 +82,6 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
-    // se apagar a imagem do mural, o background fica da cor do bg do texto.
-
     const concatCapVerse = versicle !== '' ? `${chapter}:${versicle}` : chapter;
 
     const data = {
@@ -90,7 +95,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       backgroundImage: '',
       reflexao: description ? description : '',
       link: music === '' ? null : music,
-      createdAt: moment().format('DD/MM/YYYY'),
+      createdAt: moment().format('DD/MM/YYYY HH:mm:ss'),
     };
 
     const ret = await repositoryService.set(

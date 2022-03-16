@@ -61,7 +61,7 @@ const CreateMural = ({route, navigation}) => {
       titulo: title,
       backgroundColor: selectedColor,
       backgroundImage: backgroundImage,
-      createdAt: moment().format('DD/MM/YYYY'),
+      createdAt: moment().format('DD/MM/YYYY HH:mm:ss'),
     };
 
     const ret = await repositoryService.set(

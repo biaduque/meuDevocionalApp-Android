@@ -1,3 +1,4 @@
+import {Animated} from 'react-native';
 import styled from 'styled-components/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -33,14 +34,13 @@ export const BackdropBackground = styled.View`
   bottom: 0;
 `;
 
-export const TitleScreen = styled.Text`
+export const TitleScreen = styled(Animated.Text)`
   font-size: 36px;
-  font-weight: 400;
-  color: ${({theme}) => theme.colors.titlePrimary};
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 100px;
-  margin-top: 100px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: ${({theme}) => theme.colors.titlePrimary};
 `;
 
 export const InfoIcon = styled(AntDesign).attrs({

@@ -95,33 +95,15 @@ export const Text = styled.Text`
   margin-top: 10px;
 `;
 
-export const Footer = styled.View`
-  margin-bottom: 60px;
-  padding: 20px;
-`;
-
-export const WorshipTimeWrapper = styled.TouchableOpacity.attrs({
-  activeOpacity: 1,
-})`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-top: 20px;
-  height: 80px;
-`;
-
-export const ImageBackground = styled.Image`
-  width: 100%;
-  height: 100%;
-`;
+export const Footer = styled.View``;
 
 export const TagsWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: -40px;
+  padding: 0 20px;
   width: 100%;
+  margin-bottom: 30px;
 `;
 
 export const Tag = styled.Text`

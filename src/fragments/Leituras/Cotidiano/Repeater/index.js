@@ -36,7 +36,8 @@ const RepeaterCotidiano = ({item}) => {
       reflexao: item.reflexao,
       conclusao: item.conclusao,
       refBiblica: item.baseBiblica,
-      musica: item.musica,
+      storyImage: item.storyImage,
+      musica: item.link,
     });
   };
 
