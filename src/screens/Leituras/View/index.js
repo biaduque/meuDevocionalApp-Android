@@ -4,6 +4,7 @@ import {
   AnnotationsWrapper,
   BackdropBackgroundHeader,
   BackIcon,
+  ContainerHeader,
   CustomizedContent,
   EditIcon,
   Header,
@@ -60,25 +61,27 @@ const LeiturasView = ({route, navigation}) => {
 
       <Header>
         <BackdropBackgroundHeader />
-        <TouchableOpacity
-          style={{paddingLeft: 14}}
-          onPress={() => navigation.goBack()}>
-          <LeftWrapperHeader>
-            <BackIcon />
-            <TitleBackScreen>Leituras</TitleBackScreen>
-          </LeftWrapperHeader>
-        </TouchableOpacity>
+        <ContainerHeader>
+          <TouchableOpacity
+            style={{paddingLeft: 14}}
+            onPress={() => navigation.goBack()}>
+            <LeftWrapperHeader>
+              <BackIcon />
+              <TitleBackScreen>Leituras</TitleBackScreen>
+            </LeftWrapperHeader>
+          </TouchableOpacity>
 
-        <View />
+          <View />
 
-        <RightWrapperHeader>
-          {parent === 'LeiturasRapidas' ? (
-            <EditIcon onPress={() => handleOpenCreateDevotional()} />
-          ) : (
-            <SaveIcon onPress={() => handleOpenCreateDevotional()} />
-          )}
-          <ShareIcon />
-        </RightWrapperHeader>
+          <RightWrapperHeader>
+            {parent === 'LeiturasRapidas' ? (
+              <EditIcon onPress={() => handleOpenCreateDevotional()} />
+            ) : (
+              <SaveIcon onPress={() => handleOpenCreateDevotional()} />
+            )}
+            <ShareIcon />
+          </RightWrapperHeader>
+        </ContainerHeader>
       </Header>
 
       <ScrollView

@@ -15,9 +15,6 @@ export const Header = styled(BlurView).attrs({
   overlayColor: 'transparent',
   reducedTransparencyFallbackColor: 'black',
 })`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   position: absolute;
   top: 0;
   right: 0;
@@ -37,8 +34,16 @@ export const BackdropBackgroundHeader = styled.View`
 
   width: 100%;
   padding: 20px;
-  height: 62px;
+  height: 65px;
   opacity: 0.7;
+`;
+
+export const ContainerHeader = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  height: 62px;
 `;
 
 export const LeftWrapperHeader = styled.View`
