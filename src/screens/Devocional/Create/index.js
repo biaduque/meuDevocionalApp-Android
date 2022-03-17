@@ -24,6 +24,7 @@ import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
 import uuid from 'react-native-uuid';
 import CustomRadioButton from '../../../components/CustomRadioButton';
 import moment from 'moment';
+import ModalWarningBackSheet from './ModalWarningBack';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;
@@ -41,6 +42,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   const input8 = useRef();
   const input9 = useRef();
 
+  const [isVisibleWarningModal, setIsVisibleWarningModal] = useState(false);
   const [title, setTitle] = useState('');
   const [book, setBook] = useState('');
   const [chapter, setChapter] = useState('');
@@ -76,9 +78,21 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     return () => {};
   }, [params]);
 
-  const handleBackScreen = () => {
+  const canGoBack = () => {
     navigation.goBack();
   };
+
+  const handleBackScreen = () => {
+    handleOpenWarningModal();
+  };
+
+  function handleOpenWarningModal() {
+    setIsVisibleWarningModal(true);
+  }
+
+  function handleCloseWarningModal() {
+    setIsVisibleWarningModal(false);
+  }
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
@@ -127,6 +141,15 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   return (
     <Container>
+      <ModalWarningBackSheet
+        title={'Tem certeza que deseja descartar esta nova devocional?'}
+        description={'Se sair, as informações não serão salvas.'}
+        onPress={canGoBack}
+        handleClose={handleCloseWarningModal}
+        open={isVisibleWarningModal}
+        titleCancel={'Ignorar alterações'}
+        titleConfirm={'Continuar Editando'}
+      />
       <ScrollView>
         <TextTitle>Cor</TextTitle>
         <WrapperColorButtons>

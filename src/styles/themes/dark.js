@@ -19,6 +19,8 @@ export default {
     yellow1: '#EEC38D',
     yellow2: '#F8DEAC',
     yellow3: '#FCEFD2',
+
+    blueConfirmation: '#2c8cfd',
   },
   colorsLeituraRapidaScreen: {
     titleSection: '#829769',

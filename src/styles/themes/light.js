@@ -19,6 +19,16 @@ export default {
     yellow1: '#ECBA7D',
     yellow2: '#F7D9A0',
     yellow3: '#FCEDCB',
+
+    blueConfirmation: '#0979FD',
+  },
+  createDevotionalModal: {
+    selectionBg: '#fff',
+    buttonSave: '#D9AB75',
+    buttonCancel: '#EB5545',
+    borderColor: '#F2F2F2',
+    footerBackground: '#3F3F3F',
+    buttonOkMusic: '#fff',
   },
   colorsLeituraRapidaScreen: {
     selectionBg: '#000',

@@ -89,7 +89,10 @@ const MyDevotionalView = ({route, navigation}) => {
         <RightWrapperHeader>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center'}}>
+            {/*TODO: abrir modal de criação com os params preenchidos.*/}
             <EditIcon onPress={() => handleOpenCreateDevotional()} />
+
+            {/*TODO: share: titulo, ref biblica, reflexao, musica.*/}
             <ShareIcon />
           </TouchableOpacity>
         </RightWrapperHeader>
@@ -126,17 +129,17 @@ const MyDevotionalView = ({route, navigation}) => {
 
         <TagsWrapper>
           {params.devotional.aplicacao1 !== '' && (
-            <Tag color={params.colors.tagsBackground}>
+            <Tag color={params.colors.background}>
               {params.devotional.aplicacao1}
             </Tag>
           )}
           {params.devotional.aplicacao2 !== '' && (
-            <Tag color={params.colors.tagsBackground}>
+            <Tag color={params.colors.background}>
               {params.devotional.aplicacao2}
             </Tag>
           )}
           {params.devotional.aplicacao3 !== '' && (
-            <Tag color={params.colors.tagsBackground}>
+            <Tag color={params.colors.background}>
               {params.devotional.aplicacao3}
             </Tag>
           )}

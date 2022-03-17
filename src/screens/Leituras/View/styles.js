@@ -48,13 +48,13 @@ export const LeftWrapperHeader = styled.View`
 
 export const TitleBackScreen = styled.Text`
   font-size: 20px;
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
 `;
 
 export const TitleScreen = styled.Text`
   font-size: 22px;
   font-weight: 500;
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
   margin-right: 20px;
 `;
 
@@ -68,28 +68,28 @@ export const BackIcon = styled(Feather).attrs({
   name: 'chevron-left',
   size: 32,
 })`
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
 `;
 
 export const EditIcon = styled(Feather).attrs({
   name: 'edit',
   size: 24,
 })`
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
 `;
 
 export const SaveIcon = styled(Feather).attrs({
   name: 'save',
   size: 24,
 })`
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
 `;
 
 export const ShareIcon = styled(Feather).attrs({
-  name: 'share',
+  name: 'share-2',
   size: 24,
 })`
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
   margin-left: 20px;
 `;
 
@@ -97,7 +97,7 @@ export const UncheckIcon = styled(AntDesign).attrs({
   name: 'checkcircleo',
   size: 24,
 })`
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
   margin-right: 10px;
   margin-bottom: 10px;
 `;
@@ -106,7 +106,7 @@ export const CheckedIcon = styled(AntDesign).attrs({
   name: 'checkcircle',
   size: 24,
 })`
-  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  color: ${({theme}) => theme.colors.accent};
   margin-right: 10px;
   margin-bottom: 10px;
 `;
@@ -149,13 +149,15 @@ export const TitleSection = styled.Text`
 
 export const TextVersiculo = styled.Text`
   font-size: 20px;
+  line-height: 26px;
+  font-style: italic;
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.text};
   font-weight: 300;
   margin-top: 10px;
 `;
 
 export const Text = styled.Text`
-  font-size: 18px;
+  font-size: 20px;
   line-height: 26px;
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.text};
   font-weight: 400;

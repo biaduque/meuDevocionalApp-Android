@@ -24,7 +24,7 @@ const LeiturasRapidas = () => {
           return item;
         });
 
-        setLeiturasRapidas(data);
+        setLeiturasRapidas(data.reverse());
         setLoading(false);
       } catch (e) {
         setLoading(true);

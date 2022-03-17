@@ -28,6 +28,12 @@ const appReducer = (state = INITIAL_STATE, {type, payload}) => {
         ...state,
         isLoaded: payload,
       };
+    case ActionTypes.app.SET_OFFSET:
+      return {
+        ...state,
+        offset: payload,
+      };
+
     default:
       return state;
   }

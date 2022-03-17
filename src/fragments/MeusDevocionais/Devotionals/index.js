@@ -17,6 +17,7 @@ import YellowBook3 from '../../../assets/illustrations/book-amarelo3.png';
 import {useNavigation} from '@react-navigation/core';
 import Utils from '../../../common/utils';
 import {useSelector} from 'react-redux';
+import moment from 'moment';
 
 const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
   const utils = new Utils();
@@ -67,9 +68,10 @@ const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
                 fontSize: 16,
                 marginBottom: 20,
                 opacity: 0.6,
+                fontWeight: 'bold',
                 color: parseColors().titulo,
               }}>
-              {devotional.createdAt}
+              {moment(devotional.date).format('DD/MM/YYYY')}
             </Text>
             <Title color={parseColors().titulo}>{devotional.titulo}</Title>
             <BaseBiblica color={parseColors().baseBiblica}>

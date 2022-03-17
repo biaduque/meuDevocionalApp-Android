@@ -1,5 +1,5 @@
 import React from 'react';
-import {Animated, TouchableOpacity, View} from 'react-native';
+import {Animated, TouchableOpacity, View, StatusBar} from 'react-native';
 import {
   BackdropBackground,
   Container,
