@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import Feather from 'react-native-vector-icons/Feather';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 export const Layout = styled.View`
   flex: 1;
@@ -59,9 +58,9 @@ export const EditIcon = styled(Feather).attrs({
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 
-export const ShareIcon = styled(EvilIcons).attrs({
-  name: 'share-apple',
-  size: 34,
+export const ShareIcon = styled(Feather).attrs({
+  name: 'share-2',
+  size: 24,
 })`
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
   margin-left: 20px;
@@ -113,4 +112,15 @@ export const Tag = styled.Text`
   width: 30%;
   border-radius: 4px;
   text-align: center;
+  opacity: 0.7;
+`;
+
+export const BackdropBackground = styled.View`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: ${({theme}) => theme.colors.background};
+  z-index: -1;
 `;

@@ -4,9 +4,12 @@ import {FlatList, Layout, TitleScreen} from './styles';
 import RepeaterQuickReader from './Repeater';
 import {api} from '../../../services/api';
 import Utils from '../../../common/utils';
+import {useDispatch} from 'react-redux';
+import {setIsLoaded} from '../../../store/actions/app.action';
 
 const LeiturasRapidas = () => {
   const utils = new Utils();
+  const dispatch = useDispatch();
 
   const [leiturasRapidas, setLeiturasRapidas] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +24,7 @@ const LeiturasRapidas = () => {
           return item;
         });
 
-        setLeiturasRapidas(data);
+        setLeiturasRapidas(data.reverse());
         setLoading(false);
       } catch (e) {
         setLoading(true);

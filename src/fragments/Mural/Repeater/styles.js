@@ -7,7 +7,7 @@ export const Layout = styled.View`
   justify-content: space-between;
   height: 280px;
   max-width: 50%;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-bottom: 10px;
   margin-left: 10px;
   padding: 10px;
@@ -15,10 +15,11 @@ export const Layout = styled.View`
 
 export const LayoutImageBackground = styled.ImageBackground.attrs({
   resizeMode: 'cover',
+  borderRadius: 15,
 })`
   flex: 1;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 15px;
   opacity: 0.6;
   position: absolute;
   top: 0;
@@ -38,6 +39,6 @@ export const Title = styled.Text`
 
 export const CreatedAt = styled.Text`
   background-color: ${({background}) => background};
-  color: #fff;
+  color: ${({color}) => color};
   padding: 0 5px;
 `;

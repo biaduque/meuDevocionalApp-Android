@@ -19,6 +19,7 @@ export const Title = styled.Text`
   font-size: 18px;
   font-weight: 500;
   color: ${({theme}) => theme.colors.titlePrimary};
+  text-align: center;
 `;
 
 export const Description = styled.Text`

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/Devocional/Create';
@@ -8,6 +8,7 @@ import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import InfoGeneric from '../screens/InfoGeneric';
 import MyDevotionalView from '../screens/Devocional/View';
+import SearchDevocionais from '../fragments/SearchDevocionais';
 
 const Stack = createStackNavigator();
 
@@ -19,12 +20,20 @@ const StackRoutes = () => {
         animation: 'none',
         headerStyle: {height: 0},
       }}
-      initialRouteName={'OnBoarding'}>
+      initialRouteName={'Main'}>
       <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <Stack.Screen name="Main" component={Main} />
       <Stack.Screen
         name="CreateDevotional"
         component={CreateDevotional}
+        options={{
+          gestureEnabled: true,
+          ...TransitionPresets.ScaleFromCenterAndroid,
+        }}
+      />
+      <Stack.Screen
+        name="SearchDevocionais"
+        component={SearchDevocionais}
         options={{
           gestureEnabled: true,
           ...TransitionPresets.ScaleFromCenterAndroid,

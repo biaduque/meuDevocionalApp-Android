@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {StatusBar} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;

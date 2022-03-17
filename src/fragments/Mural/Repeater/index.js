@@ -2,6 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {CreatedAt, Layout, LayoutImageBackground, Title} from './styles';
 import Utils from '../../../common/utils';
+import moment from 'moment';
 
 const RepeaterMural = ({item, theme}) => {
   const parseColors = () => {
@@ -17,9 +18,9 @@ const RepeaterMural = ({item, theme}) => {
         {item.titulo}
       </Title>
       <CreatedAt
-        background={parseColors().tagsBackground}
+        background={parseColors().background}
         color={parseColors().titulo}>
-        {item.createdAt}
+        {moment(item.createdAt, 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY')}
       </CreatedAt>
     </Layout>
   ) : (
@@ -29,9 +30,9 @@ const RepeaterMural = ({item, theme}) => {
         {item.titulo}
       </Title>
       <CreatedAt
-        background={parseColors().tagsBackground}
+        background={parseColors().background}
         color={parseColors().titulo}>
-        {item.createdAt}
+        {moment(item.createdAt, 'DD/MM/YYYY HH:mm:ss').format('DD/MM/YYYY')}
       </CreatedAt>
     </Layout>
   );

@@ -49,9 +49,18 @@ export const InfoIcon = styled(AntDesign).attrs({
 })`
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
+
 export const PlusIcon = styled(AntDesign).attrs({
   name: 'plus',
   size: 24,
 })`
   color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+`;
+
+export const SearchIcon = styled(AntDesign).attrs({
+  name: 'search1',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
+  margin-right: 20px;
 `;

@@ -11,15 +11,23 @@ import {
 import {StatusBar, View} from 'react-native';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/core';
+import LocalRepositoryService from '../../services/LocalRepositoryService';
 
 const OnBoardingScreen = () => {
+  const repositoryService = new LocalRepositoryService();
   const navigation = useNavigation();
 
-  function onPress() {
+  async function onPress() {
     navigation.reset({
       index: 0,
       routes: [{name: 'Main'}],
     });
+
+    await repositoryService.set(
+      repositoryService.IS_NEW_USER_KEY,
+      {isNewUser: true},
+      true,
+    );
   }
 
   return (

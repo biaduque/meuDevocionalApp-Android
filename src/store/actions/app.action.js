@@ -21,4 +21,11 @@ const setOffset = payload => {
   };
 };
 
-export {setActiveTab, setTheme, setOffset};
+const setIsLoaded = payload => {
+  return {
+    type: ActionTypes.app.SET_IS_LOADED,
+    payload,
+  };
+};
+
+export {setActiveTab, setTheme, setOffset, setIsLoaded};

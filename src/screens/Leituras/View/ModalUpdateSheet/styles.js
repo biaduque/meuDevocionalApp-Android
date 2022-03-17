@@ -61,7 +61,7 @@ export const ActionConfirmButton = styled.TouchableOpacity.attrs({
 export const TextConfirm = styled.Text`
   font-size: 18px;
   font-weight: 500;
-  color: ${({theme}) => theme.createDevotionalModal.buttonSave};
+  color: ${({theme}) => theme.colors.blueConfirmation};
 `;
 
 export const TextCancel = styled.Text`
