@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Text, View} from 'react-native';
 import {BackIcon, BigWrapper, Header, Layout, SearchBar} from './styles';
 import {useSelector} from 'react-redux';
-import DevotionalsComponent from '../MeusDevocionais/Devotionals';
-import {FlatList} from '../MeusDevocionais/styles';
+import DevotionalsComponent from '../../fragments/MeusDevocionais/Devotionals';
+import {FlatList} from '../../fragments/MeusDevocionais/styles';
 
 const SearchDevocionais = ({navigation}) => {
   const [search, setSearch] = useState('');
