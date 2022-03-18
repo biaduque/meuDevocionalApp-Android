@@ -8,9 +8,6 @@ import cl.json.RNSharePackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
-import com.cmcewen.blurview.BlurViewPackage;
-import com.cmcewen.blurview.BlurViewPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
@@ -56,7 +53,8 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+      new SharedStoragePackager();
+      initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 
   /**

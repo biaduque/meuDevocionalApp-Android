@@ -52,6 +52,7 @@ const Header = ({title, animatedValue}) => {
   const onPressInfoButton = () => {
     switch (title) {
       case 'Leituras':
+        navigation.navigate('OnBoarding');
         break;
       case 'Meus Devocionais':
         navigation.navigate('InfoGeneric');

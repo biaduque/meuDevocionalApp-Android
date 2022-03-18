@@ -12,19 +12,6 @@ const OnBoardingScreen = ({navigation}) => {
   const $app = useSelector(state => state.app);
   const [index, setIndex] = useState(0);
 
-  async function onPress() {
-    navigation.reset({
-      index: 0,
-      routes: [{name: 'Main'}],
-    });
-
-    await repositoryService.set(
-      repositoryService.IS_NEW_USER_KEY,
-      {isNewUser: true},
-      true,
-    );
-  }
-
   const nextItem = () => {
     setIndex(prevState => prevState + 1);
   };
@@ -41,11 +28,11 @@ const OnBoardingScreen = ({navigation}) => {
       routes: [{name: 'Main'}],
     });
 
-    // await repositoryService.set(
-    //   repositoryService.IS_NEW_USER_KEY,
-    //   {isNewUser: true},
-    //   true,
-    // );
+    await repositoryService.replaceAll(
+      repositoryService.IS_NEW_USER_KEY,
+      {id: 1, isNewUser: true},
+      true,
+    );
   }
 
   return (

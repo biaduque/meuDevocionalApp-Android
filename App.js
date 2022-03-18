@@ -1,5 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Appearance, SafeAreaView, StyleSheet} from 'react-native';
+import {
+  Appearance,
+  SafeAreaView,
+  StyleSheet,
+  NativeModules,
+} from 'react-native';
 import {Routes} from './src/routes';
 import {IconlyProvider} from 'react-native-iconly';
 import {Provider} from 'react-redux';
@@ -9,6 +14,7 @@ import {ThemeProvider} from 'styled-components';
 import {dark, light} from './src/styles/themes';
 
 const App = () => {
+  const SharedStorage = NativeModules.SharedStorage;
   const [themeApp, setThemeApp] = useState(
     Appearance.getColorScheme() === 'dark' ? dark : light,
   );
@@ -26,6 +32,15 @@ const App = () => {
       listener.remove();
     };
   }, [updateColorScheme]);
+
+  useEffect(() => {
+    //get random item array js
+
+    const muralItems = store.getState().myDevotionals.mural.length;
+    const randomItem = Math.floor(Math.random() * muralItems);
+
+    SharedStorage.set(JSON.stringify({text: randomItem.titulo, color: '#fff'}));
+  }, [SharedStorage]);
 
   return (
     <Provider store={store}>
