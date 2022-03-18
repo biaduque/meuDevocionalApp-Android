@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions} from 'react-native';
 import ModalSheetBottom from '../../../../components/ModalSheetBottom';
 import {
   ActionCancelButton,
@@ -14,26 +14,28 @@ import {
   Title,
   WrapperTopContent,
 } from './styles';
-import {setMyDevotionals} from '../../../../store/actions/mydevotionals.action';
+import {
+  setHandleModalDeleteDevocional,
+  setMyDevotionals,
+  setSelectedDevotional,
+} from '../../../../store/actions/mydevotionals.action';
 import LocalRepositoryService from '../../../../services/LocalRepositoryService';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const ModalDeleteSheet = ({
-  title,
-  description,
-  titleConfirm,
-  open,
-  handleClose,
-  devotional,
-}) => {
+const ModalDeleteSheet = ({title, description, titleConfirm}) => {
   const repositoryService = new LocalRepositoryService();
-
   const dispatch = useDispatch();
+  const $myDevotionals = useSelector(state => state.myDevotionals);
+
+  const handleClose = () => {
+    dispatch(setSelectedDevotional(null));
+    dispatch(setHandleModalDeleteDevocional(false));
+  };
 
   async function deleteItem() {
     const devotionals = await repositoryService.removeItem(
       repositoryService.DEVOCIONAL_LIST_KEY,
-      devotional,
+      $myDevotionals.selectedDevocional,
       true,
     );
 
@@ -47,7 +49,7 @@ const ModalDeleteSheet = ({
   return (
     <ModalSheetBottom
       height={Dimensions.get('window').height}
-      open={open}
+      open={$myDevotionals.openModalDeleteDevocional}
       onClose={handleClose}>
       <Container>
         <WrapperTopContent>

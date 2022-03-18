@@ -3,6 +3,8 @@ import ActionTypes from '../actions/action-types';
 const INITIAL_STATE = {
   devotionals: [],
   mural: [],
+  openModalDeleteDevocional: false,
+  selectedDevocional: null,
 };
 
 const myDevotionalsReducer = (state = INITIAL_STATE, {type, payload}) => {
@@ -16,6 +18,16 @@ const myDevotionalsReducer = (state = INITIAL_STATE, {type, payload}) => {
       return {
         ...state,
         mural: payload,
+      };
+    case ActionTypes.myDevotionals.SET_OPEN_MODAL_DELETE_DEVOTIONAL:
+      return {
+        ...state,
+        openModalDeleteDevocional: payload,
+      };
+    case ActionTypes.myDevotionals.SET_SELECTED_DEVOTIONAl:
+      return {
+        ...state,
+        selectedDevocional: payload,
       };
     default:
       return state;

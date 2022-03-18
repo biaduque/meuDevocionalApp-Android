@@ -45,7 +45,7 @@ class Utils {
   };
 
   transformDataColor(color, theme) {
-    console.log(color);
+    // console.log(color);
 
     if (!color) {
       return {
