@@ -19,7 +19,9 @@ const SearchDevocionais = ({navigation}) => {
 
     getDevotionals();
 
-    return () => {};
+    return () => {
+      setDevotionals([]);
+    };
   }, [$myDevotionals.devotionals]);
 
   const handleChangeSearch = value => {

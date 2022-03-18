@@ -42,4 +42,7 @@ export default {
     amarelo2: '#F7D9A0',
     amarelo3: '#FCEDCB',
   },
+  onboarding: {
+    background: '#2D2D2D',
+  },
 };

@@ -5,62 +5,18 @@ export const Layout = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: #cbe5d1;
+  background-color: ${({theme}) => theme.colors.background};
 `;
 
-export const WrapperWelcome = styled.View`
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+export const Footer = styled.View`
   width: 100%;
-  background: #cbe5d1;
-  height: 100%;
-  max-height: 50%;
-`;
-
-export const WrapperBottom = styled.View`
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  background: #fff;
-  height: 100%;
-  max-height: 50%;
-  padding: 20px;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-`;
-
-export const Description = styled.Text`
-  font-size: 20px;
-  color: #666;
-  text-align: left;
-  margin-top: 10px;
-`;
-
-export const Title = styled.Text`
-  font-size: 42px;
-  font-weight: 700;
-  color: #000;
-  text-align: left;
-`;
-
-export const Image = styled.Image`
-  width: 100%;
-  height: 200px;
-  margin-left: 26px;
-`;
-
-export const WrapperButton = styled.View`
-  background: #1c31a2;
-  border-radius: 5px;
-  min-height: 48px;
-  width: 150px;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 48px;
 `;
 
 export const TextButton = styled.Text`
+  color: ${({theme}) => theme.colors.accent};
   font-size: 18px;
   font-weight: 600;
 `;
