@@ -14,24 +14,22 @@ import {
   Title,
   WrapperTopContent,
 } from './styles';
-import LocalRepositoryService from '../../../../services/LocalRepositoryService';
+import {useNavigation} from '@react-navigation/core';
 
-const ModalUpdateSheet = ({
+const ModalCreateSheet = ({
   title,
   description,
   titleConfirm,
   open,
   handleClose,
-  itemToUpdate,
+  itemLeitura,
 }) => {
-  const localRepository = new LocalRepositoryService();
+  const navigation = useNavigation();
 
   async function openScreen() {
-    await localRepository.set(
-      localRepository.LEITURAS_LIST_KEY,
-      itemToUpdate,
-      true,
-    );
+    navigation.navigate('CreateDevotional', {
+      ...itemLeitura,
+    });
 
     handleClose();
   }
@@ -65,4 +63,4 @@ const ModalUpdateSheet = ({
   );
 };
 
-export default ModalUpdateSheet;
+export default ModalCreateSheet;

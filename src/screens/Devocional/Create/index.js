@@ -17,7 +17,7 @@ import {
   WrapperReflexao,
   WrapperWorship,
 } from './styles';
-import {Text, TouchableOpacity, Alert, Vibration} from 'react-native';
+import {Text, TouchableOpacity, Alert, Vibration, Keyboard} from 'react-native';
 import LocalRepositoryService from '../../../services/LocalRepositoryService';
 import {useDispatch, useSelector} from 'react-redux';
 import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
@@ -72,6 +72,15 @@ const CreateDevotionalScreen = ({route, navigation}) => {
         setVersicle(versiculo);
         setMusic(params.musica || params.link);
         setDescription(params.desenvolvimento);
+
+        setKey1(params.aplicacao1);
+        setKey2(params.aplicacao2);
+        setKey3(params.aplicacao3);
+
+        setSelectedColor(props => {
+          props = params.backgroundColor;
+          return props;
+        });
       }
     }
 
@@ -83,6 +92,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   };
 
   const handleBackScreen = () => {
+    Keyboard.dismiss();
     handleOpenWarningModal();
   };
 
@@ -155,6 +165,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
         <WrapperColorButtons>
           <CustomRadioButton
             data={colorsRadioButtons()}
+            selectedColor={selectedColor}
             onSelect={setSelectedColor}
           />
         </WrapperColorButtons>

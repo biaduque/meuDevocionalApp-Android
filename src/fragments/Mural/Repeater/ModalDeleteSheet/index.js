@@ -14,24 +14,32 @@ import {
   Title,
   WrapperTopContent,
 } from './styles';
+import {setMural} from '../../../../store/actions/mydevotionals.action';
 import LocalRepositoryService from '../../../../services/LocalRepositoryService';
+import {useDispatch} from 'react-redux';
 
-const ModalUpdateSheet = ({
+const ModalDeleteSheet = ({
   title,
   description,
   titleConfirm,
   open,
   handleClose,
-  itemToUpdate,
+  itemMural,
 }) => {
-  const localRepository = new LocalRepositoryService();
+  const repositoryService = new LocalRepositoryService();
 
-  async function openScreen() {
-    await localRepository.set(
-      localRepository.LEITURAS_LIST_KEY,
-      itemToUpdate,
+  const dispatch = useDispatch();
+
+  async function deleteItem() {
+    const devotionals = await repositoryService.removeItem(
+      repositoryService.MURAL_LIST_KEY,
+      itemMural,
       true,
     );
+
+    if (devotionals != null) {
+      dispatch(setMural(devotionals));
+    }
 
     handleClose();
   }
@@ -55,7 +63,7 @@ const ModalUpdateSheet = ({
 
             <Separator />
 
-            <ActionConfirmButton onPress={() => openScreen()}>
+            <ActionConfirmButton onPress={() => deleteItem()}>
               <TextConfirm>{titleConfirm}</TextConfirm>
             </ActionConfirmButton>
           </Footer>
@@ -65,4 +73,4 @@ const ModalUpdateSheet = ({
   );
 };
 
-export default ModalUpdateSheet;
+export default ModalDeleteSheet;

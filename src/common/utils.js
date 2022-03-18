@@ -45,6 +45,8 @@ class Utils {
   };
 
   transformDataColor(color, theme) {
+    console.log(color);
+
     if (!color) {
       return {
         background: theme.devotionalColors.verde2,
