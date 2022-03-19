@@ -1,12 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {
-  CreatedAt,
-  Layout,
-  LayoutImageBackground,
-  Title,
-  Wrapper,
-} from './styles';
+import {CreatedAt, Layout, LayoutImageBackground, Title} from './styles';
 import Utils from '../../../common/utils';
 import moment from 'moment';
 import ModalDeleteSheet from './ModalDeleteSheet';

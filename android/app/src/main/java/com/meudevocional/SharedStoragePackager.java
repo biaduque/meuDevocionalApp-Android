@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class SharedStoragePackager implements ReactPackage {
+
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Collections.emptyList();
@@ -19,7 +20,9 @@ public class SharedStoragePackager implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
+
         modules.add(new SharedStorage(reactContext));
+
         return modules;
     }
 

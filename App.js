@@ -12,8 +12,10 @@ import store from './src/store';
 import {PortalProvider} from '@gorhom/portal';
 import {ThemeProvider} from 'styled-components';
 import {dark, light} from './src/styles/themes';
+import Utils from './src/common/utils';
 
 const App = () => {
+  const $myDevotionals = store.getState().myDevotionals;
   const SharedStorage = NativeModules.SharedStorage;
   const [themeApp, setThemeApp] = useState(
     Appearance.getColorScheme() === 'dark' ? dark : light,
@@ -34,13 +36,36 @@ const App = () => {
   }, [updateColorScheme]);
 
   useEffect(() => {
-    //get random item array js
+    const utils = new Utils();
 
-    const muralItems = store.getState().myDevotionals.mural.length;
-    const randomItem = Math.floor(Math.random() * muralItems);
+    async function getDataStoraged() {
+      $myDevotionals.mural = await utils.getMural();
+    }
 
-    SharedStorage.set(JSON.stringify({text: randomItem.titulo, color: '#fff'}));
-  }, [SharedStorage]);
+    const parseColors = bgColor => {
+      return utils.transformDataColor(bgColor, themeApp);
+    };
+
+    async function setItemWidget() {
+      const muralItems = $myDevotionals.mural;
+
+      const randomItem =
+        muralItems[Math.floor(Math.random() * muralItems.length)];
+      const colors = parseColors(randomItem.backgroundColor);
+
+      SharedStorage.set(
+        JSON.stringify({
+          text: randomItem.titulo,
+          color: colors.titulo,
+          background: colors.background,
+        }),
+      );
+    }
+
+    getDataStoraged().then(async () => {
+      await setItemWidget();
+    });
+  }, [$myDevotionals, SharedStorage, themeApp]);
 
   return (
     <Provider store={store}>

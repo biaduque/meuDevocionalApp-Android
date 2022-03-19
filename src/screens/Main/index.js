@@ -11,10 +11,11 @@ import ModalDeleteSheet from '../Devocional/View/ModalDeleteSheet';
 const Main = ({navigation}) => {
   const $app = useSelector(state => state.app);
 
-  const repositoryService = new LocalRepositoryService();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const repositoryService = new LocalRepositoryService();
+
     async function checkIsNewUser() {
       const ret = await repositoryService.get(
         repositoryService.IS_NEW_USER_KEY,
@@ -33,7 +34,7 @@ const Main = ({navigation}) => {
     }
 
     checkIsNewUser();
-  }, []);
+  }, [dispatch, navigation]);
 
   useEffect(() => {}, [$app]);
 

@@ -3,6 +3,8 @@ import moment from 'moment';
 import cotidianoBase64 from '../assets/story/cotidiano/base64.json';
 import estudosBase64 from '../assets/story/estudos/base64.json';
 import vidaBase64 from '../assets/story/vida/base64.json';
+import LocalRepositoryService from '../services/LocalRepositoryService';
+import {setMural} from '../store/actions/mydevotionals.action';
 
 class Utils {
   constructor() {
@@ -45,13 +47,11 @@ class Utils {
   };
 
   transformDataColor(color, theme) {
-    // console.log(color);
-
     if (!color) {
       return {
         background: theme.devotionalColors.verde2,
-        titulo: '#fff',
-        baseBiblica: '#fff',
+        titulo: '#ffffff',
+        baseBiblica: '#ffffff',
         tagsBackground: theme.devotionalColors.amarelo1,
         image: 'amarelo1',
       };
@@ -60,8 +60,8 @@ class Utils {
     if (color === 'verde2') {
       return {
         background: theme.devotionalColors.verde2,
-        titulo: '#fff',
-        baseBiblica: '#fff',
+        titulo: '#ffffff',
+        baseBiblica: '#ffffff',
         tagsBackground: theme.devotionalColors.amarelo1,
         image: 'amarelo1',
       };
@@ -70,8 +70,8 @@ class Utils {
     if (color === 'amarelo1') {
       return {
         background: theme.devotionalColors.amarelo1,
-        titulo: '#fff',
-        baseBiblica: '#fff',
+        titulo: '#ffffff',
+        baseBiblica: '#ffffff',
         tagsBackground: theme.devotionalColors.amarelo3,
         image: 'amarelo3',
       };
@@ -136,6 +136,21 @@ class Utils {
         return null;
     }
   };
+
+  async getMural() {
+    const repositoryService = new LocalRepositoryService();
+    const data = await repositoryService.get(
+      repositoryService.MURAL_LIST_KEY,
+      true,
+    );
+
+    if (data != null) {
+      const assertedArray = this.assertArray(data, 'createdAt');
+      return assertedArray;
+    }
+  }
+
+  async getAllItems() {}
 }
 
 export default Utils;
