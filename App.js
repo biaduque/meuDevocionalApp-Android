@@ -13,6 +13,7 @@ import {PortalProvider} from '@gorhom/portal';
 import {ThemeProvider} from 'styled-components';
 import {dark, light} from './src/styles/themes';
 import Utils from './src/common/utils';
+import moment from 'moment';
 
 const App = () => {
   const $myDevotionals = store.getState().myDevotionals;
@@ -58,6 +59,7 @@ const App = () => {
           text: randomItem.titulo,
           color: colors.titulo,
           background: colors.background,
+          date: moment(randomItem.createdAt, 'DD/MM/YYYY').format('DD/MM/YYYY'),
         }),
       );
     }
