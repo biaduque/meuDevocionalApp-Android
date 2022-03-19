@@ -54,11 +54,13 @@ const App = () => {
         muralItems[Math.floor(Math.random() * muralItems.length)];
       const colors = parseColors(randomItem.backgroundColor);
 
+      console.log(randomItem.backgroundColor);
+
       SharedStorage.set(
         JSON.stringify({
           text: randomItem.titulo,
           color: colors.titulo,
-          background: colors.background,
+          background: randomItem.backgroundColor,
           date: moment(randomItem.createdAt, 'DD/MM/YYYY').format('DD/MM/YYYY'),
         }),
       );
