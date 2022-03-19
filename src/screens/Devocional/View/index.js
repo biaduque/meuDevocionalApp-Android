@@ -23,6 +23,7 @@ import ModalCreateSheet from './ModalCreateSheet';
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
   const [openModalCreate, setOpenModalCreate] = useState(false);
+  const [itemToUpdate, setItemToUpdate] = useState({});
 
   const handleOpenCreateDevotional = () => {
     setOpenModalCreate(true);
@@ -64,20 +65,42 @@ const MyDevotionalView = ({route, navigation}) => {
     return !!pattern.test(string);
   }
 
+  const getItemToUpdate = () => {
+    if (params.devotional.id) {
+      return {
+        id: params.devotional.id,
+        update: true,
+        titulo: params.devotional.titulo,
+        refBiblica: params.devotional.baseBiblica,
+        aplicacao1: params.devotional.aplicacao1,
+        aplicacao2: params.devotional.aplicacao2,
+        aplicacao3: params.devotional.aplicacao3,
+        musica: params.devotional.link,
+        desenvolvimento: params.devotional.reflexao,
+        backgroundColor: params.devotional.backgroundColor,
+      };
+    } else {
+      return {
+        update: false,
+        titulo: params.devotional.titulo,
+        refBiblica: params.devotional.baseBiblica,
+        aplicacao1: params.devotional.aplicacao1,
+        aplicacao2: params.devotional.aplicacao2,
+        aplicacao3: params.devotional.aplicacao3,
+        musica: params.devotional.link,
+        desenvolvimento: params.devotional.reflexao,
+        backgroundColor: params.devotional.backgroundColor,
+      };
+    }
+  };
+
   return (
     <Layout scrollEnabled={!openModalCreate}>
       <ModalCreateSheet
         height={Dimensions.get('window').height}
         open={openModalCreate}
         itemLeitura={{
-          titulo: params.devotional.titulo,
-          refBiblica: params.devotional.baseBiblica,
-          aplicacao1: params.devotional.aplicacao1,
-          aplicacao2: params.devotional.aplicacao2,
-          aplicacao3: params.devotional.aplicacao3,
-          musica: params.devotional.link,
-          desenvolvimento: params.devotional.reflexao,
-          backgroundColor: params.devotional.backgroundColor,
+          ...getItemToUpdate(),
         }}
         handleClose={handleCloseCreateDevotional}
         title={'Editar devocional?'}
@@ -102,6 +125,8 @@ const MyDevotionalView = ({route, navigation}) => {
           </TouchableOpacity>
 
           {/*TODO: share: titulo, ref biblica, reflexao, musica.*/}
+          {/*  𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁*/}
+
           <ShareIcon />
         </RightWrapperHeader>
       </Header>
