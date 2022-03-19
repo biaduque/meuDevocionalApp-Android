@@ -2,6 +2,16 @@ import {Animated} from 'react-native';
 import styled from 'styled-components/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+export const MainWrapper = styled(Animated.View)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Layout = styled.View`
   flex-direction: column;
   align-items: center;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/Devocional/Create';
@@ -11,6 +11,17 @@ import MyDevotionalView from '../screens/Devocional/View';
 import SearchDevocionais from '../screens/SearchDevocionais';
 
 const Stack = createStackNavigator();
+const configAnimation = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
 
 const StackRoutes = () => {
   return (
@@ -29,6 +40,10 @@ const StackRoutes = () => {
         options={{
           gestureEnabled: true,
           ...TransitionPresets.ScaleFromCenterAndroid,
+          transitionSpec: {
+            open: configAnimation,
+            close: configAnimation,
+          },
         }}
       />
       <Stack.Screen
