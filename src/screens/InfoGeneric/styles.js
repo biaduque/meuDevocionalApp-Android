@@ -1,10 +1,18 @@
 import styled from 'styled-components/native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const Layout = styled.View`
   background: ${({theme}) => theme.colors.background};
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
+`;
+
+export const TouchIcon = styled(MaterialIcons).attrs({
+  name: 'touch-app',
+  size: 24,
+})`
+  color: ${({theme}) => theme.colorsLeituraRapidaScreen.titleScreen};
 `;
 
 export const Wrapper = styled.View`
@@ -59,4 +67,5 @@ export const DescriptionText = styled.Text`
   font-weight: 400;
   font-size: 18px;
   align-self: stretch;
+  margin-left: 10px;
 `;

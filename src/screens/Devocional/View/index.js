@@ -161,17 +161,17 @@ const MyDevotionalView = ({route, navigation}) => {
           ))}
 
         <TagsWrapper>
-          {params.devotional.aplicacao1 !== '' && (
+          {params.devotional.aplicacao1 != null && (
             <Tag color={params.colors.background}>
               {params.devotional.aplicacao1}
             </Tag>
           )}
-          {params.devotional.aplicacao2 !== '' && (
+          {params.devotional.aplicacao2 != null && (
             <Tag color={params.colors.background}>
               {params.devotional.aplicacao2}
             </Tag>
           )}
-          {params.devotional.aplicacao3 !== '' && (
+          {params.devotional.aplicacao3 != null && (
             <Tag color={params.colors.background}>
               {params.devotional.aplicacao3}
             </Tag>
