@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import {BackIcon, BigWrapper, Header, Layout, SearchBar} from './styles';
 import {useSelector} from 'react-redux';
 import DevotionalsComponent from '../../fragments/MeusDevocionais/Devotionals';
 import {FlatList} from '../../fragments/MeusDevocionais/styles';
+import NotFoundImage from '../../assets/illustrations/naoEncontrado.png';
 
 const SearchDevocionais = ({navigation}) => {
   const $myDevotionals = useSelector(state => state.myDevotionals);
@@ -50,9 +51,14 @@ const SearchDevocionais = ({navigation}) => {
 
       {devotionals.length <= 0 ? (
         <BigWrapper>
-          <Text style={{fontSize: 24, textAlign: 'center'}}>
+          {/*<Text style={{fontSize: 24, textAlign: 'center'}}>
             Nenhum resultado encontrado
-          </Text>
+          </Text>*/}
+          <Image
+            resizeMode={'contain'}
+            source={NotFoundImage}
+            style={{width: '100%', height: '100%', marginTop: 120}}
+          />
         </BigWrapper>
       ) : (
         <View style={{marginTop: 20}}>

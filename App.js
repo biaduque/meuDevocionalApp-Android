@@ -58,8 +58,6 @@ const App = () => {
       const randomItem =
         mergedArray[Math.floor(Math.random() * mergedArray.length)];
 
-      console.log(randomItem);
-
       const colors = parseColors(randomItem.backgroundColor);
 
       SharedStorage.set(
