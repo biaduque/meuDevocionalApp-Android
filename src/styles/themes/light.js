@@ -22,14 +22,6 @@ export default {
 
     blueConfirmation: '#0979FD',
   },
-  createDevotionalModal: {
-    selectionBg: '#fff',
-    buttonSave: '#D9AB75',
-    buttonCancel: '#EB5545',
-    borderColor: '#F2F2F2',
-    footerBackground: '#F2F2F2',
-    buttonOkMusic: '#fff',
-  },
   colorsLeituraRapidaScreen: {
     selectionBg: '#000',
     titleSection: '#5E6C61',
@@ -38,8 +30,16 @@ export default {
     gold: '#D9AB75',
   },
   modal: {
-    buttonSave: '#597562',
+    textColor: '#fff',
     buttonCancel: '#EC5B4D',
+    borderColor: '#F2F2F2',
+    footerBackground: '#F2F2F2',
+    buttonOkMusic: '#597562',
+  },
+  createDevotionalModal: {
+    selectionBg: '#000',
+    buttonSave: '#D9AB75',
+    buttonCancel: '#EB5545',
     borderColor: '#F2F2F2',
     footerBackground: '#F2F2F2',
     buttonOkMusic: '#fff',

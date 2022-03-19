@@ -7,6 +7,7 @@ import {
   ScrollView,
   TextArea,
   TextButtonCancel,
+  TextButtonOk,
   TextButtonSave,
   TextInput,
   TextInputBorder,
@@ -43,6 +44,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   const input9 = useRef();
 
   const [isVisibleWarningModal, setIsVisibleWarningModal] = useState(false);
+  const [id, setId] = useState(null);
   const [title, setTitle] = useState('');
   const [book, setBook] = useState('');
   const [chapter, setChapter] = useState('');
@@ -53,10 +55,14 @@ const CreateDevotionalScreen = ({route, navigation}) => {
   const [music, setMusic] = useState('');
   const [description, setDescription] = useState('');
   const [selectedColor, setSelectedColor] = useState('verde2');
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     if (params != null) {
+      setId(params.id);
       setTitle(params.titulo);
+      setUpdate(params.update);
+
       if (params.refBiblica != null) {
         const livro = params.refBiblica.split(' ')[0];
 
@@ -96,6 +102,13 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     handleOpenWarningModal();
   };
 
+  const handleCloseScreen = () => {
+    Keyboard.dismiss();
+    navigation.navigate('Main', {
+      screen: 'MyDevotionals',
+    });
+  };
+
   function handleOpenWarningModal() {
     setIsVisibleWarningModal(true);
   }
@@ -106,15 +119,26 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
-    const concatCapVerse = versicle !== '' ? `${chapter}:${versicle}` : chapter;
+    const concatCapVerse =
+      versicle !== '' || versicle != null ? `${chapter}:${versicle}` : chapter;
+
+    let newId = id;
+
+    if (id == null) {
+      newId = uuid.v4();
+    }
+
+    const aplicacoes = {
+      aplicacao1: key1 !== '' ? key1 : null,
+      aplicacao2: key2 !== '' ? key2 : null,
+      aplicacao3: key3 !== '' ? key3 : null,
+    };
 
     const data = {
-      id: uuid.v4(),
+      id: newId,
       titulo: title,
       baseBiblica: `${book} ${concatCapVerse}`,
-      aplicacao1: key1,
-      aplicacao2: key2,
-      aplicacao3: key3,
+      ...aplicacoes,
       backgroundColor: selectedColor,
       backgroundImage: '',
       reflexao: description ? description : '',
@@ -122,11 +146,21 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       createdAt: moment().format('DD/MM/YYYY HH:mm:ss'),
     };
 
-    const ret = await repositoryService.set(
-      repositoryService.DEVOCIONAL_LIST_KEY,
-      data,
-      true,
-    );
+    let ret;
+
+    if (update === true) {
+      ret = await repositoryService.update(
+        repositoryService.DEVOCIONAL_LIST_KEY,
+        data,
+        true,
+      );
+    } else {
+      ret = await repositoryService.set(
+        repositoryService.DEVOCIONAL_LIST_KEY,
+        data,
+        true,
+      );
+    }
 
     dispatch(setMyDevotionals(ret));
 
@@ -134,7 +168,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     const DURATION = 100;
 
     Vibration.vibrate(DURATION);
-    handleBackScreen();
+    handleCloseScreen();
   }
 
   const colorsRadioButtons = () => {
@@ -160,7 +194,10 @@ const CreateDevotionalScreen = ({route, navigation}) => {
         titleCancel={'Ignorar alterações'}
         titleConfirm={'Continuar Editando'}
       />
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{
+          paddingBottom: 60,
+        }}>
         <TextTitle>Cor</TextTitle>
         <WrapperColorButtons>
           <CustomRadioButton
@@ -241,7 +278,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
           </WrapperInputLabel>
 
           <ButtonOkWorship>
-            <Text style={{fontSize: 20, color: '#333'}}>OK</Text>
+            <TextButtonOk>OK</TextButtonOk>
           </ButtonOkWorship>
         </WrapperWorship>
 

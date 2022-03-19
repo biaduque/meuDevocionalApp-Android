@@ -52,6 +52,7 @@ const LeiturasView = ({route, navigation}) => {
   const [aplicacao3, setAplicacao3] = useState('');
   const [reflexao, setReflexao] = useState('');
   const [itemToUpdate, setItemToUpdate] = useState({});
+  const [existentItem, setExistentItem] = useState(null);
 
   useEffect(() => {
     async function getData() {
@@ -64,6 +65,8 @@ const LeiturasView = ({route, navigation}) => {
         const currentItem = data.find(
           item => item.localId === params.id && item.type === parent,
         );
+
+        setExistentItem(currentItem);
 
         if (currentItem != null) {
           const aplicacao1 = currentItem.aplicacao1;
@@ -96,15 +99,30 @@ const LeiturasView = ({route, navigation}) => {
   const handleOpenUpdateDevotional = () => {
     Keyboard.dismiss();
     setOpenModalUpdate(true);
-    setItemToUpdate({
-      localId: params.id,
-      id: uuid.v4(),
-      type: parent,
-      aplicacao1,
-      aplicacao2,
-      aplicacao3,
-      reflexao,
-    });
+
+    if (existentItem != null) {
+      setItemToUpdate({
+        id: existentItem.id,
+        update: true,
+        localId: params.id,
+        type: parent,
+        aplicacao1,
+        aplicacao2,
+        aplicacao3,
+        reflexao,
+      });
+    } else {
+      setItemToUpdate({
+        localId: params.id,
+        update: false,
+        id: uuid.v4(),
+        type: parent,
+        aplicacao1,
+        aplicacao2,
+        aplicacao3,
+        reflexao,
+      });
+    }
   };
 
   const handleCloseUpdateDevotional = () => {

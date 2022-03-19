@@ -93,17 +93,17 @@ const DevotionalsComponent = ({devotional}) => {
         </FlexContainer>
 
         <TagsWrapper>
-          {devotional.aplicacao1 !== '' && (
+          {devotional.aplicacao1 != null && (
             <Tag background={parseColors().tagsBackground}>
               {devotional.aplicacao1}
             </Tag>
           )}
-          {devotional.aplicacao2 !== '' && (
+          {devotional.aplicacao2 != null && (
             <Tag background={parseColors().tagsBackground}>
               {devotional.aplicacao2}
             </Tag>
           )}
-          {devotional.aplicacao3 !== '' && (
+          {devotional.aplicacao3 != null && (
             <Tag background={parseColors().tagsBackground}>
               {devotional.aplicacao3}
             </Tag>

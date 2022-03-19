@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme.AppWidgetContainer"
-    android:id="@+id/appwidget_wrapper"
-    android:background="#fff">
+    android:background="@drawable/app_widget_background"
+    android:id="@+id/appwidget_wrapper">
 
     <TextView
         android:id="@+id/appwidget_text"
@@ -16,8 +16,19 @@
         android:layout_margin="8dp"
         android:background="#00FFFFFF"
         android:textColor="#000"
+        android:fontFamily="monospace"
         android:contentDescription="@string/appwidget_text"
         android:text="@string/appwidget_text"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/appwidget_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:fontFamily="monospace"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="19/03/2022"/>
 </RelativeLayout>

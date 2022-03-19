@@ -9,8 +9,10 @@ import {
   Tile,
   TilesLimitingWrapper,
   TilesWrapper,
+  TouchIcon,
   Wrapper,
 } from './styles';
+import {PlusIcon} from '../../components/Header/styles';
 
 const InfoGeneric = ({navigation}) => {
   return (
@@ -34,7 +36,7 @@ const InfoGeneric = ({navigation}) => {
 
         <View>
           <FlexContainer>
-            <Text style={{marginRight: 26}}>Plus</Text>
+            <PlusIcon />
             <DescriptionText>
               Adicione novos itens customizados em sua coleção ao clicar no
               botão
@@ -42,7 +44,7 @@ const InfoGeneric = ({navigation}) => {
           </FlexContainer>
 
           <FlexContainer>
-            <Text style={{marginRight: 26}}>Touch</Text>
+            <TouchIcon />
             <DescriptionText>
               Pressione algum item da sua coleção caso queira exclui-lo
             </DescriptionText>

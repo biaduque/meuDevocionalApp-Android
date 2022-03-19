@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/Devocional/Create';

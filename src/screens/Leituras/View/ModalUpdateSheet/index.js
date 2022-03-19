@@ -27,11 +27,19 @@ const ModalUpdateSheet = ({
   const localRepository = new LocalRepositoryService();
 
   async function openScreen() {
-    await localRepository.set(
-      localRepository.LEITURAS_LIST_KEY,
-      itemToUpdate,
-      true,
-    );
+    if (itemToUpdate.update === true) {
+      await localRepository.update(
+        localRepository.LEITURAS_LIST_KEY,
+        itemToUpdate,
+        true,
+      );
+    } else {
+      await localRepository.set(
+        localRepository.LEITURAS_LIST_KEY,
+        itemToUpdate,
+        true,
+      );
+    }
 
     handleClose();
   }

@@ -54,10 +54,9 @@ class LocalRepositoryService {
       return item;
     });
 
-    const newValue = [...currentValue, {...updatedItem}];
-    await AsyncStorage.setItem(key, JSON.stringify(newValue));
+    await AsyncStorage.setItem(key, JSON.stringify(updatedItem));
 
-    return newValue;
+    return updatedItem;
   }
 
   async replaceAll(key, value, isObject = false) {

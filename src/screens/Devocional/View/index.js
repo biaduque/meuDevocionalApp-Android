@@ -16,13 +16,22 @@ import {
   TitleSection,
   WrapperText,
 } from './styles';
-import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Share,
+  Keyboard,
+} from 'react-native';
 import WorshipTime from '../../../components/WorshipTime';
 import ModalCreateSheet from './ModalCreateSheet';
+import {default as ShareRN} from 'react-native-share';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
   const [openModalCreate, setOpenModalCreate] = useState(false);
+  const [openShare, setOpenShare] = useState(false);
 
   const handleOpenCreateDevotional = () => {
     setOpenModalCreate(true);
@@ -64,20 +73,71 @@ const MyDevotionalView = ({route, navigation}) => {
     return !!pattern.test(string);
   }
 
+  const getItemToUpdate = () => {
+    if (params.devotional.id) {
+      return {
+        id: params.devotional.id,
+        update: true,
+        titulo: params.devotional.titulo,
+        refBiblica: params.devotional.baseBiblica,
+        aplicacao1: params.devotional.aplicacao1,
+        aplicacao2: params.devotional.aplicacao2,
+        aplicacao3: params.devotional.aplicacao3,
+        musica: params.devotional.link,
+        desenvolvimento: params.devotional.reflexao,
+        backgroundColor: params.devotional.backgroundColor,
+      };
+    } else {
+      return {
+        update: false,
+        titulo: params.devotional.titulo,
+        refBiblica: params.devotional.baseBiblica,
+        aplicacao1: params.devotional.aplicacao1,
+        aplicacao2: params.devotional.aplicacao2,
+        aplicacao3: params.devotional.aplicacao3,
+        musica: params.devotional.link,
+        desenvolvimento: params.devotional.reflexao,
+        backgroundColor: params.devotional.backgroundColor,
+      };
+    }
+  };
+
+  async function shareGeneric() {
+    Keyboard.dismiss();
+
+    const shareContent = {
+      title: '𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁',
+      message: `
+𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁
+✨${params.devotional.titulo}
+✨${params.devotional.baseBiblica}
+✨${params.devotional.reflexao}
+✨${params.devotional.link}
+`,
+    };
+
+    if (!openShare) {
+      try {
+        setOpenShare(true);
+        await Share.share(shareContent, {
+          dialogTitle: 'Compartilhar leitura',
+        });
+
+        setOpenShare(false);
+      } catch (e) {
+        setOpenShare(false);
+        console.log(e);
+      }
+    }
+  }
+
   return (
     <Layout scrollEnabled={!openModalCreate}>
       <ModalCreateSheet
         height={Dimensions.get('window').height}
         open={openModalCreate}
         itemLeitura={{
-          titulo: params.devotional.titulo,
-          refBiblica: params.devotional.baseBiblica,
-          aplicacao1: params.devotional.aplicacao1,
-          aplicacao2: params.devotional.aplicacao2,
-          aplicacao3: params.devotional.aplicacao3,
-          musica: params.devotional.link,
-          desenvolvimento: params.devotional.reflexao,
-          backgroundColor: params.devotional.backgroundColor,
+          ...getItemToUpdate(),
         }}
         handleClose={handleCloseCreateDevotional}
         title={'Editar devocional?'}
@@ -97,12 +157,16 @@ const MyDevotionalView = ({route, navigation}) => {
 
         <RightWrapperHeader>
           <TouchableOpacity
-            style={{flexDirection: 'row', alignItems: 'center'}}>
-            <EditIcon onPress={() => handleOpenCreateDevotional()} />
+            style={{flexDirection: 'row', alignItems: 'center'}}
+            onPress={() => handleOpenCreateDevotional()}>
+            <EditIcon />
           </TouchableOpacity>
 
-          {/*TODO: share: titulo, ref biblica, reflexao, musica.*/}
-          <ShareIcon />
+          <TouchableOpacity
+            style={{flexDirection: 'row', alignItems: 'center'}}
+            onPress={() => shareGeneric()}>
+            <ShareIcon />
+          </TouchableOpacity>
         </RightWrapperHeader>
       </Header>
 
@@ -136,17 +200,17 @@ const MyDevotionalView = ({route, navigation}) => {
           ))}
 
         <TagsWrapper>
-          {params.devotional.aplicacao1 !== '' && (
+          {params.devotional.aplicacao1 != null && (
             <Tag color={params.colors.background}>
               {params.devotional.aplicacao1}
             </Tag>
           )}
-          {params.devotional.aplicacao2 !== '' && (
+          {params.devotional.aplicacao2 != null && (
             <Tag color={params.colors.background}>
               {params.devotional.aplicacao2}
             </Tag>
           )}
-          {params.devotional.aplicacao3 !== '' && (
+          {params.devotional.aplicacao3 != null && (
             <Tag color={params.colors.background}>
               {params.devotional.aplicacao3}
             </Tag>

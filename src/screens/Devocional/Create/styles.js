@@ -102,6 +102,12 @@ export const ButtonOkWorship = styled.TouchableOpacity`
   width: 20%;
 `;
 
+export const TextButtonOk = styled.Text`
+  font-size: 20px;
+  font-weight: 500;
+  color: ${({theme}) => theme.modal.textColor};
+`;
+
 export const WrapperReflexao = styled.View`
   margin-top: 20px;
 `;

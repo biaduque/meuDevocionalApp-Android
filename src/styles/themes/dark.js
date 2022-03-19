@@ -3,7 +3,7 @@ export default {
   colors: {
     accent: '#ECBA7D',
     background: '#2D2D2D',
-    statusBarColor: '#2D2D2D',
+    statusBarColor: 'rgba(45,45,45,.5)',
     iconColor: '#999',
 
     titlePrimary: '#fff',
@@ -27,6 +27,13 @@ export default {
     text: '#ccc',
     titleScreen: '#ECBA7D',
     gold: '#D9AB75',
+  },
+  modal: {
+    buttonCancel: '#EC5B4D',
+    borderColor: '#F2F2F2',
+    footerBackground: '#F2F2F2',
+    buttonOkMusic: '#ECBA7D',
+    textColor: '#2D2D2D',
   },
   createDevotionalModal: {
     selectionBg: '#fff',
