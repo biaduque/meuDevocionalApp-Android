@@ -27,18 +27,8 @@ const Mural = () => {
 
         setLoading(false);
       } else {
-        const repositoryService = new LocalRepositoryService();
-        const data = await repositoryService.get(
-          repositoryService.MURAL_LIST_KEY,
-          true,
-        );
-
-        if (data != null) {
-          dispatch(setMural(data));
-          const assertedArray = utils.assertArray(data, 'createdAt');
-          setMuralLocal(assertedArray);
-          setLoading(false);
-        }
+        setMuralLocal([]);
+        setLoading(false);
       }
     }
 

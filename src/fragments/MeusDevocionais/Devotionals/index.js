@@ -9,24 +9,34 @@ import {
   TagsWrapper,
   Title,
 } from './styles';
-import {Text, View} from 'react-native';
+import {Text, Vibration, View} from 'react-native';
 import GreenBook1 from '../../../assets/illustrations/book-verde2.png';
 import YellowBook1 from '../../../assets/illustrations/book-amarelo1.png';
 import YellowBook2 from '../../../assets/illustrations/book-amarelo2.png';
 import YellowBook3 from '../../../assets/illustrations/book-amarelo3.png';
 import {useNavigation} from '@react-navigation/core';
 import Utils from '../../../common/utils';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import moment from 'moment';
+import {
+  setHandleModalDeleteDevocional,
+  setSelectedDevotional,
+} from '../../../store/actions/mydevotionals.action';
 
-const DevotionalsComponent = ({devotional, handleOpenModalDelete}) => {
+const DevotionalsComponent = ({devotional}) => {
   const utils = new Utils();
   const navigation = useNavigation();
 
+  const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
 
   const onLongPress = () => {
-    handleOpenModalDelete(devotional);
+    dispatch(setHandleModalDeleteDevocional(true));
+    dispatch(setSelectedDevotional(devotional));
+
+    const DURATION = 100;
+
+    Vibration.vibrate(DURATION);
   };
 
   const onPress = () => {

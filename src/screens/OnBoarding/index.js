@@ -1,67 +1,64 @@
-import React from 'react';
-import {
-  Description,
-  Image,
-  Layout,
-  Title,
-  WrapperBottom,
-  WrapperButton,
-  WrapperWelcome,
-} from './styles';
-import {StatusBar, View} from 'react-native';
-import Button from '../../components/Button';
+import React, {useState} from 'react';
+import {Footer, Layout, TextButton} from './styles';
+import {StatusBar, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
+import SwiperOnboarding from '../../components/SwiperOnboarding';
+import {Bar} from '../Main/styles';
+import {useSelector} from 'react-redux';
 
-const OnBoardingScreen = () => {
+const OnBoardingScreen = ({navigation}) => {
   const repositoryService = new LocalRepositoryService();
-  const navigation = useNavigation();
+  const $app = useSelector(state => state.app);
+  const [index, setIndex] = useState(0);
 
-  async function onPress() {
+  const nextItem = () => {
+    setIndex(prevState => prevState + 1);
+  };
+
+  const backItem = () => {
+    if (index > 0) {
+      setIndex(prevState => prevState - 1);
+    }
+  };
+
+  async function goToHome() {
     navigation.reset({
       index: 0,
       routes: [{name: 'Main'}],
     });
 
-    await repositoryService.set(
+    await repositoryService.replaceAll(
       repositoryService.IS_NEW_USER_KEY,
-      {isNewUser: true},
+      {id: 1, isNewUser: true},
       true,
     );
   }
 
   return (
     <Layout>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'#cbe5d1'} />
-      <WrapperWelcome>
-        <Image
-          resizeMode={'contain'}
-          source={require('../../assets/onboarding-image.png')}
-        />
-      </WrapperWelcome>
+      <Bar currentTheme={$app.theme.name} />
+      <SwiperOnboarding index={index} />
 
-      <WrapperBottom>
-        <View>
-          <Title>Não deixe de realizar seu devocional diário</Title>
-          <Description>
-            Aqui você consegue fazer tudo de forma rápida, simples e (palavra
-            que esqueci o nome)
-          </Description>
-        </View>
+      <Footer>
+        {index > 0 ? (
+          <TouchableOpacity onPress={() => backItem()}>
+            <TextButton>Anterior</TextButton>
+          </TouchableOpacity>
+        ) : (
+          <View />
+        )}
 
-        <Button
-          buttonStyles={{
-            backgroundColor: '#212121',
-            borderColor: '#cbe5d1',
-            paddingVertical: 16,
-            paddingHorizontal: 10,
-            marginTop: 40,
-          }}
-          textStyles={{color: '#fff'}}
-          title={'Começar'}
-          onPress={onPress}
-        />
-      </WrapperBottom>
+        {index >= 3 ? (
+          <TouchableOpacity onPress={() => goToHome()}>
+            <TextButton>Ok</TextButton>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => nextItem()}>
+            <TextButton>Próximo</TextButton>
+          </TouchableOpacity>
+        )}
+      </Footer>
     </Layout>
   );
 };

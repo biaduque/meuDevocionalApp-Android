@@ -6,14 +6,16 @@ import Header from '../../components/Header';
 import {Layout, Bar} from './styles';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
 import {setIsLoaded} from '../../store/actions/app.action';
+import ModalDeleteSheet from '../Devocional/View/ModalDeleteSheet';
 
 const Main = ({navigation}) => {
   const $app = useSelector(state => state.app);
 
-  const repositoryService = new LocalRepositoryService();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const repositoryService = new LocalRepositoryService();
+
     async function checkIsNewUser() {
       const ret = await repositoryService.get(
         repositoryService.IS_NEW_USER_KEY,
@@ -32,7 +34,7 @@ const Main = ({navigation}) => {
     }
 
     checkIsNewUser();
-  }, []);
+  }, [dispatch, navigation]);
 
   useEffect(() => {}, [$app]);
 
@@ -40,7 +42,17 @@ const Main = ({navigation}) => {
     <Layout>
       <Bar currentTheme={$app.theme.name} />
       <Header animatedValue={$app.offset} title={$app.activeTab} />
+
+      <ModalDeleteSheet
+        title={'Excluir devocional?'}
+        description={
+          'Deseja criar uma nova devocional através dessa devocional rápida?'
+        }
+        titleConfirm={'Excluir devocional'}
+      />
+
       <Fragments />
+
       <BottomNavigation />
     </Layout>
   );

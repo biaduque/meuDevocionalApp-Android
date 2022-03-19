@@ -8,7 +8,7 @@ import Webview from '../screens/Webview';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import InfoGeneric from '../screens/InfoGeneric';
 import MyDevotionalView from '../screens/Devocional/View';
-import SearchDevocionais from '../fragments/SearchDevocionais';
+import SearchDevocionais from '../screens/SearchDevocionais';
 
 const Stack = createStackNavigator();
 

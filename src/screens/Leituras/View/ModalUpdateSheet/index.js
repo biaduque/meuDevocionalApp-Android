@@ -14,7 +14,6 @@ import {
   Title,
   WrapperTopContent,
 } from './styles';
-import {useNavigation} from '@react-navigation/core';
 import LocalRepositoryService from '../../../../services/LocalRepositoryService';
 
 const ModalUpdateSheet = ({

@@ -27,7 +27,7 @@ export default {
     buttonSave: '#D9AB75',
     buttonCancel: '#EB5545',
     borderColor: '#F2F2F2',
-    footerBackground: '#3F3F3F',
+    footerBackground: '#F2F2F2',
     buttonOkMusic: '#fff',
   },
   colorsLeituraRapidaScreen: {
@@ -49,5 +49,8 @@ export default {
     amarelo1: '#EEC38D',
     amarelo2: '#F8DEAC',
     amarelo3: '#FCEFD2',
+  },
+  onboarding: {
+    background: '#FFF6E2',
   },
 };

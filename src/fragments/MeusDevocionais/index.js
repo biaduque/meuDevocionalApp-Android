@@ -1,11 +1,14 @@
-import React, {createRef, useEffect, useRef, useState} from 'react';
+import React, {createRef, useEffect, useState} from 'react';
 import {Container, FlatList, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
 import {ActivityIndicator, Animated, Vibration, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
-import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
-import ModalDeleteSheet from '../../screens/Devocional/View/ModalDeleteSheet';
+import {
+  setHandleModalDeleteDevocional,
+  setMyDevotionals,
+  setSelectedDevotional,
+} from '../../store/actions/mydevotionals.action';
 import Utils from '../../common/utils';
 import BooksImage from '../../assets/illustrations/crieBase2.png';
 import {
@@ -25,8 +28,6 @@ const MyDevotionalsScreen = ({navigation}) => {
   const $app = useSelector(state => state.app);
   const $myDevotionals = useSelector(state => state.myDevotionals);
   const [devotionals, setDevotionals] = useState([]);
-  const [openModalDelete, setOpenModalDelete] = useState(false);
-  const [selectedDevotional, setSelectedDevotional] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -67,37 +68,12 @@ const MyDevotionalsScreen = ({navigation}) => {
     })(e);
   };
 
-  const handleOpenModal = async devotional => {
-    setOpenModalDelete(true);
-    setSelectedDevotional(devotional);
-
-    const DURATION = 100;
-
-    Vibration.vibrate(DURATION);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModalDelete(false);
-    setSelectedDevotional(null);
-  };
-
   const navigateTo = path => {
     navigation.navigate(path);
   };
 
   return (
     <Layout>
-      <ModalDeleteSheet
-        open={openModalDelete}
-        devotional={selectedDevotional}
-        handleClose={handleCloseModal}
-        title={'Excluir devocional?'}
-        description={
-          'Deseja criar uma nova devocional através dessa devocional rápida?'
-        }
-        titleConfirm={'Excluir devocional'}
-      />
-
       {loading ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <ActivityIndicator size={'large'} color={'#fff'} />
@@ -125,10 +101,7 @@ const MyDevotionalsScreen = ({navigation}) => {
               onScroll={e => onScroll(e)}
               data={devotionals}
               renderItem={({item}) => (
-                <DevotionalsComponent
-                  devotional={item}
-                  handleOpenModalDelete={handleOpenModal}
-                />
+                <DevotionalsComponent devotional={item} />
               )}
             />
           )}

@@ -43,6 +43,32 @@ class LocalRepositoryService {
     }
   }
 
+  async update(key, value, isObject = false) {
+    const currentValue = await this.get(key, isObject);
+
+    const updatedItem = currentValue.map(item => {
+      if (item.id === value.id) {
+        return value;
+      }
+
+      return item;
+    });
+
+    const newValue = [...currentValue, {...updatedItem}];
+    await AsyncStorage.setItem(key, JSON.stringify(newValue));
+
+    return newValue;
+  }
+
+  async replaceAll(key, value, isObject = false) {
+    await AsyncStorage.setItem(
+      key,
+      isObject ? JSON.stringify([value]) : [value],
+    );
+
+    return value;
+  }
+
   async removeItem(key, value, isObject = false) {
     const oldValue = await this.get(key, isObject);
 

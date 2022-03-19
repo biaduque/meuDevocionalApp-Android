@@ -16,9 +16,9 @@ import {
   TitleSection,
   WrapperText,
 } from './styles';
-import ModalSheetBottom from '../../../components/ModalSheetBottom';
-import {ScrollView, TouchableOpacity, View} from 'react-native';
+import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
 import WorshipTime from '../../../components/WorshipTime';
+import ModalCreateSheet from './ModalCreateSheet';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
@@ -66,14 +66,23 @@ const MyDevotionalView = ({route, navigation}) => {
 
   return (
     <Layout scrollEnabled={!openModalCreate}>
-      <ModalSheetBottom
+      <ModalCreateSheet
+        height={Dimensions.get('window').height}
         open={openModalCreate}
-        onClose={handleCloseCreateDevotional}
-        title={'Criar nova devocional'}
-        description={
-          'Deseja criar uma nova devocional através dessa devocional rápida?'
-        }
-        titleConfirm={'Criar nova devocional'}
+        itemLeitura={{
+          titulo: params.devotional.titulo,
+          refBiblica: params.devotional.baseBiblica,
+          aplicacao1: params.devotional.aplicacao1,
+          aplicacao2: params.devotional.aplicacao2,
+          aplicacao3: params.devotional.aplicacao3,
+          musica: params.devotional.link,
+          desenvolvimento: params.devotional.reflexao,
+          backgroundColor: params.devotional.backgroundColor,
+        }}
+        handleClose={handleCloseCreateDevotional}
+        title={'Editar devocional?'}
+        description={'Tem certeza que deseja editar este devocional?'}
+        titleConfirm={'Editar Devocional'}
       />
 
       <Header>
@@ -89,12 +98,11 @@ const MyDevotionalView = ({route, navigation}) => {
         <RightWrapperHeader>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center'}}>
-            {/*TODO: abrir modal de criação com os params preenchidos.*/}
             <EditIcon onPress={() => handleOpenCreateDevotional()} />
-
-            {/*TODO: share: titulo, ref biblica, reflexao, musica.*/}
-            <ShareIcon />
           </TouchableOpacity>
+
+          {/*TODO: share: titulo, ref biblica, reflexao, musica.*/}
+          <ShareIcon />
         </RightWrapperHeader>
       </Header>
 

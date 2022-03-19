@@ -14,4 +14,23 @@ const setMural = payload => {
   };
 };
 
-export {setMyDevotionals, setMural};
+const setHandleModalDeleteDevocional = payload => {
+  return {
+    type: ActionTypes.myDevotionals.SET_OPEN_MODAL_DELETE_DEVOTIONAL,
+    payload,
+  };
+};
+
+const setSelectedDevotional = payload => {
+  return {
+    type: ActionTypes.myDevotionals.SET_SELECTED_DEVOTIONAl,
+    payload,
+  };
+};
+
+export {
+  setMyDevotionals,
+  setMural,
+  setHandleModalDeleteDevocional,
+  setSelectedDevotional,
+};

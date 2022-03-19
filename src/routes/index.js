@@ -13,7 +13,6 @@ const Routes = ({currentTheme}) => {
 
   useEffect(() => {
     const appLoaded = $app.isLoaded;
-    console.log(appLoaded);
 
     setTimeout(() => {
       setIsLoaded(appLoaded);
