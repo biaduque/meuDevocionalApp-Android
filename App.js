@@ -54,8 +54,6 @@ const App = () => {
         muralItems[Math.floor(Math.random() * muralItems.length)];
       const colors = parseColors(randomItem.backgroundColor);
 
-      console.log(randomItem.backgroundColor);
-
       SharedStorage.set(
         JSON.stringify({
           text: randomItem.titulo,

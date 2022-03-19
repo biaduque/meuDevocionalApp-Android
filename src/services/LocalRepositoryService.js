@@ -54,8 +54,6 @@ class LocalRepositoryService {
       return item;
     });
 
-    console.log(updatedItem);
-
     await AsyncStorage.setItem(key, JSON.stringify(updatedItem));
 
     return updatedItem;
