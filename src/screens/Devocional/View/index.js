@@ -16,14 +16,22 @@ import {
   TitleSection,
   WrapperText,
 } from './styles';
-import {Dimensions, ScrollView, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Share,
+  Keyboard,
+} from 'react-native';
 import WorshipTime from '../../../components/WorshipTime';
 import ModalCreateSheet from './ModalCreateSheet';
+import {default as ShareRN} from 'react-native-share';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
   const [openModalCreate, setOpenModalCreate] = useState(false);
-  const [itemToUpdate, setItemToUpdate] = useState({});
+  const [openShare, setOpenShare] = useState(false);
 
   const handleOpenCreateDevotional = () => {
     setOpenModalCreate(true);
@@ -94,6 +102,35 @@ const MyDevotionalView = ({route, navigation}) => {
     }
   };
 
+  async function shareGeneric() {
+    Keyboard.dismiss();
+
+    const shareContent = {
+      title: '𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁',
+      message: `
+𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁
+✨${params.devotional.titulo}
+✨${params.devotional.baseBiblica}
+✨${params.devotional.reflexao}
+✨${params.devotional.link}
+`,
+    };
+
+    if (!openShare) {
+      try {
+        setOpenShare(true);
+        await Share.share(shareContent, {
+          dialogTitle: 'Compartilhar leitura',
+        });
+
+        setOpenShare(false);
+      } catch (e) {
+        setOpenShare(false);
+        console.log(e);
+      }
+    }
+  }
+
   return (
     <Layout scrollEnabled={!openModalCreate}>
       <ModalCreateSheet
@@ -120,14 +157,16 @@ const MyDevotionalView = ({route, navigation}) => {
 
         <RightWrapperHeader>
           <TouchableOpacity
-            style={{flexDirection: 'row', alignItems: 'center'}}>
-            <EditIcon onPress={() => handleOpenCreateDevotional()} />
+            style={{flexDirection: 'row', alignItems: 'center'}}
+            onPress={() => handleOpenCreateDevotional()}>
+            <EditIcon />
           </TouchableOpacity>
 
-          {/*TODO: share: titulo, ref biblica, reflexao, musica.*/}
-          {/*  𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁*/}
-
-          <ShareIcon />
+          <TouchableOpacity
+            style={{flexDirection: 'row', alignItems: 'center'}}
+            onPress={() => shareGeneric()}>
+            <ShareIcon />
+          </TouchableOpacity>
         </RightWrapperHeader>
       </Header>
 

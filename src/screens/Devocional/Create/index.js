@@ -7,6 +7,7 @@ import {
   ScrollView,
   TextArea,
   TextButtonCancel,
+  TextButtonOk,
   TextButtonSave,
   TextInput,
   TextInputBorder,
@@ -193,7 +194,10 @@ const CreateDevotionalScreen = ({route, navigation}) => {
         titleCancel={'Ignorar alterações'}
         titleConfirm={'Continuar Editando'}
       />
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{
+          paddingBottom: 60,
+        }}>
         <TextTitle>Cor</TextTitle>
         <WrapperColorButtons>
           <CustomRadioButton
@@ -274,7 +278,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
           </WrapperInputLabel>
 
           <ButtonOkWorship>
-            <Text style={{fontSize: 20, color: '#333'}}>OK</Text>
+            <TextButtonOk>OK</TextButtonOk>
           </ButtonOkWorship>
         </WrapperWorship>
 

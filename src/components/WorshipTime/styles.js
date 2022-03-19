@@ -19,10 +19,15 @@ export const CirclePlay = styled.TouchableOpacity.attrs({
   width: 50px;
   height: 50px;
   border-radius: 500px;
-  background: ${({theme}) => theme.devotionalColors.verde2};
   justify-content: center;
   align-items: center;
   margin-right: 20px;
+`;
+
+export const ImagePlay = styled.Image`
+  width: 60px;
+  height: 60px;
+  margin-top: 14px;
 `;
 
 export const ImageBackground = styled.Image`

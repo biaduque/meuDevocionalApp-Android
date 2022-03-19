@@ -2,10 +2,12 @@ import React from 'react';
 import {
   CirclePlay,
   ImageBackground,
+  ImagePlay,
   PlayIcon,
   WorshipTimeWrapper,
 } from './styles';
 import {View} from 'react-native';
+import PlayImage from '../../assets/illustrations/playIcon.png';
 
 const WorshipTime = ({navigateToMusic, ...rest}) => {
   return (
@@ -17,7 +19,7 @@ const WorshipTime = ({navigateToMusic, ...rest}) => {
       <View />
 
       <CirclePlay onPress={() => navigateToMusic()}>
-        <PlayIcon />
+        <ImagePlay source={PlayImage} />
       </CirclePlay>
     </WorshipTimeWrapper>
   );
