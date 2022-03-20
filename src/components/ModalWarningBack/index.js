@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions} from 'react-native';
-import ModalSheetBottom from '../../../../components/ModalSheetBottom';
+import ModalSheetBottom from '../ModalSheetBottom';
 import {
   ActionCancelButton,
   ActionConfirmButton,

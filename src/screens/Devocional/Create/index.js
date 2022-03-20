@@ -25,7 +25,7 @@ import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
 import uuid from 'react-native-uuid';
 import CustomRadioButton from '../../../components/CustomRadioButton';
 import moment from 'moment';
-import ModalWarningBackSheet from './ModalWarningBack';
+import ModalWarningBackSheet from '../../../components/ModalWarningBack';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;

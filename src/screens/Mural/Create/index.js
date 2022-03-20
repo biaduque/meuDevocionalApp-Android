@@ -28,10 +28,9 @@ import CustomRadioButton from '../../../components/CustomRadioButton';
 import moment from 'moment';
 import Utils from '../../../common/utils';
 import ImagePicker from 'react-native-image-crop-picker';
+import ModalWarningBackSheet from '../../../components/ModalWarningBack';
 
 const CreateMural = ({route, navigation}) => {
-  const {params} = route;
-
   const utils = new Utils();
   const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
@@ -39,21 +38,8 @@ const CreateMural = ({route, navigation}) => {
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
-  const [chapter, setChapter] = useState('');
   const [selectedColor, setSelectedColor] = useState('verde2');
-
-  useEffect(() => {
-    if (params != null) {
-      setTitle(params.titulo);
-      setChapter(params.refBiblica);
-    }
-
-    return () => {};
-  }, [params]);
-
-  const handleBackScreen = () => {
-    navigation.goBack();
-  };
+  const [isVisibleWarningModal, setIsVisibleWarningModal] = useState(false);
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
@@ -77,11 +63,15 @@ const CreateMural = ({route, navigation}) => {
     const DURATION = 100;
 
     Vibration.vibrate(DURATION);
-    handleBackScreen();
+    handleClose();
   }
 
   const parseColors = () => {
     return utils.transformDataColor(selectedColor, $app.theme);
+  };
+
+  const canGoBack = () => {
+    navigation.goBack();
   };
 
   const colorsRadioButtons = () => {
@@ -106,8 +96,33 @@ const CreateMural = ({route, navigation}) => {
     setBackgroundImage(ret.path);
   }
 
+  const handleClose = () => {
+    navigation.goBack();
+  };
+
+  const handleBackScreen = () => {
+    handleOpenWarningModal();
+  };
+
+  function handleOpenWarningModal() {
+    setIsVisibleWarningModal(true);
+  }
+
+  function handleCloseWarningModal() {
+    setIsVisibleWarningModal(false);
+  }
+
   return (
     <Container>
+      <ModalWarningBackSheet
+        title={'Tem certeza que deseja descartar este item?'}
+        description={'Se sair, as informações não serão salvas.'}
+        onPress={canGoBack}
+        handleClose={handleCloseWarningModal}
+        open={isVisibleWarningModal}
+        titleCancel={'Ignorar alterações'}
+        titleConfirm={'Continuar Editando'}
+      />
       <ScrollView>
         <Form>
           <TextTitle>Meu motivo</TextTitle>
