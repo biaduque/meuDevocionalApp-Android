@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Animated,
-  ActivityIndicator,
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {Animated, View, Image} from 'react-native';
 import {
   Button,
   Container,
@@ -20,6 +13,7 @@ import RepeaterMural from './Repeater';
 import {useSelector} from 'react-redux';
 import Utils from '../../common/utils';
 import ThreeBoks from '../../assets/illustrations/three-books.png';
+import {Loading} from '../../components/Loading/styles';
 
 const Mural = ({navigation}) => {
   const utils = new Utils();
@@ -66,7 +60,7 @@ const Mural = ({navigation}) => {
     <Layout>
       {loading ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size={'large'} color={'#fff'} />
+          <Loading />
         </View>
       ) : (
         <Container>

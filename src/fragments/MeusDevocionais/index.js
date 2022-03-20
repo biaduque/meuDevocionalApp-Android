@@ -1,14 +1,10 @@
 import React, {createRef, useEffect, useState} from 'react';
 import {Container, FlatList, Layout} from './styles';
 import DevotionalsComponent from './Devotionals';
-import {ActivityIndicator, Animated, Vibration, View} from 'react-native';
+import {Animated, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import LocalRepositoryService from '../../services/LocalRepositoryService';
-import {
-  setHandleModalDeleteDevocional,
-  setMyDevotionals,
-  setSelectedDevotional,
-} from '../../store/actions/mydevotionals.action';
+import {setMyDevotionals} from '../../store/actions/mydevotionals.action';
 import Utils from '../../common/utils';
 import BooksImage from '../../assets/illustrations/crieBase2.png';
 import {
@@ -19,6 +15,7 @@ import {
   TextButton,
   Title,
 } from '../../components/EmptyState/styles';
+import {Loading} from '../../components/Loading/styles';
 
 const MyDevotionalsScreen = ({navigation}) => {
   const utils = new Utils();
@@ -76,7 +73,7 @@ const MyDevotionalsScreen = ({navigation}) => {
     <Layout>
       {loading ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size={'large'} color={'#fff'} />
+          <Loading />
         </View>
       ) : (
         <Container>

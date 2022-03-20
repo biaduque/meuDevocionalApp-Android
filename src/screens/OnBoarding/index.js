@@ -51,7 +51,7 @@ const OnBoardingScreen = ({navigation}) => {
 
         {index >= 3 ? (
           <TouchableOpacity onPress={() => goToHome()}>
-            <TextButton>Ok</TextButton>
+            <TextButton>OK</TextButton>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => nextItem()}>

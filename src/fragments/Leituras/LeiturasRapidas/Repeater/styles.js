@@ -13,8 +13,8 @@ export const WrapperLeitura = styled.TouchableOpacity.attrs({
 `;
 
 export const Description = styled.Text`
-  font-size: 18px;
-  line-height: 32px;
+  font-size: 16px;
+  line-height: 26px;
   color: ${({theme}) => theme.colors.titleSecondary};
 `;
 

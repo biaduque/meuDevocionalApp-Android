@@ -8,8 +8,9 @@ import {
   Tag,
   TagsWrapper,
   Title,
+  DateCreatedAt,
 } from './styles';
-import {Text, Vibration, View} from 'react-native';
+import {Vibration, View} from 'react-native';
 import GreenBook1 from '../../../assets/illustrations/book-verde2.png';
 import YellowBook1 from '../../../assets/illustrations/book-amarelo1.png';
 import YellowBook2 from '../../../assets/illustrations/book-amarelo2.png';
@@ -73,17 +74,12 @@ const DevotionalsComponent = ({devotional}) => {
       <Container>
         <FlexContainer>
           <View>
-            <Text
-              style={{
-                fontSize: 16,
-                marginBottom: 20,
-                opacity: 0.6,
-                fontWeight: 'bold',
-                color: parseColors().titulo,
-              }}>
+            <DateCreatedAt color={parseColors().titulo}>
               {moment(devotional.date).format('DD/MM/YYYY')}
-            </Text>
+            </DateCreatedAt>
+
             <Title color={parseColors().titulo}>{devotional.titulo}</Title>
+
             <BaseBiblica color={parseColors().baseBiblica}>
               {devotional.baseBiblica}
             </BaseBiblica>

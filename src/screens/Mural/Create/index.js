@@ -8,6 +8,7 @@ import {
   MuralDraftVisualWrapper,
   PhotoIcon,
   ScrollView,
+  TextButton,
   TextButtonCancel,
   TextButtonSave,
   TextContent,
@@ -121,7 +122,7 @@ const CreateMural = ({route, navigation}) => {
             </WrapperInputLabel>
 
             <ButtonOkWorship>
-              <Text style={{fontSize: 20, color: '#333'}}>OK</Text>
+              <TextButton>OK</TextButton>
             </ButtonOkWorship>
           </WrapperWorship>
 
@@ -135,6 +136,8 @@ const CreateMural = ({route, navigation}) => {
         </Form>
 
         <MuralDraftVisualWrapper>
+          <PhotoIcon onPress={() => getImageCamera()} />
+
           {image != null ? (
             <DraftContainerImage source={{uri: image}}>
               <TextContent
@@ -152,8 +155,6 @@ const CreateMural = ({route, navigation}) => {
               </TextContent>
             </DraftContainer>
           )}
-
-          <PhotoIcon onPress={() => getImageCamera()} />
         </MuralDraftVisualWrapper>
       </ScrollView>
 

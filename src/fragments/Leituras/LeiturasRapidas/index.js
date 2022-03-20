@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {View} from 'react-native';
 import {FlatList, Layout, TitleScreen} from './styles';
 import RepeaterQuickReader from './Repeater';
 import {api} from '../../../services/api';
 import Utils from '../../../common/utils';
+import {Loading} from '../../../components/Loading/styles';
 
 const LeiturasRapidas = () => {
   const utils = new Utils();
@@ -37,10 +38,10 @@ const LeiturasRapidas = () => {
 
   return (
     <Layout>
-      <TitleScreen>Leituras Rapidas</TitleScreen>
+      <TitleScreen>Leituras Rápidas</TitleScreen>
       {loading ? (
         <View style={{padding: 60}}>
-          <ActivityIndicator size="large" color="#FFF" />
+          <Loading />
         </View>
       ) : (
         <FlatList

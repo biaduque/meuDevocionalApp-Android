@@ -49,7 +49,11 @@ const RepeaterCotidiano = ({item}) => {
       />
 
       <FooterWrapper>
-        <Title>{item.titulo}</Title>
+        <Title>
+          {item.titulo.length < 30
+            ? item.titulo
+            : item.titulo.substring(0, 24) + '...'}
+        </Title>
         <RefBiblia>{item.baseBiblica}</RefBiblia>
       </FooterWrapper>
     </WrapperLeitura>
