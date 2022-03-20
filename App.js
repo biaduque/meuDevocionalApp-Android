@@ -14,6 +14,7 @@ import {ThemeProvider} from 'styled-components';
 import {dark, light} from './src/styles/themes';
 import Utils from './src/common/utils';
 import moment from 'moment';
+import MockData from './src/common/mockData';
 
 const App = () => {
   const $myDevotionals = store.getState().myDevotionals;
@@ -38,6 +39,7 @@ const App = () => {
 
   useEffect(() => {
     const utils = new Utils();
+    const mockData = new MockData();
 
     async function getDataStoraged() {
       $myDevotionals.mural = await utils.getMural();
@@ -49,9 +51,13 @@ const App = () => {
 
     async function setItemWidget() {
       const muralItems = $myDevotionals.mural;
+      const mockWidgetItems = mockData.widgetContentMock();
+
+      const mergedArray = [...muralItems, ...mockWidgetItems];
 
       const randomItem =
-        muralItems[Math.floor(Math.random() * muralItems.length)];
+        mergedArray[Math.floor(Math.random() * mergedArray.length)];
+
       const colors = parseColors(randomItem.backgroundColor);
 
       SharedStorage.set(
@@ -59,7 +65,10 @@ const App = () => {
           text: randomItem.titulo,
           color: colors.titulo,
           background: randomItem.backgroundColor,
-          date: moment(randomItem.createdAt, 'DD/MM/YYYY').format('DD/MM/YYYY'),
+          date:
+            randomItem.createdAt != null
+              ? moment(randomItem.createdAt, 'DD/MM/YYYY').format('DD/MM/YYYY')
+              : randomItem.descricao,
         }),
       );
     }
