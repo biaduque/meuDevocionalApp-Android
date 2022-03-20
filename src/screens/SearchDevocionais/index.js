@@ -51,9 +51,6 @@ const SearchDevocionais = ({navigation}) => {
 
       {devotionals.length <= 0 ? (
         <BigWrapper>
-          {/*<Text style={{fontSize: 24, textAlign: 'center'}}>
-            Nenhum resultado encontrado
-          </Text>*/}
           <Image
             resizeMode={'contain'}
             source={NotFoundImage}

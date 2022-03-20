@@ -1,19 +1,32 @@
 import React, {useEffect, useState} from 'react';
-import {Animated, ActivityIndicator, View} from 'react-native';
-import {Container, Layout} from './styles';
+import {
+  Animated,
+  ActivityIndicator,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  Button,
+  Container,
+  Description,
+  Layout,
+  TextButton,
+  Title,
+  ViewEmptyList,
+} from './styles';
 import RepeaterMural from './Repeater';
-import {useDispatch, useSelector} from 'react-redux';
-import LocalRepositoryService from '../../services/LocalRepositoryService';
-import {setMural} from '../../store/actions/mydevotionals.action';
+import {useSelector} from 'react-redux';
 import Utils from '../../common/utils';
+import ThreeBoks from '../../assets/illustrations/three-books.png';
 
-const Mural = () => {
+const Mural = ({navigation}) => {
   const utils = new Utils();
-  const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
   const $myDevotionals = useSelector(state => state.myDevotionals);
 
-  const [muralLocal, setMuralLocal] = useState([]);
+  const [mural, setMural] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,11 +36,11 @@ const Mural = () => {
           $myDevotionals.mural,
           'createdAt',
         );
-        setMuralLocal(assertedArray);
+        setMural(assertedArray);
 
         setLoading(false);
       } else {
-        setMuralLocal([]);
+        setMural([]);
         setLoading(false);
       }
     }
@@ -35,7 +48,7 @@ const Mural = () => {
     getMural();
 
     return () => {
-      setMuralLocal([]);
+      setMural([]);
     };
   }, [$myDevotionals]);
 
@@ -43,6 +56,10 @@ const Mural = () => {
     Animated.event([{nativeEvent: {contentOffset: {y: $app.offset}}}], {
       useNativeDriver: false,
     })(e);
+  };
+
+  const goToCreateMural = () => {
+    navigation.navigate('CreateMural');
   };
 
   return (
@@ -53,20 +70,36 @@ const Mural = () => {
         </View>
       ) : (
         <Container>
-          <Animated.FlatList
-            data={muralLocal}
-            numColumns={2}
-            contentContainerStyle={{
-              paddingTop: 260,
-              paddingBottom: 120,
-            }}
-            showsVerticalScrollIndicator={false}
-            scrollEventThrottle={16}
-            onScroll={e => onScroll(e)}
-            renderItem={({item}) => (
-              <RepeaterMural item={item} theme={$app.theme} />
-            )}
-          />
+          {mural.length <= 0 ? (
+            <ViewEmptyList>
+              <Image source={ThreeBoks} />
+              <Title>
+                Você ainda não possui nenhum motivo de gratidão adicionado no
+                mural...
+              </Title>
+
+              <Description>Adicione um para começar!</Description>
+
+              <Button onPress={() => goToCreateMural()}>
+                <TextButton>Criar Motivo</TextButton>
+              </Button>
+            </ViewEmptyList>
+          ) : (
+            <Animated.FlatList
+              data={mural}
+              numColumns={2}
+              contentContainerStyle={{
+                paddingTop: 260,
+                paddingBottom: 120,
+              }}
+              showsVerticalScrollIndicator={false}
+              scrollEventThrottle={16}
+              onScroll={e => onScroll(e)}
+              renderItem={({item}) => (
+                <RepeaterMural item={item} theme={$app.theme} />
+              )}
+            />
+          )}
         </Container>
       )}
     </Layout>

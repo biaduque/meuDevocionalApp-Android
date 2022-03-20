@@ -3,7 +3,7 @@ export default {
   colors: {
     accent: '#ECBA7D',
     background: '#2D2D2D',
-    statusBarColor: 'rgba(45,45,45,.5)',
+    statusBarColor: '#2D2D2D',
     iconColor: '#999',
 
     titlePrimary: '#fff',
