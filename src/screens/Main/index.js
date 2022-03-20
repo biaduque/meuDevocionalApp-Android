@@ -22,9 +22,7 @@ const Main = ({navigation}) => {
         true,
       );
 
-      if (ret != null && ret[0].isNewUser === true) {
-        // navigation.navigate('Main');
-      } else {
+      if (ret == null && ret[0].isNewUser === false) {
         navigation.navigate('OnBoarding');
       }
 

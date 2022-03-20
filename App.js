@@ -50,7 +50,7 @@ const App = () => {
     };
 
     async function setItemWidget() {
-      const muralItems = $myDevotionals.mural;
+      const muralItems = $myDevotionals.mural ? $myDevotionals.mural.items : [];
       const mockWidgetItems = mockData.widgetContentMock();
 
       const mergedArray = [...muralItems, ...mockWidgetItems];

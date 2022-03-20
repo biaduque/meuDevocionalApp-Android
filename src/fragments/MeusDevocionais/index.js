@@ -37,16 +37,25 @@ const MyDevotionalsScreen = ({navigation}) => {
         setDevotionals(assertedArray);
         setLoading(false);
       } else {
-        const repositoryService = new LocalRepositoryService();
-        const data = await repositoryService.get(
-          repositoryService.DEVOCIONAL_LIST_KEY,
-          true,
-        );
+        try {
+          const repositoryService = new LocalRepositoryService();
+          const data = await repositoryService.get(
+            repositoryService.DEVOCIONAL_LIST_KEY,
+            true,
+          );
 
-        if (data != null) {
-          dispatch(setMyDevotionals(data));
-          const assertedArray = utils.assertArray(data, 'createdAt');
-          setDevotionals(assertedArray);
+          if (data != null) {
+            dispatch(setMyDevotionals(data));
+            const assertedArray = utils.assertArray(data, 'createdAt');
+            setDevotionals(assertedArray);
+            setLoading(false);
+          } else {
+            setDevotionals([]);
+            setLoading(false);
+          }
+        } catch (e) {
+          console.log('Não há dados salvos');
+          setDevotionals([]);
           setLoading(false);
         }
       }
