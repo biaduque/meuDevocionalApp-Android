@@ -138,15 +138,19 @@ class Utils {
   };
 
   async getMural() {
-    const repositoryService = new LocalRepositoryService();
-    const data = await repositoryService.get(
-      repositoryService.MURAL_LIST_KEY,
-      true,
-    );
+    try {
+      const repositoryService = new LocalRepositoryService();
+      const data = await repositoryService.get(
+        repositoryService.MURAL_LIST_KEY,
+        true,
+      );
 
-    if (data != null) {
-      const assertedArray = this.assertArray(data, 'createdAt');
-      return assertedArray;
+      if (data != null) {
+        const assertedArray = this.assertArray(data, 'createdAt');
+        return assertedArray;
+      }
+    } catch (e) {
+      console.log('Não há dados no mural');
     }
   }
 

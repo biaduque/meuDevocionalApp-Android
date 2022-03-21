@@ -98,6 +98,12 @@ export const ButtonOkWorship = styled.TouchableOpacity`
   width: 20%;
 `;
 
+export const TextButton = styled.Text`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({theme}) => theme.createDevotionalModal.buttonOkMusic};
+`;
+
 export const MuralDraftVisualWrapper = styled.View`
   flex-direction: column;
   justify-content: center;

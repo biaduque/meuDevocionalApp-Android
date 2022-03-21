@@ -29,6 +29,11 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Implementation of App Widget functionality.
  */
@@ -39,7 +44,7 @@ public class Widget extends AppWidgetProvider {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
             SharedPreferences sharedPref = context.getSharedPreferences("DATA", Context.MODE_PRIVATE);
-            String appString = sharedPref.getString("appData", "{\"text\":'Não há dados'}");
+            String appString = sharedPref.getString("appData", "{\"text\":'Meu Devocional'}");
             JSONObject appData = new JSONObject(appString);
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
 
@@ -88,7 +93,11 @@ public class Widget extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
-        // Enter relevant functionality for when the first widget is created
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String currentDate = sdf.format(new Date());
+
+        views.setTextViewText(R.id.appwidget_date, currentDate);
     }
 
     @Override

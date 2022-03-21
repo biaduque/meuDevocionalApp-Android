@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions} from 'react-native';
-import ModalSheetBottom from '../../../../components/ModalSheetBottom';
+import ModalSheetBottom from '../ModalSheetBottom';
 import {
   ActionCancelButton,
   ActionConfirmButton,
@@ -20,15 +20,15 @@ const ModalWarningBackSheet = ({
   description,
   titleConfirm,
   titleCancel,
-  onPress,
+  onPressCancel,
+  onPressContinue,
   open,
-  handleClose,
 }) => {
   return (
     <ModalSheetBottom
       height={Dimensions.get('window').height}
       open={open}
-      onClose={handleClose}>
+      onClose={onPressContinue}>
       <Container>
         <WrapperTopContent>
           <ContentTop>
@@ -37,13 +37,13 @@ const ModalWarningBackSheet = ({
           </ContentTop>
 
           <Footer>
-            <ActionCancelButton onPress={() => onPress()}>
+            <ActionCancelButton onPress={() => onPressCancel()}>
               <TextCancel>{titleCancel}</TextCancel>
             </ActionCancelButton>
 
             <Separator />
 
-            <ActionConfirmButton onPress={() => handleClose()}>
+            <ActionConfirmButton onPress={() => onPressContinue()}>
               <TextConfirm>{titleConfirm}</TextConfirm>
             </ActionConfirmButton>
           </Footer>

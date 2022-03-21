@@ -27,7 +27,7 @@ const StackRoutes = () => {
         name="CreateDevotional"
         component={CreateDevotional}
         options={{
-          gestureEnabled: true,
+          gestureEnabled: false,
           ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
@@ -43,7 +43,7 @@ const StackRoutes = () => {
         name="CreateMural"
         component={CreateMural}
         options={{
-          gestureEnabled: true,
+          gestureEnabled: false,
           ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />

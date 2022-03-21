@@ -17,20 +17,23 @@ const Main = ({navigation}) => {
     const repositoryService = new LocalRepositoryService();
 
     async function checkIsNewUser() {
-      const ret = await repositoryService.get(
-        repositoryService.IS_NEW_USER_KEY,
-        true,
-      );
+      try {
+        const ret = await repositoryService.get(
+          repositoryService.IS_NEW_USER_KEY,
+          true,
+        );
 
-      if (ret != null && ret[0].isNewUser === true) {
-        // navigation.navigate('Main');
-      } else {
+        if (ret == null && ret[0].isNewUser === false) {
+          navigation.navigate('OnBoarding');
+        }
+
+        setTimeout(() => {
+          dispatch(setIsLoaded(true));
+        }, 3000);
+      } catch (e) {
+        console.log('Não há dados de usuário salvos');
         navigation.navigate('OnBoarding');
       }
-
-      setTimeout(() => {
-        dispatch(setIsLoaded(true));
-      }, 3000);
     }
 
     checkIsNewUser();

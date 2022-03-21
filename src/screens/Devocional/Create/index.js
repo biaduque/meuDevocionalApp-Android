@@ -25,7 +25,7 @@ import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
 import uuid from 'react-native-uuid';
 import CustomRadioButton from '../../../components/CustomRadioButton';
 import moment from 'moment';
-import ModalWarningBackSheet from './ModalWarningBack';
+import ModalWarningBackSheet from '../../../components/ModalWarningBack';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
   const {params} = route;
@@ -63,30 +63,34 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       setTitle(params.titulo);
       setUpdate(params.update);
 
+      setMusic(params.musica || params.link);
+      setDescription(params.desenvolvimento);
+
+      setKey1(params.aplicacao1);
+      setKey2(params.aplicacao2);
+      setKey3(params.aplicacao3);
+
+      setSelectedColor(props => {
+        props = params.backgroundColor;
+        return props;
+      });
+
       if (params.refBiblica != null) {
         const livro = params.refBiblica.split(' ')[0];
 
-        const assertCapVers = params.refBiblica
-          .replace(/\w+\s+/g, '')
-          .replace(/\s/g, '');
+        const assertCapVers = params.refBiblica.replace(/\w+\s+/g, '');
+        const capVersWithoutSpaces = assertCapVers.replace(/\s+/g, '');
 
-        const capitulo = assertCapVers.split(':')[0];
-        const versiculo = assertCapVers.split(':')[1];
+        const capitulo = capVersWithoutSpaces.split(':')[0];
+        const versiculo = capVersWithoutSpaces.split(':')[1];
 
         setBook(livro);
         setChapter(capitulo);
         setVersicle(versiculo);
-        setMusic(params.musica || params.link);
-        setDescription(params.desenvolvimento);
-
-        setKey1(params.aplicacao1);
-        setKey2(params.aplicacao2);
-        setKey3(params.aplicacao3);
-
-        setSelectedColor(props => {
-          props = params.backgroundColor;
-          return props;
-        });
+      } else {
+        setBook(params.livro);
+        setChapter(params.capitulo);
+        setVersicle(params.versiculo);
       }
     }
 
@@ -119,11 +123,8 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
-    const concatCapVerse =
-      versicle !== '' || versicle != null ? `${chapter}:${versicle}` : chapter;
 
     let newId = id;
-
     if (id == null) {
       newId = uuid.v4();
     }
@@ -137,7 +138,9 @@ const CreateDevotionalScreen = ({route, navigation}) => {
     const data = {
       id: newId,
       titulo: title,
-      baseBiblica: `${book} ${concatCapVerse}`,
+      livro: book,
+      capitulo: chapter,
+      versiculo: versicle,
       ...aplicacoes,
       backgroundColor: selectedColor,
       backgroundImage: '',
@@ -188,12 +191,13 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       <ModalWarningBackSheet
         title={'Tem certeza que deseja descartar esta nova devocional?'}
         description={'Se sair, as informações não serão salvas.'}
-        onPress={canGoBack}
-        handleClose={handleCloseWarningModal}
+        onPressCancel={canGoBack}
+        onPressContinue={handleCloseWarningModal}
         open={isVisibleWarningModal}
         titleCancel={'Ignorar alterações'}
         titleConfirm={'Continuar Editando'}
       />
+
       <ScrollView
         contentContainerStyle={{
           paddingBottom: 60,

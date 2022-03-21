@@ -8,6 +8,7 @@ import {
   MuralDraftVisualWrapper,
   PhotoIcon,
   ScrollView,
+  TextButton,
   TextButtonCancel,
   TextButtonSave,
   TextContent,
@@ -18,7 +19,7 @@ import {
   WrapperInputLabel,
   WrapperWorship,
 } from './styles';
-import {Alert, Text, TouchableOpacity, Vibration} from 'react-native';
+import {Alert, TouchableOpacity, Vibration} from 'react-native';
 import LocalRepositoryService from '../../../services/LocalRepositoryService';
 import {useDispatch, useSelector} from 'react-redux';
 import {setMural} from '../../../store/actions/mydevotionals.action';
@@ -27,10 +28,9 @@ import CustomRadioButton from '../../../components/CustomRadioButton';
 import moment from 'moment';
 import Utils from '../../../common/utils';
 import ImagePicker from 'react-native-image-crop-picker';
+import ModalWarningBackSheet from '../../../components/ModalWarningBack';
 
-const CreateMural = ({route, navigation}) => {
-  const {params} = route;
-
+const CreateMural = ({navigation}) => {
   const utils = new Utils();
   const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
@@ -38,21 +38,8 @@ const CreateMural = ({route, navigation}) => {
   const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
-  const [chapter, setChapter] = useState('');
   const [selectedColor, setSelectedColor] = useState('verde2');
-
-  useEffect(() => {
-    if (params != null) {
-      setTitle(params.titulo);
-      setChapter(params.refBiblica);
-    }
-
-    return () => {};
-  }, [params]);
-
-  const handleBackScreen = () => {
-    navigation.goBack();
-  };
+  const [isVisibleWarningModal, setIsVisibleWarningModal] = useState(false);
 
   async function saveContent() {
     const repositoryService = new LocalRepositoryService();
@@ -76,7 +63,7 @@ const CreateMural = ({route, navigation}) => {
     const DURATION = 100;
 
     Vibration.vibrate(DURATION);
-    handleBackScreen();
+    handleClose();
   }
 
   const parseColors = () => {
@@ -105,8 +92,30 @@ const CreateMural = ({route, navigation}) => {
     setBackgroundImage(ret.path);
   }
 
+  const handleClose = () => {
+    navigation.goBack();
+  };
+
+  function handleOpenWarningModal() {
+    setIsVisibleWarningModal(true);
+  }
+
+  function handleCloseWarningModal() {
+    setIsVisibleWarningModal(false);
+  }
+
   return (
     <Container>
+      <ModalWarningBackSheet
+        open={isVisibleWarningModal}
+        title={'Tem certeza que deseja descartar este item?'}
+        description={'Se sair, as informações não serão salvas.'}
+        titleCancel={'Ignorar alterações'}
+        onPressCancel={handleClose}
+        titleConfirm={'Continuar Editando'}
+        onPressContinue={handleCloseWarningModal}
+      />
+
       <ScrollView>
         <Form>
           <TextTitle>Meu motivo</TextTitle>
@@ -121,7 +130,7 @@ const CreateMural = ({route, navigation}) => {
             </WrapperInputLabel>
 
             <ButtonOkWorship>
-              <Text style={{fontSize: 20, color: '#333'}}>OK</Text>
+              <TextButton>OK</TextButton>
             </ButtonOkWorship>
           </WrapperWorship>
 
@@ -135,6 +144,8 @@ const CreateMural = ({route, navigation}) => {
         </Form>
 
         <MuralDraftVisualWrapper>
+          <PhotoIcon onPress={() => getImageCamera()} />
+
           {image != null ? (
             <DraftContainerImage source={{uri: image}}>
               <TextContent
@@ -152,14 +163,12 @@ const CreateMural = ({route, navigation}) => {
               </TextContent>
             </DraftContainer>
           )}
-
-          <PhotoIcon onPress={() => getImageCamera()} />
         </MuralDraftVisualWrapper>
       </ScrollView>
 
       <WrapperFooter>
         <TouchableOpacity
-          onPress={() => handleBackScreen()}
+          onPress={() => handleOpenWarningModal()}
           style={{
             width: '50%',
             textAlign: 'center',
