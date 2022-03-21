@@ -26,7 +26,6 @@ import {
 } from 'react-native';
 import WorshipTime from '../../../components/WorshipTime';
 import ModalCreateSheet from './ModalCreateSheet';
-import {default as ShareRN} from 'react-native-share';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
@@ -177,9 +176,12 @@ const MyDevotionalView = ({route, navigation}) => {
               {params.devotional.titulo}
             </TitleSection>
           )}
-          {params.devotional.baseBiblica !== '' && (
-            <BaseBiblica>{params.devotional.baseBiblica}</BaseBiblica>
-          )}
+          {
+            <BaseBiblica>
+              {params.devotional.livro} {params.devotional.capitulo}:
+              {params.devotional.versiculo}
+            </BaseBiblica>
+          }
           {params.devotional.reflexao !== '' && (
             <Text>{params.devotional.reflexao}</Text>
           )}

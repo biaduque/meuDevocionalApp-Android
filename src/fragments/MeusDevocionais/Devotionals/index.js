@@ -81,7 +81,7 @@ const DevotionalsComponent = ({devotional}) => {
             <Title color={parseColors().titulo}>{devotional.titulo}</Title>
 
             <BaseBiblica color={parseColors().baseBiblica}>
-              {devotional.baseBiblica}
+              {devotional.livro} {devotional.capitulo}:{devotional.versiculo}
             </BaseBiblica>
           </View>
 

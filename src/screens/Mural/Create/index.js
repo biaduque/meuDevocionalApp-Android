@@ -19,7 +19,7 @@ import {
   WrapperInputLabel,
   WrapperWorship,
 } from './styles';
-import {Alert, Text, TouchableOpacity, Vibration} from 'react-native';
+import {Alert, TouchableOpacity, Vibration} from 'react-native';
 import LocalRepositoryService from '../../../services/LocalRepositoryService';
 import {useDispatch, useSelector} from 'react-redux';
 import {setMural} from '../../../store/actions/mydevotionals.action';
@@ -30,7 +30,7 @@ import Utils from '../../../common/utils';
 import ImagePicker from 'react-native-image-crop-picker';
 import ModalWarningBackSheet from '../../../components/ModalWarningBack';
 
-const CreateMural = ({route, navigation}) => {
+const CreateMural = ({navigation}) => {
   const utils = new Utils();
   const dispatch = useDispatch();
   const $app = useSelector(state => state.app);
@@ -70,10 +70,6 @@ const CreateMural = ({route, navigation}) => {
     return utils.transformDataColor(selectedColor, $app.theme);
   };
 
-  const canGoBack = () => {
-    navigation.goBack();
-  };
-
   const colorsRadioButtons = () => {
     const colors = Object.entries($app.theme.devotionalColors).map(color => {
       const [key, value] = color;
@@ -100,10 +96,6 @@ const CreateMural = ({route, navigation}) => {
     navigation.goBack();
   };
 
-  const handleBackScreen = () => {
-    handleOpenWarningModal();
-  };
-
   function handleOpenWarningModal() {
     setIsVisibleWarningModal(true);
   }
@@ -115,14 +107,15 @@ const CreateMural = ({route, navigation}) => {
   return (
     <Container>
       <ModalWarningBackSheet
+        open={isVisibleWarningModal}
         title={'Tem certeza que deseja descartar este item?'}
         description={'Se sair, as informações não serão salvas.'}
-        onPress={canGoBack}
-        handleClose={handleCloseWarningModal}
-        open={isVisibleWarningModal}
         titleCancel={'Ignorar alterações'}
+        onPressCancel={handleClose}
         titleConfirm={'Continuar Editando'}
+        onPressContinue={handleCloseWarningModal}
       />
+
       <ScrollView>
         <Form>
           <TextTitle>Meu motivo</TextTitle>
@@ -175,7 +168,7 @@ const CreateMural = ({route, navigation}) => {
 
       <WrapperFooter>
         <TouchableOpacity
-          onPress={() => handleBackScreen()}
+          onPress={() => handleOpenWarningModal()}
           style={{
             width: '50%',
             textAlign: 'center',
