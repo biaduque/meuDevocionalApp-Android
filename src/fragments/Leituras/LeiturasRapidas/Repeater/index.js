@@ -1,8 +1,10 @@
 import React from 'react';
 import {
+  ContainerTitle,
   Description,
   FooterWrapper,
   RefBiblia,
+  RightIcon,
   Title,
   WrapperLeitura,
 } from './styles';
@@ -12,9 +14,9 @@ const RepeaterQuickReader = ({item}) => {
   const navigation = useNavigation();
 
   const formattedDescription = () => {
-    return item.introducao.length < 100
+    return item.introducao.length < 85
       ? item.introducao
-      : `${item.introducao.substring(0, 94)}...`;
+      : `${item.introducao.substring(0, 80)}...`;
   };
 
   const onClickLeitura = () => {
@@ -38,8 +40,12 @@ const RepeaterQuickReader = ({item}) => {
       <Description>{formattedDescription()}</Description>
 
       <FooterWrapper>
-        <Title>{item.titulo}</Title>
-        <RefBiblia>{item.refBiblica}</RefBiblia>
+        <ContainerTitle>
+          <Title>{item.titulo}</Title>
+          <RefBiblia>{item.refBiblica}</RefBiblia>
+        </ContainerTitle>
+
+        <RightIcon />
       </FooterWrapper>
     </WrapperLeitura>
   );

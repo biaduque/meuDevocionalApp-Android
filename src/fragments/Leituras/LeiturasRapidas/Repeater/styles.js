@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {ChevronRight} from 'react-native-iconly';
 
 export const WrapperLeitura = styled.TouchableOpacity.attrs({
   activeOpacity: 0.8,
@@ -13,13 +14,24 @@ export const WrapperLeitura = styled.TouchableOpacity.attrs({
 `;
 
 export const Description = styled.Text`
-  font-size: 16px;
+  font-size: 18px;
   line-height: 26px;
   color: ${({theme}) => theme.colors.accent};
 `;
 
 export const FooterWrapper = styled.View`
   margin-top: 26px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ContainerTitle = styled.View`
+  //width: 50%;
+`;
+
+export const RightIcon = styled(ChevronRight)`
+  color: ${({theme}) => theme.colors.accent};
 `;
 
 export const Title = styled.Text`
