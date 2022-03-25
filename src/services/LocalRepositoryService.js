@@ -32,6 +32,8 @@ class LocalRepositoryService {
         isObject ? JSON.stringify(newValue) : newValue,
       );
 
+      console.log('ja existe');
+
       return newValue;
     } else {
       await AsyncStorage.setItem(
@@ -39,7 +41,9 @@ class LocalRepositoryService {
         isObject ? JSON.stringify([value]) : [value],
       );
 
-      return value;
+      console.log('nao existe');
+
+      return [value];
     }
   }
 
