@@ -39,7 +39,7 @@ class LocalRepositoryService {
         isObject ? JSON.stringify([value]) : [value],
       );
 
-      return value;
+      return [value];
     }
   }
 

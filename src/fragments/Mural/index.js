@@ -44,7 +44,7 @@ const Mural = ({navigation}) => {
     return () => {
       setMural([]);
     };
-  }, [$myDevotionals]);
+  }, [$myDevotionals.mural]);
 
   const onScroll = e => {
     Animated.event([{nativeEvent: {contentOffset: {y: $app.offset}}}], {
