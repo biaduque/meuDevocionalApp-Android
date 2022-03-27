@@ -18,13 +18,13 @@ import {
   WrapperReflexao,
   WrapperWorship,
 } from './styles';
-import {Text, TouchableOpacity, Alert, Vibration, Keyboard} from 'react-native';
-import LocalRepositoryService from '../../../services/LocalRepositoryService';
+import {TouchableOpacity, Alert, Vibration, Keyboard} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
 import uuid from 'react-native-uuid';
-import CustomRadioButton from '../../../components/CustomRadioButton';
 import moment from 'moment';
+import LocalRepositoryService from '../../../services/LocalRepositoryService';
+import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
+import CustomRadioButton from '../../../components/CustomRadioButton';
 import ModalWarningBackSheet from '../../../components/ModalWarningBack';
 
 const CreateDevotionalScreen = ({route, navigation}) => {
@@ -94,7 +94,18 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       }
     }
 
-    return () => {};
+    return () => {
+      setBook('');
+      setChapter('');
+      setVersicle('');
+      setKey1('');
+      setKey2('');
+      setKey3('');
+      setMusic('');
+      setDescription('');
+      setSelectedColor('');
+      setUpdate(false);
+    };
   }, [params]);
 
   const canGoBack = () => {
@@ -108,9 +119,7 @@ const CreateDevotionalScreen = ({route, navigation}) => {
 
   const handleCloseScreen = () => {
     Keyboard.dismiss();
-    navigation.navigate('Main', {
-      screen: 'MyDevotionals',
-    });
+    canGoBack();
   };
 
   function handleOpenWarningModal() {
