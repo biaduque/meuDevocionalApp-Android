@@ -24,11 +24,6 @@ const OnBoardingScreen = ({navigation}) => {
 
   async function goToHome() {
     try {
-      // navigation.reset({
-      //   index: 0,
-      //   routes: [{name: 'Main'}],
-      // });
-
       navigation.navigate('Main');
 
       await repositoryService.replaceAll(
