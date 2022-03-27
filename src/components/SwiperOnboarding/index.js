@@ -14,13 +14,14 @@ import Image2 from '../../assets/illustrations/onBoarding/Onboard2.png';
 import Image3 from '../../assets/illustrations/onBoarding/Onboard3.png';
 import Image4 from '../../assets/illustrations/onBoarding/Onboard4.png';
 
-const SwiperOnboarding = ({index = 0}) => {
+const SwiperOnboarding = ({setIndex, index = 0}) => {
   return (
     <Layout>
       <Swiper
         dot={<DotWrapper />}
         activeDot={<ActiveDotWrapper />}
         loop={false}
+        onIndexChanged={setIndex}
         index={index}>
         <Content>
           <Image source={Image1} />

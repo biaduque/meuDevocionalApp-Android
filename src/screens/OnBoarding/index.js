@@ -23,22 +23,26 @@ const OnBoardingScreen = ({navigation}) => {
   };
 
   async function goToHome() {
-    navigation.reset({
-      index: 0,
-      routes: [{name: 'Main'}],
-    });
+    try {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Main'}],
+      });
 
-    await repositoryService.replaceAll(
-      repositoryService.IS_NEW_USER_KEY,
-      {id: 1, isNewUser: true},
-      true,
-    );
+      await repositoryService.replaceAll(
+        repositoryService.IS_NEW_USER_KEY,
+        {id: 1, isNewUser: true},
+        true,
+      );
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
     <Layout>
       <Bar currentTheme={$app.theme.name} />
-      <SwiperOnboarding index={index} />
+      <SwiperOnboarding index={index} setIndex={setIndex} />
 
       <Footer>
         {index > 0 ? (
