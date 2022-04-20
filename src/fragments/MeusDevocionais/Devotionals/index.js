@@ -41,6 +41,7 @@ const DevotionalsComponent = ({devotional}) => {
   };
 
   const onPress = () => {
+    dispatch(setSelectedDevotional(devotional));
     navigation.navigate('MyDevotionalView', {
       devotional,
       colors: parseColors(),

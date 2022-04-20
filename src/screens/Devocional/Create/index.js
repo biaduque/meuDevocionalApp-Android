@@ -23,7 +23,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import uuid from 'react-native-uuid';
 import moment from 'moment';
 import LocalRepositoryService from '../../../services/LocalRepositoryService';
-import {setMyDevotionals} from '../../../store/actions/mydevotionals.action';
+import {
+  setMyDevotionals,
+  setSelectedDevotional,
+} from '../../../store/actions/mydevotionals.action';
 import CustomRadioButton from '../../../components/CustomRadioButton';
 import ModalWarningBackSheet from '../../../components/ModalWarningBack';
 
@@ -157,6 +160,9 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       link: music === '' ? null : music,
       createdAt: moment().format('DD/MM/YYYY HH:mm:ss'),
     };
+
+    console.log(data);
+    dispatch(setSelectedDevotional(data));
 
     let ret;
 

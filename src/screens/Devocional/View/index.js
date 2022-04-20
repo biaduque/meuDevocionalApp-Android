@@ -26,9 +26,15 @@ import {
 } from 'react-native';
 import WorshipTime from '../../../components/WorshipTime';
 import ModalCreateSheet from './ModalCreateSheet';
+import {useDispatch, useSelector} from 'react-redux';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
+
+  const $devotional = useSelector(
+    state => state.myDevotionals.selectedDevocional,
+  );
+
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openShare, setOpenShare] = useState(false);
 
@@ -42,7 +48,7 @@ const MyDevotionalView = ({route, navigation}) => {
 
   const navigateToMusic = () => {
     let link;
-    const linkMusic = params.devotional.link;
+    const linkMusic = $devotional.link;
     const defaultLinkMusic =
       'https://www.youtube.com/watch?v=7SO3ObU99e4&list=RD7SO3ObU99e4&start_radio=1';
 
@@ -73,33 +79,33 @@ const MyDevotionalView = ({route, navigation}) => {
   }
 
   const getItemToUpdate = () => {
-    if (params.devotional.id) {
+    if ($devotional.id) {
       return {
-        id: params.devotional.id,
+        id: $devotional.id,
         update: true,
-        titulo: params.devotional.titulo,
-        refBiblica: params.devotional.baseBiblica,
-        livro: params.devotional.livro,
-        capitulo: params.devotional.capitulo,
-        versiculo: params.devotional.versiculo,
-        aplicacao1: params.devotional.aplicacao1,
-        aplicacao2: params.devotional.aplicacao2,
-        aplicacao3: params.devotional.aplicacao3,
-        musica: params.devotional.link,
-        desenvolvimento: params.devotional.reflexao,
-        backgroundColor: params.devotional.backgroundColor,
+        titulo: $devotional.titulo,
+        refBiblica: $devotional.baseBiblica,
+        livro: $devotional.livro,
+        capitulo: $devotional.capitulo,
+        versiculo: $devotional.versiculo,
+        aplicacao1: $devotional.aplicacao1,
+        aplicacao2: $devotional.aplicacao2,
+        aplicacao3: $devotional.aplicacao3,
+        musica: $devotional.link,
+        desenvolvimento: $devotional.reflexao,
+        backgroundColor: $devotional.backgroundColor,
       };
     } else {
       return {
         update: false,
-        titulo: params.devotional.titulo,
-        refBiblica: params.devotional.baseBiblica,
-        aplicacao1: params.devotional.aplicacao1,
-        aplicacao2: params.devotional.aplicacao2,
-        aplicacao3: params.devotional.aplicacao3,
-        musica: params.devotional.link,
-        desenvolvimento: params.devotional.reflexao,
-        backgroundColor: params.devotional.backgroundColor,
+        titulo: $devotional.titulo,
+        refBiblica: $devotional.baseBiblica,
+        aplicacao1: $devotional.aplicacao1,
+        aplicacao2: $devotional.aplicacao2,
+        aplicacao3: $devotional.aplicacao3,
+        musica: $devotional.link,
+        desenvolvimento: $devotional.reflexao,
+        backgroundColor: $devotional.backgroundColor,
       };
     }
   };
@@ -107,14 +113,24 @@ const MyDevotionalView = ({route, navigation}) => {
   async function shareGeneric() {
     Keyboard.dismiss();
 
+    const showTitulo =
+      $devotional.titulo != null ? `✨${$devotional.titulo}` : '';
+
+    const showRefBiblica = `✨${$devotional.livro} ${$devotional.capitulo} ${$devotional.versiculo}`;
+
+    const showReflexao =
+      $devotional.reflexao != null ? `✨${$devotional.reflexao}` : '';
+
+    const showLink = $devotional.link != null ? `✨${$devotional.link}` : '';
+
     const shareContent = {
       title: '𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁',
       message: `
 𝑀𝑒𝓊 𝒟𝑒𝓋𝑜𝒸𝒾𝑜𝓃𝒶𝓁
-✨${params.devotional.titulo}
-✨${params.devotional.baseBiblica}
-✨${params.devotional.reflexao}
-✨${params.devotional.link}
+${showTitulo}
+${showRefBiblica}
+${showReflexao}
+${showLink}
 `,
     };
 
@@ -174,51 +190,42 @@ const MyDevotionalView = ({route, navigation}) => {
 
       <ScrollView>
         <WrapperText>
-          {params.devotional.titulo !== '' && (
+          {$devotional.titulo !== '' && (
             <TitleSection color={params.colors.background}>
-              {params.devotional.titulo}
+              {$devotional.titulo}
             </TitleSection>
           )}
           {
             <BaseBiblica>
-              {params.devotional.livro} {params.devotional.capitulo}:
-              {params.devotional.versiculo}
+              {$devotional.livro} {$devotional.capitulo}:{$devotional.versiculo}
             </BaseBiblica>
           }
-          {params.devotional.reflexao !== '' && (
-            <Text>{params.devotional.reflexao}</Text>
-          )}
+          {$devotional.reflexao !== '' && <Text>{$devotional.reflexao}</Text>}
         </WrapperText>
       </ScrollView>
 
       <Footer>
         <WorshipTime navigateToMusic={navigateToMusic} />
 
-        {params.devotional.aplicacao1 !== '' ||
-          params.devotional.aplicacao2 !== '' ||
-          (params.devotional.aplicacao3 !== '' && (
+        {$devotional.aplicacao1 !== '' ||
+          $devotional.aplicacao2 !== '' ||
+          ($devotional.aplicacao3 !== '' && (
             <TagsWrapper>
-              <Tag>{params.devotional.aplicacao1}</Tag>
-              <Tag>{params.devotional.aplicacao2}</Tag>
-              <Tag>{params.devotional.aplicacao3}</Tag>
+              <Tag>{$devotional.aplicacao1}</Tag>
+              <Tag>{$devotional.aplicacao2}</Tag>
+              <Tag>{$devotional.aplicacao3}</Tag>
             </TagsWrapper>
           ))}
 
         <TagsWrapper>
-          {params.devotional.aplicacao1 != null && (
-            <Tag color={params.colors.background}>
-              {params.devotional.aplicacao1}
-            </Tag>
+          {$devotional.aplicacao1 != null && (
+            <Tag color={params.colors.background}>{$devotional.aplicacao1}</Tag>
           )}
-          {params.devotional.aplicacao2 != null && (
-            <Tag color={params.colors.background}>
-              {params.devotional.aplicacao2}
-            </Tag>
+          {$devotional.aplicacao2 != null && (
+            <Tag color={params.colors.background}>{$devotional.aplicacao2}</Tag>
           )}
-          {params.devotional.aplicacao3 != null && (
-            <Tag color={params.colors.background}>
-              {params.devotional.aplicacao3}
-            </Tag>
+          {$devotional.aplicacao3 != null && (
+            <Tag color={params.colors.background}>{$devotional.aplicacao3}</Tag>
           )}
         </TagsWrapper>
       </Footer>
