@@ -32,3 +32,4 @@ Repositório para desenvolvimento do aplicativo Meu Devocional versão Android
   
   </table>
 
+* Meu Devocional - Todos os direitos reservados, Beatriz Duque
