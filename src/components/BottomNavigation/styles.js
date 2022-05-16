@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Layout = styled.View`
+export const Layout = styled.View `
   flex: 1;
   flex-direction: row;
   max-height: 62px;
@@ -10,7 +10,7 @@ export const Layout = styled.View`
   right: 0;
 `;
 
-export const BackdropBackground = styled.View`
+export const BackdropBackground = styled.View `
   background: ${({theme}) => theme.colors.background};
   width: 100%;
   padding: 20px;
@@ -23,7 +23,7 @@ export const BackdropBackground = styled.View`
   bottom: 0;
 `;
 
-export const Container = styled.View`
+export const Container = styled.View `
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -31,14 +31,15 @@ export const Container = styled.View`
   padding: 10px 24px;
 `;
 
-export const Button = styled.TouchableOpacity`
+export const Button = styled.TouchableOpacity `
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-export const Text = styled.Text`
+export const Text = styled.Text `
   color: ${({color}) => color};
+  font-size: 12px;
   margin-top: 5px;
 `;

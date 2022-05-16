@@ -1,46 +1,46 @@
 import styled from 'styled-components/native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import {StatusBar} from 'react-native';
+import { StatusBar } from 'react-native';
 
-export const Container = styled.View`
+export const Container = styled.View `
   flex: 1;
   padding-top: 28px;
   background-color: ${({theme}) => theme.colors.background};
 `;
 
-export const ScrollView = styled.ScrollView`
+export const ScrollView = styled.ScrollView `
   padding-left: 20px;
   padding-right: 20px;
 `;
 
-export const TransparentButton = styled.TouchableOpacity``;
+export const TransparentButton = styled.TouchableOpacity ``;
 
-export const TextButtonSave = styled.Text`
+export const TextButtonSave = styled.Text `
   font-size: 18px;
   font-weight: 500;
-  color: ${({theme}) => theme.createDevotionalModal.buttonSave};
+  color: ${({theme}) => theme.createDevotionalModal.accent};
 `;
 
-export const TextButtonCancel = styled.Text`
+export const TextButtonCancel = styled.Text `
   font-size: 18px;
   font-weight: 500;
   color: ${({theme}) => theme.createDevotionalModal.buttonCancel};
 `;
 
-export const TextTitle = styled.Text`
+export const TextTitle = styled.Text `
   font-size: 26px;
   font-weight: 700;
   color: ${({theme}) => theme.colors.titlePrimary};
 `;
 
-export const WrapperColorButtons = styled.View`
+export const WrapperColorButtons = styled.View `
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 10px;
   margin-bottom: 20px;
 `;
 
-export const CircleColorButton = styled.TouchableOpacity`
+export const CircleColorButton = styled.TouchableOpacity `
   width: 50px;
   height: 50px;
   border-radius: 500px;
@@ -49,14 +49,15 @@ export const CircleColorButton = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export const Form = styled.View`
+export const Form = styled.View `
   margin-top: 26px;
 `;
 
 export const TextInput = styled.TextInput.attrs({
-  placeholderTextColor: '#ccc',
-  returnKeyType: 'next',
-})`
+    placeholderTextColor: '#ccc',
+    returnKeyType: 'next',
+})
+`
   font-size: 16px;
   font-weight: 400;
   color: ${({theme}) => theme.colors.titlePrimary};
@@ -65,22 +66,23 @@ export const TextInput = styled.TextInput.attrs({
   border-bottom-color: ${({theme}) => theme.createDevotionalModal.borderColor};
 `;
 
-export const WrapperWorship = styled.View`
+export const WrapperWorship = styled.View `
   flex-direction: row;
   margin-top: 20px;
   justify-content: space-between;
   width: 100%;
 `;
 
-export const WrapperInputLabel = styled.View`
+export const WrapperInputLabel = styled.View `
   flex-direction: column;
   max-width: 75%;
   width: 100%;
 `;
 
 export const TextInputBorder = styled.TextInput.attrs({
-  placeholderTextColor: '#ccc',
-})`
+    placeholderTextColor: '#ccc',
+})
+`
   font-size: 16px;
   font-weight: 400;
   color: ${({theme}) => theme.colors.titlePrimary};
@@ -89,7 +91,7 @@ export const TextInputBorder = styled.TextInput.attrs({
   padding: 7px 16px;
 `;
 
-export const ButtonOkWorship = styled.TouchableOpacity`
+export const ButtonOkWorship = styled.TouchableOpacity `
   background-color: ${({theme}) => theme.colors.accent};
   border-radius: 4px;
   height: 45px;
@@ -98,19 +100,19 @@ export const ButtonOkWorship = styled.TouchableOpacity`
   width: 20%;
 `;
 
-export const TextButton = styled.Text`
+export const TextButton = styled.Text `
   font-size: 16px;
   font-weight: 500;
   color: ${({theme}) => theme.createDevotionalModal.buttonOkMusic};
 `;
 
-export const MuralDraftVisualWrapper = styled.View`
+export const MuralDraftVisualWrapper = styled.View `
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const DraftContainerImage = styled.ImageBackground`
+export const DraftContainerImage = styled.ImageBackground `
   border-radius: 10px;
   padding: 20px;
   min-height: 350px;
@@ -120,7 +122,7 @@ export const DraftContainerImage = styled.ImageBackground`
   align-items: center;
 `;
 
-export const DraftContainer = styled.View`
+export const DraftContainer = styled.View `
   background: ${({background}) => background};
   border-radius: 10px;
   padding: 20px;
@@ -131,7 +133,7 @@ export const DraftContainer = styled.View`
   align-items: center;
 `;
 
-export const TextContent = styled.Text`
+export const TextContent = styled.Text `
   color: ${({color}) => color};
   background: ${({background}) => background};
   text-align: center;
@@ -141,14 +143,15 @@ export const TextContent = styled.Text`
 `;
 
 export const PhotoIcon = styled(EvilIcons).attrs({
-  name: 'camera',
-  size: 38,
-})`
+    name: 'camera',
+    size: 38,
+})
+`
   color: ${({theme}) => theme.colors.accent};
   margin-top: 28px;
 `;
 
-export const WrapperFooter = styled.View`
+export const WrapperFooter = styled.View `
   flex-direction: row;
   justify-content: center;
   align-items: center;
