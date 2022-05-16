@@ -1,17 +1,20 @@
 import styled from 'styled-components/native';
 
-export const Layout = styled.View`
+export const Layout = styled.View `
   flex: 1;
   background: ${({theme}) => theme.colors.background};
 `;
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs({
+    paddingBottom: 36
+})
+`
   flex-direction: column;
   padding-right: 20px;
   padding-left: 10px;
 `;
 
-export const ViewEmptyList = styled.View`
+export const ViewEmptyList = styled.View `
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -19,7 +22,7 @@ export const ViewEmptyList = styled.View`
   padding-top: 240px;
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text `
   font-size: 24px;
   font-weight: 500;
   color: ${({theme}) => theme.colors.accent};
@@ -28,12 +31,12 @@ export const Title = styled.Text`
   text-align: center;
 `;
 
-export const Description = styled.Text`
+export const Description = styled.Text `
   color: ${({theme}) => theme.colors.titlePrimary};
   font-size: 18px;
 `;
 
-export const Button = styled.TouchableOpacity`
+export const Button = styled.TouchableOpacity `
   background: ${({theme}) => theme.colors.accent};
   align-items: center;
   justify-content: center;
@@ -44,12 +47,12 @@ export const Button = styled.TouchableOpacity`
   min-width: 200px;
 `;
 
-export const TextButton = styled.Text`
+export const TextButton = styled.Text `
   color: ${({theme}) => theme.colors.background};
   font-size: 18px;
   font-weight: 500;
 `;
 
-export const FlatList = styled.FlatList`
+export const FlatList = styled.FlatList `
   padding-top: 10px;
 `;
