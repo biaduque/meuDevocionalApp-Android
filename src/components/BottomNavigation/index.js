@@ -29,6 +29,11 @@ const BottomNavigation = () => {
 
   const handleChooseFragment = path => {
     let nameTab = path;
+
+    if (path === route?.params?.screen) {
+      return;
+    }
+
     if (path === 'MyDevotionals') {
       nameTab = 'Meus Devocionais';
     }
@@ -48,7 +53,9 @@ const BottomNavigation = () => {
       <BackdropBackground />
 
       <Container>
-        <Button onPress={() => handleChooseFragment('Leituras')}>
+        <Button
+          activeOpacity={route?.params?.screen === 'Leituras' ? 1 : 0.5}
+          onPress={() => handleChooseFragment('Leituras')}>
           <Feather
             name="book-open"
             size={24}
@@ -58,7 +65,9 @@ const BottomNavigation = () => {
           <Text color={isSelectedColor('Leituras')}>Leituras</Text>
         </Button>
 
-        <Button onPress={() => handleChooseFragment('MyDevotionals')}>
+        <Button
+          activeOpacity={route?.params?.screen === 'MyDevotionals' ? 1 : 0.5}
+          onPress={() => handleChooseFragment('MyDevotionals')}>
           <FontAwesome
             name={'list-alt'}
             size={22}
@@ -68,7 +77,9 @@ const BottomNavigation = () => {
           <Text color={isSelectedColor('MyDevotionals')}>Meus Devocionais</Text>
         </Button>
 
-        <Button onPress={() => handleChooseFragment('Mural')}>
+        <Button
+          activeOpacity={route?.params?.screen === 'Mural' ? 1 : 0.5}
+          onPress={() => handleChooseFragment('Mural')}>
           <Star set={'curved'} color={isSelectedColor('Mural')} />
           <Text color={isSelectedColor('Mural')}>Mural</Text>
         </Button>

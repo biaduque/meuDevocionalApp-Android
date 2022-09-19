@@ -161,7 +161,6 @@ const CreateDevotionalScreen = ({route, navigation}) => {
       createdAt: moment().format('DD/MM/YYYY HH:mm:ss'),
     };
 
-    console.log(data);
     dispatch(setSelectedDevotional(data));
 
     let ret;

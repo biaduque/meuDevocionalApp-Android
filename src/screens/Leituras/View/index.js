@@ -84,8 +84,13 @@ const LeiturasView = ({route, navigation}) => {
 
     getData();
 
-    return () => {};
-  }, []);
+    return () => {
+      setAplicacao1('');
+      setAplicacao2('');
+      setAplicacao3('');
+      setReflexao('');
+    };
+  }, [params.id, parent]);
 
   const handleOpenCreateDevotional = () => {
     Keyboard.dismiss();

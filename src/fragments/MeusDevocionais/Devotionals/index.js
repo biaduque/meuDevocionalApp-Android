@@ -67,6 +67,26 @@ const DevotionalsComponent = ({devotional}) => {
     return utils.transformDataColor(devotional.backgroundColor, $app.theme);
   };
 
+  const renderBaseBiblica = () => {
+    const hasLivro = devotional.livro != null && devotional.livro !== '';
+    const hasCapitulo =
+      devotional.capitulo != null && devotional.capitulo !== '';
+    const hasVersiculo =
+      devotional.versiculo != null && devotional.versiculo !== '';
+
+    if (hasLivro && hasCapitulo && hasVersiculo) {
+      return `${devotional.livro} ${devotional.capitulo}:${devotional.versiculo}`;
+    }
+
+    if (devotional.livro != null && devotional.capitulo != null) {
+      return `${devotional.livro} ${devotional.capitulo}`;
+    }
+
+    if (devotional.livro != null) {
+      return `${devotional.livro}`;
+    }
+  };
+
   return (
     <Layout
       background={parseColors().background}
@@ -82,7 +102,7 @@ const DevotionalsComponent = ({devotional}) => {
             <Title color={parseColors().titulo}>{devotional.titulo}</Title>
 
             <BaseBiblica color={parseColors().baseBiblica}>
-              {devotional.livro} {devotional.capitulo}:{devotional.versiculo}
+              {renderBaseBiblica()}
             </BaseBiblica>
           </View>
 

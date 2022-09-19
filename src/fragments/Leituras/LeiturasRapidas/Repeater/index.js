@@ -1,4 +1,5 @@
 import React from 'react';
+import {Dimensions} from 'react-native';
 import {
   ContainerTitle,
   Description,
@@ -12,11 +13,26 @@ import {useNavigation} from '@react-navigation/core';
 
 const RepeaterQuickReader = ({item}) => {
   const navigation = useNavigation();
+  const widthScreen = Dimensions.get('window').width;
 
   const formattedDescription = () => {
+    if (widthScreen > 415) {
+      return item.introducao.length < 85
+        ? item.introducao
+        : `${item.introducao.substring(0, 80)}...`;
+    }
+
     return item.introducao.length < 85
       ? item.introducao
-      : `${item.introducao.substring(0, 80)}...`;
+      : `${item.introducao.substring(0, 70)}...`;
+  };
+
+  const formattedTitle = value => {
+    if (widthScreen > 415) {
+      return value.length < 30 ? value : `${value.substring(0, 30)}...`;
+    }
+
+    return value.length < 18 ? value : `${value.substring(0, 16)}...`;
   };
 
   const onClickLeitura = () => {
@@ -41,7 +57,7 @@ const RepeaterQuickReader = ({item}) => {
 
       <FooterWrapper>
         <ContainerTitle>
-          <Title>{item.titulo}</Title>
+          <Title>{formattedTitle(item.titulo)}</Title>
           <RefBiblia>{item.refBiblica}</RefBiblia>
         </ContainerTitle>
 
