@@ -1,11 +1,12 @@
 import React from 'react';
+import {BackHandler} from 'react-native';
 import OnBoardingScreen from '../screens/OnBoarding';
 import Main from '../screens/Main';
 import CreateDevotional from '../screens/Devocional/Create';
 import CreateMural from '../screens/Mural/Create';
 import LeiturasView from '../screens/Leituras/View';
 import Webview from '../screens/Webview';
-import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import InfoGeneric from '../screens/InfoGeneric';
 import MyDevotionalView from '../screens/Devocional/View';
 import SearchDevocionais from '../screens/SearchDevocionais';
@@ -17,7 +18,7 @@ const StackRoutes = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        animation: 'none',
+        animationEnabled: false,
         headerStyle: {height: 0},
       }}
       initialRouteName={'Main'}>
@@ -28,7 +29,6 @@ const StackRoutes = () => {
         component={CreateDevotional}
         options={{
           gestureEnabled: false,
-          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -36,7 +36,6 @@ const StackRoutes = () => {
         component={SearchDevocionais}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -44,7 +43,6 @@ const StackRoutes = () => {
         component={CreateMural}
         options={{
           gestureEnabled: false,
-          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -52,7 +50,6 @@ const StackRoutes = () => {
         component={LeiturasView}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -60,7 +57,6 @@ const StackRoutes = () => {
         component={MyDevotionalView}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
       <Stack.Screen
@@ -68,7 +64,6 @@ const StackRoutes = () => {
         component={Webview}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ScaleFromCenterAndroid,
         }}
       />
 
@@ -77,7 +72,6 @@ const StackRoutes = () => {
         component={InfoGeneric}
         options={{
           gestureEnabled: true,
-          ...TransitionPresets.ScaleFromCenterAndroid,
           cardStyle: {backgroundColor: 'transparent'},
           cardOverlayEnabled: true,
         }}

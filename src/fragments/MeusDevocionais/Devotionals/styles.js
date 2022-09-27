@@ -10,8 +10,6 @@ const scaleWidth = width / baseWidth;
 const scaleHeight = height / baseHeight;
 const scale = Math.min(scaleWidth, scaleHeight);
 
-const scaledSize = size => Math.ceil(size * scale);
-
 export const Layout = styled.TouchableOpacity.attrs({
   activeOpacity: 0.8,
 })`
@@ -44,23 +42,25 @@ export const Image = styled.Image.attrs({
 `;
 
 export const DateCreatedAt = styled.Text`
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-size: 12px;
+  margin-bottom: 16px;
   opacity: 0.6;
   font-weight: bold;
   color: ${({color}) => color};
 `;
 
+const widthScreen = Dimensions.get('window').width;
 export const Title = styled.Text`
-  font-size: ${scaledSize(25)}px;
+  font-size: ${widthScreen > 415 ? '25px' : '20px'};
   max-width: 200px;
   font-weight: bold;
   color: ${({color}) => color};
 `;
 
 export const BaseBiblica = styled.Text`
-  font-size: 18px;
+  font-size: ${widthScreen > 415 ? '18px' : '14px'};
   color: ${({color}) => color};
+  max-width: 200px;
 `;
 
 export const TagsWrapper = styled.View`

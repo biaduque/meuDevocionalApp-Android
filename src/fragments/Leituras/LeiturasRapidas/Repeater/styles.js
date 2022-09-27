@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {Dimensions} from 'react-native';
 import {ChevronRight} from 'react-native-iconly';
 
 export const WrapperLeitura = styled.TouchableOpacity.attrs({
@@ -9,13 +10,15 @@ export const WrapperLeitura = styled.TouchableOpacity.attrs({
   background-color: ${({background}) => background};
   padding: 20px;
   max-width: 300px;
+  min-width: 300px;
   max-height: 200px;
   border-radius: 4px;
 `;
 
+const widthScreen = Dimensions.get('window').width;
 export const Description = styled.Text`
-  font-size: 18px;
-  line-height: 26px;
+  font-size: ${widthScreen > 415 ? '18px' : '16px'};
+  line-height: ${widthScreen > 415 ? '26px' : '20px'};
   color: ${({theme}) => theme.colors.accent};
 `;
 

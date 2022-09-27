@@ -1,3 +1,4 @@
+import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 import Feather from 'react-native-vector-icons/Feather';
 

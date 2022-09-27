@@ -26,7 +26,7 @@ import {
 } from 'react-native';
 import WorshipTime from '../../../components/WorshipTime';
 import ModalCreateSheet from './ModalCreateSheet';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const MyDevotionalView = ({route, navigation}) => {
   const params = route.params;
@@ -149,6 +149,28 @@ ${showLink}
     }
   }
 
+  const renderBaseBiblica = () => {
+    const hasLivro = $devotional.livro != null && $devotional.livro !== '';
+    const hasCapitulo =
+      $devotional.capitulo != null && $devotional.capitulo !== '';
+    const hasVersiculo =
+      $devotional.versiculo != null && $devotional.versiculo !== '';
+
+    if (hasLivro && hasCapitulo && hasVersiculo) {
+      return `${$devotional.livro} ${$devotional.capitulo}:${$devotional.versiculo}`;
+    }
+
+    if ($devotional.livro != null && $devotional.capitulo != null) {
+      return `${$devotional.livro} ${$devotional.capitulo}`;
+    }
+
+    if ($devotional.livro != null) {
+      return `${$devotional.livro}`;
+    }
+
+    return '';
+  };
+
   return (
     <Layout scrollEnabled={!openModalCreate}>
       <ModalCreateSheet
@@ -195,11 +217,9 @@ ${showLink}
               {$devotional.titulo}
             </TitleSection>
           )}
-          {
-            <BaseBiblica>
-              {$devotional.livro} {$devotional.capitulo}:{$devotional.versiculo}
-            </BaseBiblica>
-          }
+
+          {<BaseBiblica>{renderBaseBiblica()}</BaseBiblica>}
+
           {$devotional.reflexao !== '' && <Text>{$devotional.reflexao}</Text>}
         </WrapperText>
       </ScrollView>
